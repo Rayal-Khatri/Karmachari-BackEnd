@@ -1,0 +1,22 @@
+<h1>Sign Up</h1>
+<style>
+    h5{
+        color: red;
+    }
+</style>
+{% for message in messages %}
+<h5>{{message}}</h5>
+{% endfor %}
+
+<form method="POST" action="register">
+    {% csrf_token %}
+    <p>Username:</p>
+    <input type="text" name="username">
+    <p>Email:</p>
+    <input type="email" name="email">
+    <p>Password:</p>
+    <input type="passowrd" name="password">
+    <p>Repeat Password:</p>
+    <input type="passowrd" name="password2">
+    <input type="submit">
+</form>
