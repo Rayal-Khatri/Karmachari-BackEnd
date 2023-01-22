@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+:root {
+    --primary-color: hsl(230, 69%, 61%);
+    --primary-color-alt: hsl(240, 59%, 70%);
+    --bgcolor: rgb(32, 39, 46);
+    --sec-color:rgb(241, 77, 110);
+    --text-color: whitesmoke;
+}
+html
+{
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    background: url('../Images/Bg.jpg');
+    background-size: cover;
+    background-position:center ;
+    background-repeat:no-repeat ;
+    height: 100%;
+}
+.Login_Bar
+{
+    background-color: rgb(32, 39, 46,0.6);
+    width: 300px;
+    position: absolute;
+    padding: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: var(--text-color);
+    border-radius: 10px;
+}
+.Login_Bar #applogo
+{
+    width: 30%;
+    margin-top: -90px;
+    background-color: whitesmoke;
+    border: 1px solid white;
+    border-radius: 50px;
+}
+
+#clock 
+{
+    font-size: 25px;
+    font-weight: bold;
+}
+.Login_Bar input[type = "text"],.Login_Bar input[type="password"]
+{
+    display: block;
+    background: none;
+    /* background-color: #000; */
+    padding: 14px 10px;
+    margin: 20px auto;
+    width: 220px;
+    border-radius: 24px;
+    border: 3px var(--primary-color) solid;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.Login_Bar input[type = "text"]::placeholder,.Login_Bar input[type="password"]::placeholder
+{
+    color: whitesmoke;
+    opacity: 50%;
+}
+
+.Login_Bar input[type = "text"]:focus,.Login_Bar input[type="password"]:focus
+{
+    width: 230px;
+    border: 4px var(--sec-color) solid;
+    outline: none;
+}
+.Login_Bar input[type = "text"]:hover,.Login_Bar input[type="password"]:hover
+{
+    width: 230px;
+}
+#Login_Btn
+{
+    background: var(--sec-color);
+    padding: 8px 80px;
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: -15px;
+    margin-bottom: 9px;
+    border: 3px var(--sec-color) solid;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+#Login_Btn:hover
+{
+    background: var(--bgcolor);
+    cursor: pointer;
+    color: var(--sec-color);
+
+}
+.Login_Bar a
+{
+    text-decoration: none;
+    padding: 10px;
+    color: var(--text-color);
+    position: sticky;
+    transition: 0.3s;
+}
+.Login_Bar a:hover
+{
+    font-weight: bold;
+}
+
+/* error message */
+h3 {
+    color: red;
+}
