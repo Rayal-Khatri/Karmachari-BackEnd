@@ -1,48 +1,29 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from .models import Employee
 
 # Create your views here.
 def index(request):
-    name =  'Haemon'
-    return render(request, 'index.html', {'name': name})
+    features = Employee.objects.all()
+    return render(request, 'index.html', {'features': features})
 
-#creating a sign up page
-def register(request):
-    if request.method == 'POST':
-        username = request.POST["username"]
-        email = request.Post["email"]
-        password = request.Post["password"]
-        password2 = request.Post["password2"]
-        
-        if password==password2:
-            if User.obects.filter(email=email).exists():
-                messages.info(request, "Email Already Used")
-                return redirect('register')
-            elif User.object.filter(username=username).exists():
-                messages.info(request, "Username Already Used")
-                return redirect('register')
-            else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save();
-                return redirect('login')
-        else:
-            messages.info(request, "Password did not match")
-            return redirect('register')
-    else:    
-        return render(request,'register.html')
+def home(request):
+    return render(request, 'home.html')
+
+
     
-#login
+#login request gets value from action of html.login/form
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        eid = request.POST['eid']
         password = request.POST['password']
 
-        user = auth.authenticate(username= username, password= password)
+        user = auth.authenticate(eid= eid, password= password)
 
         if user is not None:
             auth.login(request, user)
-            return redirect('/')
+            return redirect('home')
         else:
             messages.info(request, "Credentials Invalid")
             return redirect ('login')
