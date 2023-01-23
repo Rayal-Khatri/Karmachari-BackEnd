@@ -1,25 +1,26 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import auth
 from django.contrib import messages
-from .models import Employee
 
 # Create your views here.
 def index(request):
-    features = Employee.objects.all()
+    features = "some features"
     return render(request, 'index.html', {'features': features})
 
 def home(request):
     return render(request, 'home.html')
 
+def Navbar_Sidebar(request):
+    return render(request, 'Navbar_Sidebar.html')
 
     
 #login request gets value from action of html.login/form
 def login(request):
     if request.method == 'POST':
-        eid = request.POST['eid']
-        password = request.POST['password']
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
 
-        user = auth.authenticate(eid= eid, password= password)
+        user = auth.authenticate(username= username, password= password)
 
         if user is not None:
             auth.login(request, user)
