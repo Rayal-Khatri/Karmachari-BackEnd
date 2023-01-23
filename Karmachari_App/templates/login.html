@@ -24,12 +24,12 @@
         </div>
         <form  action="login" method="POST">
             {% csrf_token %}
-            <input type="text" name="eid" placeholder="Enter ID"onfocus="this.placeholder = ''"
+            <input type="text" name="username" placeholder="Enter ID"onfocus="this.placeholder = ''"
             onblur="this.placeholder = 'Enter ID'"/>
             <input type="password" name="password" placeholder="Enter Password" onfocus="this.placeholder = ''"
             onblur="this.placeholder = 'Enter Password'"/> <br>
             <input type="Submit" id="Login_Btn" value="Login"/><br>
-            <a href="{% static 'Navbar_Sidebar.html' %}" id="forgot_pw">Forgot Password?</a>
+            <a href="#" id="forgot_pw">Forgot Password?</a>
         </form>
     </div>
     <script src="{% static 'assets/js/Nav_Sidebar.js' %}"></script>
