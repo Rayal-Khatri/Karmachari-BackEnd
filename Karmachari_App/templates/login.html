@@ -22,7 +22,7 @@
             <span id="hrs">00 </span>:<span id="min">00 </span>:<span id="sec">00 </span>
             <span id="session">AM</span>
         </div>
-        <form  action="login" method="POST">
+        <form method="POST">
             {% csrf_token %}
             <input type="text" name="username" placeholder="Enter ID"onfocus="this.placeholder = ''"
             onblur="this.placeholder = 'Enter ID'"/>
