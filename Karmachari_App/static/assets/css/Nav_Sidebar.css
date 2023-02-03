@@ -1,0 +1,671 @@
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    /* ==================MAIN COLORS==================*/
+    --hue-color: 250;
+    /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
+    --primary-color: hsl(var(--hue-color), 69%, 61%);
+    --primary-color-alt: hsl(var(--hue-color), 100%, 90%);
+    --primary-color-sec: hsl(var(--hue-color), 69%, 61%);
+    --dark-color: rgb(51, 51, 51);
+    --dark-color-alt: hsl(0, 0%, 36%);
+    --dark-selected: hsl(0, 0%, 20%);
+    --Checkin: hsl(120, 50%, 50%);
+    --Checkin-hover: hsl(120, 50%, 30%);
+    --checkout: hsl(0, 100%, 70%);
+    /* =====================TEXTS ======================*/
+    --text-dark-color: #333;
+    --text-dark-color-alt: grey;
+    --text-light-color: whitesmoke;
+}
+
+/* =====================Global CSS ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    font-size: 1rem;
+}
+
+body {
+    background-color: grey;
+    font-family: sans-serif;
+}
+
+span {
+    font-size: inherit;
+}
+
+a {
+    font-size: .7rem;
+    text-decoration: none;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+/* ===============Navbar overall code ======*/
+.nav-bar {
+    height: 7%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 5;
+    background: var(--primary-color);
+    padding: 0.1em 1em;
+    box-shadow: 2px 2px 5px 5px rgb(0, 0, 0, 0.15);
+}
+
+.logo {
+    color: var(--text-light-color);
+    font-size: 1.3rem;
+}
+
+.logo:hover {
+    color: var(--primary-color-alt);
+}
+
+.logo_container {
+    width: 40%;
+    text-align: left;
+    /* text-align: center; */
+    transition: .3s;
+}
+
+.drop-down {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90%;
+    cursor: pointer;
+    border: 2px solid var(--primary-color-alt);
+    width: 12%;
+    transition: 0.3s;
+}
+
+.Name {
+    font-size: .8rem;
+    text-align: center;
+    line-height: 1rem;
+    color: var(--text-light-color);
+}
+
+/* ================Side_Bar=========== */
+.clock_section .avatar {
+    width: 50%;
+    border-radius: 50%;
+    border: .6px solid var(--text-light-color);
+}
+
+.side-clock {
+    width: 100%;
+    color: var(--text-light-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: .6rem auto .3rem auto;
+}
+
+.check-in-out {
+    display: flex;
+    justify-content: space-around;
+    /* padding: 0 1rem; */
+    text-align: left;
+    color: var(--text-dark-color-alt);
+    margin-bottom: 0rem;
+}
+
+.Title-data {
+    font-size: .74rem;
+}
+
+p.time-data {
+    font-size: .74rem;
+}
+
+.check-inout-btn {
+    width: 60%;
+    color: var(--text-light-color);
+    padding: 10px 0;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: .3s;
+    margin-top: .2rem;
+}
+
+.Check-out {
+    background-color: var(--checkout);
+}
+
+.Check-in {
+    background-color: var(--Checkin);
+}
+
+.Check-in:hover {
+    background-color: var(--Checkin-hover);
+}
+
+.Check-out:hover {
+    background-color: rgb(139, 0, 0);
+}
+
+.Reset {
+    background-color: grey;
+}
+
+/* =================Menu Items============== */
+.menu_elements {
+    background: var(--dark-selected);
+}
+
+.menu_item {
+    padding: 1rem 0 1rem 0;
+    width: 100%;
+    transition: .3s;
+}
+
+.menu_item a {
+    color: whitesmoke;
+    transition: .3s;
+    font-size: 0.7rem;
+}
+
+.menu_item:hover {
+    cursor: pointer;
+    border-left: 4px solid var(--primary-color);
+    background-color: var(--dark-color-alt);
+}
+
+.menu_item:hover a {
+    color: var(--primary-color-alt);
+}
+
+.menu-icon {
+    margin-right: 1rem;
+}
+
+.menu_item:hover .menu-icon {
+    color: var(--primary-color-alt);
+}
+
+.active-menu {
+    background: var(--dark-color-alt);
+    border-left: 4px solid var(--primary-color);
+}
+
+.active-menu a {
+    color: var(--primary-color-alt);
+    font-size: .8rem;
+}
+
+/* =====================Password Section===================== */
+.password-popup {
+    display: inline-block;
+    background-color: whitesmoke;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+    top: -150%;
+    left: 50%;
+    box-shadow: 2px 2px 5px 5px rgb(0, 0, 0, 0.15);
+    transform: translate(-50%, -50%) scale(1.25);
+    padding: 2rem 2rem;
+    text-align: left;
+    width: 24.5%;
+    border-radius: 6px;
+    transition: top 0ms ease-in-out 200ms,
+        opacity 200ms ease-in-out 0ms,
+        transform 200ms ease-in-out 0ms;
+}
+
+.password-popup.active {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: top 0ms ease-in-out 0ms,
+        opacity 200ms ease-in-out 0ms,
+        transform 200ms ease-in-out 0ms;
+}
+
+.password-popup h1 {
+    color: var(--primary-color);
+}
+
+.form {
+
+    margin-top: 1.6rem;
+}
+
+.question {
+    font-size: .9rem;
+    margin-top: .8rem;
+    outline: none;
+}
+
+.Answer {
+    border-radius: 5px;
+    width: 100%;
+    padding: .3rem;
+    outline: none;
+    transition: .3s;
+}
+
+.Answer:focus {
+    border: 2px solid var(--primary-color);
+}
+
+.submit-btn {
+    align-self: center;
+    margin: 1.6rem auto 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 25px;
+    padding: .3rem .6rem;
+    font-weight: bold;
+    color: var(--text-light-color);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-color-alt);
+    color: black;
+}
+
+.close-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: .4rem;
+    right: .7rem;
+    padding: .2rem;
+    /* background-color: var(--primary-color); */
+    border-radius: 50%;
+    width: 1.9rem;
+    height: 1.9rem;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.close-icon:hover {
+    background-color: var(--primary-color-alt);
+}
+
+/* ===========================Sub_menu============== */
+
+.arrow-icon {
+    position: absolute;
+    right: 8%;
+    transition: .3s;
+}
+
+.sub-item:hover .arrow-icon {
+    color: var(--primary-color-alt);
+    transform: translate3d(.3rem, 0rem, 0);
+}
+
+@media screen and (min-width:900px) {
+
+    /* ===================== Nav_bar ===================== */
+    .menu-open {
+        display: none;
+    }
+
+    .drop-down:hover {
+        background: var(--primary-color-alt);
+        border-color: black;
+    }
+
+    .drop-down .avatar {
+        width: 18%;
+        border-radius: 50%;
+    }
+
+    .drop-down:hover h1 {
+        color: var(--text-dark-color);
+    }
+
+    .drop-down:hover .avatar {
+        border: 1px solid black;
+    }
+
+    /* =====================Sub menu===================== */
+    .sub-menu-wrap {
+        position: absolute;
+        top: 3.2rem;
+        right: 1%;
+        background-color: var(--dark-color);
+        opacity: .9;
+        max-height: 0%;
+        border-radius: 5px;
+        width: 17%;
+        overflow: hidden;
+        transition: .3s;
+        /* box-shadow: 2px 2px 5px 5px rgb(0, 0, 0, 0.15); */
+    }
+
+    .active-menu {
+        max-height: 50%;
+    }
+
+    .sub-item {
+        display: flex;
+        align-items: center;
+        padding: .5rem 1rem;
+        width: 100%;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .sub-item-icon {
+        margin-right: 1.5rem;
+        background-color: var(--primary-color-alt);
+        color: var(--text-dark-color);
+        font-size: .9rem;
+        padding: .25rem;
+        border-radius: 50%;
+    }
+
+    .sub-item a {
+        color: var(--text-light-color);
+        transition: .3s;
+    }
+
+    .sub-item:hover {
+        background-color: var(--dark-color-alt);
+    }
+
+    .sub-item:hover a {
+        color: var(--primary-color-alt);
+    }
+
+    .sub-menu-active {
+        max-height: 50%;
+    }
+
+    /* ===================== Sidebar ===================== */
+    .side_bar {
+        background-color: var(--dark-color-alt);
+        position: absolute;
+        top: 6.4%;
+        left: 0;
+        width: 17%;
+        height: 93.666%;
+    }
+
+    .clock_section {
+        background-color: var(--dark-color);
+        text-align: center;
+        height: fit-content;
+        border-bottom: .3rem solid #000;
+        padding-bottom: .7rem;
+        transition: .3s;
+    }
+
+    .clock_section .avatar {
+        margin: .3rem auto .6rem;
+    }
+
+    /* =====================Hero Section===================== */
+    .hero-section {
+        position: absolute;
+        z-index: -1;
+        top: 6.4%;
+        left: 15%;
+        background: var(--text-light-color);
+        width: max-content;
+        width: 85%;
+        height: 93.66%;
+    }
+}
+
+/*====================================Loader.css============*/
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--dark-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border: 4px solid #Fff;
+
+    animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    background-color: #fff;
+    animation: loader-inner 2s infinite ease-in;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(180deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loader-inner {
+    0% {
+        height: 0%;
+    }
+
+    25% {
+        height: 0%;
+    }
+
+    50% {
+        height: 100%;
+    }
+
+    75% {
+        height: 100%;
+    }
+
+    100% {
+        height: 0%;
+    }
+}
+
+/*=================== MOBILE View ============*/
+@media screen and (max-width:900px) {
+
+    /*=================== Nabbar ============*/
+    .logo_container
+    {
+        text-align: center;
+    }
+    .menu-open {
+        color: var(--primary-color-alt);
+        cursor: pointer;
+        width: 6%;
+    }
+
+    .drop-down {
+        width: 40px;
+        border: none;
+    }
+
+    .drop-down .avatar {
+        width: 100%;
+        border: .1rem solid var(--text-light-color);
+        border-radius: 50%;
+    }
+
+    .Name {
+        display: none;
+    }
+
+    /*=================== Drop Down Check/Inout============*/
+    .clock_section.active {
+        height: 40%;
+    }
+
+    /*=================== Sidebar============*/
+    .side_bar {
+        position: fixed;
+        top: 6%;
+        left: -100%;
+        z-index: 1;
+        background-color: var(--dark-color);
+        width: 60%;
+        height: 100vh;
+        transition: ease-in .3s;
+
+    }
+    .side_bar.active{
+        left: 0%;
+    }
+    .menu_item
+    {
+        border-radius: 5px;
+        width: 100%;
+        padding-left: 1rem;
+    }
+    .menu_elements {
+        margin-top: 20px;
+        border-bottom: 1rem solid rgb(31, 31, 31);
+        /* padding: .3rem .1rem; */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .menu_elements ul
+    {
+        width: 90%;
+    }
+    .clock_section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--dark-color);
+        border-radius: 5px;
+        position: fixed;
+        top: 8%;
+        right: 3%;
+        height: 0%;
+        overflow: hidden;
+        width: 60%;
+        text-align: center;
+        transition: .2s;
+    }
+
+    .check-in-out {
+        margin: .5rem 0;
+        width: 100%;
+    }
+
+    .sub-menu-wrap {
+        position: fixed;
+        left: -100%;
+        top: 58%;
+        z-index:2 ;
+        background-color: var(--dark-selected);
+        width: 60%;
+        transition: ease-in .3s;
+        display: flex;
+        justify-content: center;
+
+    }
+    .sub-menu-wrap.active{
+        left: 0%;
+    }
+    .sub-menu
+    {
+        width: 90%;
+    }
+    .sub-item {
+        padding: 1rem 0 1rem 1rem;
+        border-radius: 5px;
+        text-align: left;
+        width: 100%;
+        color: white;
+        transition: .3s;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .sub-item:hover {
+        border-left: 4px solid var(--primary-color);
+        cursor: pointer;
+        background-color: var(--dark-color-alt);
+    }
+
+    .sub-item a {
+        color: whitesmoke;
+        transition: .3s;
+        /* font-size: .3rem; */
+    }
+
+    .sub-item:hover a {
+        color: var(--primary-color-alt);
+    }
+
+    .sub-item-icon {
+        margin-right: 1rem;
+    }
+
+    .sub-item:hover .sub-item-icon {
+        color: var(--primary-color-alt);
+    }
+
+    /* =====================Hero Section===================== */
+    .hero-section {
+        position: absolute;
+        z-index: -1;
+        top: 6.5%;
+        left: 0%;
+        background-color:var(--text-light-color);
+        /* background: var(--text-light-color); */
+        width: max-content;
+        width: 100%;
+        height: 100vh;
+    }
+    /* =========Password Popup===== */
+    .password-popup
+    {
+        width: 80%;
+    }
+}

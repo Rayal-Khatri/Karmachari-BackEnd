@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asstes/Css/Nav_sidebar.Css">
+    <!-- <link rel="stylesheet" href="asstes/Css/Home.Css"> -->
+    <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <p id="counter" style="display:none;">0</p>
+    <!-- =====================Nav Bar Section===================== -->
+    <div class="nav-bar">
+        <div class="logo_container">
+            <a href="#" class="logo">Karmachari</a>
+        </div>
+        <div class="drop-down" id="drop-down">
+            <img src="asstes/Images/avatar.jpg" alt="" class="avatar">
+            <h1 class="Name">Aanand Rimal</h1>
+        </div>
+    </div>
+    <div class="sub-menu-wrap" id="sub-menu">
+        <div class="sub-menu">
+            <ul>
+                <div class="sub-item"><i class="fas fa-gear sub-item-icon"></i><a href="#"></i>Settings<i class="fas fa-arrow-right arrow-icon"></i></a></div>
+                <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change Password<i class="fas fa-arrow-right arrow-icon"></i></a></div>
+                <button class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="Login.html"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
+            </ul>
+        </div>
+     </div>
+
+    <div class="side_bar">
+        <div class="container clock_section">
+            <img src="asstes/Images/avatar.jpg" alt="" class="avatar">
+            <div class="side-clock" id="clock">
+                <i class="far fa-clock clock-icon"></i>
+                <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
+                <span id="session"> AM</span>
+            </div>
+            
+            <div class="check-in-out">
+
+                    <p class="Title-data"><span>Check-In : </span><br><span> Check-Out : </span></p>
+
+
+                    <p class="time-data"><span id="in-time" class="time">--:--:-- --</span> <br><span id="out-time" class="time">--:--:-- --</span></p>
+
+            </div>
+            <button id="Check-in" class="check-inout-btn Check-in">Check In</button>
+            
+        </div>
+
+        <div class="container menu_elements">
+            <ul>
+                <li class="menu_item"><a href="Home.html"><i class="fas fa-house menu-icon"></i>Home</a></li>
+                <li class="menu_item"><a href="Your_Information.html"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
+                <li class="menu_item"><a href="Attendance.html"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
+                <li class="menu_item"><a href="Salary_Sheet.html"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
+                <li class="menu_item active-menu"><a href="#"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
+                <li class="menu_item"><a href="Notices.html"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
+            </ul>
+        </div> 
+    </div>
+
+    <div class="container hero-section">
+       <p style="color: red;">CONTENT HERE!!</p>
+    </div>
+
+     
+    <div class="password-popup container">
+        <h1>CHANGE PASSWORD</h1>
+        <div class="close-icon">
+            <i class="fas fa-xmark"></i>
+        </div>
+        <form class="form" action="">
+            <p class="question">Current Password:</p>
+            <input class="Answer" type="password">
+            <p class="question">New Password:</p>
+            <input class="Answer" type="password">
+            <p class="question">Confirm Password:</p>
+            <input class="Answer" type="password"><br>
+            <input class="submit-btn" value="Save" type="submit"\>
+        </form>
+    </div>
+    <div id="loader-wrapper" class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <script src="asstes/javaScript/Nav_sidebar.js"></script>
+    <!-- <script src="asstes/javaScript/Home.js"></script> -->
+</body>
+</html>

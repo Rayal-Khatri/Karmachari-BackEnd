@@ -1,18 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 
+User = get_user_model
 # Create your views here.
 def index(request):
-    features = "some features"
-    return render(request, 'index.html', {'features': features})
+    username =  ""
+    return render(request, 'index.html', {'user': username})
 
 def home(request):
     return render(request, 'home.html')
-
-def Navbar_Sidebar(request):
-    return render(request, 'Navbar_Sidebar.html')
-
     
 #login request gets value from action of html.login/form
 def login(request):
@@ -24,9 +22,16 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('Navbar')
+            return redirect('home')
         else:
             messages.info(request, "Credentials Invalid")
             return redirect ('login')
     else:
         return render(request,'login.html')
+    
+def logout(request):
+    auth.logout(request)
+    return redirect('/login')
+
+def yourinformation(request):
+    return render(request,'yourinformation.html')
