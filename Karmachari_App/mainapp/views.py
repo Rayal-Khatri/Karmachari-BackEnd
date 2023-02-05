@@ -55,7 +55,13 @@ def notice(request):
     # user_object = User.objects.get(username=request.user.username)
     # user_profile = Profile.objects.get(user=user_object)
     notices= Notice.objects.all()
-    return render(request,'notices.html',{'notices': notices})
+    profile=Profile.objects.get(user=request.user)
+    context={
+      'profile':profile,
+      'notices': notices
+      
+    }
+    return render(request,'notices.html',context)
 
 def postnotice(request,pk):
     notices= Notice.objects.get(id=pk)
