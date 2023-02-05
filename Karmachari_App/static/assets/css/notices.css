@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
+:root {
+    /* ==================MAIN COLORS==================*/
+    --hue-color: 207;
+    /* --color-mer:hsl(207, 75%, 50%); */
+    /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
+    --primary-color: hsl(var(--hue-color), 75%, 50%);
+    --primary-color-alt: hsl(var(--hue-color), 100%, 90%);
+    --primary-color-sec: hsl(var(--hue-color), 69%, 61%);
+    --dark-color: rgb(51, 51, 51);
+    --dark-color-alt: hsl(0, 0%, 36%);
+    --dark-selected: hsl(0, 0%, 20%);
+    --Checkin: hsl(120, 50%, 50%);
+    --Checkin-hover: hsl(120, 50%, 30%);
+    --checkout: hsl(0, 100%, 70%);
+    /* =====================TEXTS ======================*/
+    --text-dark-color: #333;
+    --text-dark-color-alt: grey;
+    --text-light-color: whitesmoke;
+}
 * {
     padding: 0rem;
     margin: 0rem;
@@ -8,7 +26,7 @@
 }
 
 .container {
-    background-color: rgb(171, 216, 201);
+    background-color: whitesmoke;
     height: 100vh;
 }
 
@@ -83,7 +101,7 @@ select {
 }
 
 .content-table thead tr {
-    background-color: #009879;
+    background-color: var(--primary-color);
     color: #ffffff;
     text-align: left;
     font-weight: bold;
