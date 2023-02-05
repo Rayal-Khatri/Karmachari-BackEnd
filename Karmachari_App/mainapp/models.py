@@ -18,9 +18,10 @@ class Profile(models.Model):
         
     
 class Notice(models.Model):
-    username = models.CharField(max_length=100)
+    sn = models.IntegerField(default=0)
     title = models.CharField(max_length=100)
-    body = models.CharField(max_length=100000)
-    created_at =models.DateTimeField(default=datetime.now)                                
+    created_at = models.DateTimeField(default=datetime.now)
+    department = models.CharField(max_length=100, default="All Departments")
+    context = models.TextField(max_length=100000,default="00")        
     def __str__(self):
         return self.title
