@@ -4,14 +4,19 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from mainapp.models import Profile
 from .models import Profile, Notice
 
 # Create your views here.
 @login_required(login_url='/login')
 def home(request):
     fullname =  request.user.get_full_name()
-    context = {'fullname':fullname}
+    profile=Profile.objects.get(user=request.user)
+    context = {'fullname':fullname,
+               'profile':profile,
+               }
     return render(request,'Home.html',context)
+
 
     
 #login request gets value from action of html.login/form
@@ -38,10 +43,14 @@ def logout(request):
 
 @login_required(login_url='/login')
 def yourinformation(request):
-    return render(request,'your_information.html')
+      profile=Profile.objects.get(user=request.user)
+      context={
+      'profile':profile,
+      
+    }
+      return render(request,'your_information.html',context)
 
 @login_required(login_url='/login')
 def notice(request):
-    user_object = User.objects.get(username=request.user.username)
-    user_profile = Profile.objects.get(user=user_object)
-    return render(request,'notices.html')
+
+  return render(request,'notices.html')

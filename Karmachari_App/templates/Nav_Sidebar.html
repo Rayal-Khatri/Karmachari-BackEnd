@@ -17,7 +17,7 @@
             <a href="#" class="logo">Karmachari</a>
         </div>
         <div class="drop-down" id="drop-down">
-            <img src="{%static 'assets/img/avatar.jpg'%}" alt="" class="avatar">
+            <img src="{{profile.profileimg.url}}" alt="" class="avatar">
             <h1 class="Name">{{user.get_full_name}}</h1>
         </div>
     </div>
@@ -37,7 +37,7 @@
 
     <div class="side_bar">
         <div class="container clock_section">
-            <img src="{%static 'assets/img/avatar.jpg'%}" alt="" class="avatar">
+            <img src="{{profile.profileimg.url}}" alt="" class="avatar">
             <div class="side-clock" id="clock">
                 <i class="far fa-clock clock-icon"></i>
                 <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>

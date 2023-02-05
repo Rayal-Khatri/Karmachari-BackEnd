@@ -15,6 +15,7 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=100, default=0)
     def __str__(self):
         return self.user.username
+        
     
 class Notice(models.Model):
     username = models.CharField(max_length=100)
