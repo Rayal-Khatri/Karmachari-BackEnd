@@ -2,145 +2,93 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'assets/css/information.css'%}"">
-    <!-- <link rel="stylesheet" href="{%static 'assets/css/home.css'%}"> -->
+    <link rel="stylesheet" href="{%static 'assets/Css/information.css'%}">
+    <!-- <link rel="stylesheet" href="asstes/Css/Home.Css"> -->
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    {% include 'nav_sidebar.html' %}
-    <div class="bg-animation">
-    </div>
+    {% include 'Nav_Sidebar.html' %}
     <div class="hero-content">
-        <div class="bubbles">
-            <span style="--i:11;"></span>
-            <span style="--i:12;"></span>
-            <span style="--i:24;"></span>
-            <span style="--i:10;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:23;"></span>
-            <span style="--i:18;"></span>
-            <span style="--i:16;"></span>
-            <span style="--i:19;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:20;"></span>
-            <span style="--i:22;"></span>
-            <span style="--i:25;"></span>
-            <span style="--i:18;"></span>
-            <span style="--i:21;"></span>
-            <span style="--i:15;"></span>
-            <span style="--i:13;"></span>
-            <span style="--i:26;"></span>
-            <span style="--i:17;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:28;"></span>
-            <span style="--i:22;"></span>
-            <span style="--i:18;"></span>
-            <span style="--i:16;"></span>
-            <span style="--i:19;"></span>
-            <span style="--i:13;"></span>
-            <span style="--i:26;"></span>
-            <span style="--i:17;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:28;"></span>
-            <span style="--i:22;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:20;"></span>
-            <span style="--i:22;"></span>
-            <span style="--i:25;"></span>
-        </div>
         <div class="hero main">
             <div class="Title-text">
                 <p>Your Information</p>
             </div>
-            <div class="your">
-                <div class="user-info">
+            <div class="information_section">
+                <div class="User-basic-information">
                     <div class="user-image-info">
                         <img src="{%static 'assets/img/avatar.jpg'%}" class="user-image">
-                    </div>
-                    <div class="user-bottom text">
-                        <p>Virat Kohli</p>
+                        <div class="Employee-name">
+                            <p>Aanand Rimal</p>
+                        </div>
+                        <div class="lines">
+                            <div class="circle"></div>
+                        </div>
                     </div>
                     <div class="user-details">
-                        <div class="user-details-top1">
-                            <span>Total Working hrs</span>
-                            <span>:</span>
+                        <div class="Question">
+                            <span>Total Working hrs:</span>
+                            <span>Total Days Late:</span>
+                            <span>Total's Schedule:</span>
                         </div>
-                        <div class="user-details-bottom1">
-                            <span>22hrs</span>
-                        </div>
-                        <div class="user-details-top2">
-                            <span>Total Days Late</span>
-                            <span>:</span>
-                        </div>
-                        <div class="user-details-bottom2">
-                            <span>20hrs</span>
-                        </div>
-                        <div class="user-details-top3">
-                            <span>Total's Schedule</span>
-                            <span>:</span>
-                        </div>
-                        <div class="user-details-bottom3">
-                            <span>10 AM - 4 PM</span>
+                        <div class="Answer">
+                            <span>08hrs</span>
+                            <span>4 days</span>
+                            <span>8 AM - 4 PM</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="master-side">
-                    <div class="master-head">
+                <div class="master-section">
+                    <div class="master-title">
                         <p>Master Information</p>
                     </div>
-                    <div class="user-info-details big_container">
-                        <div class="inputbox name">
-                            <span class="Details-name">First Name</span>
+                    <div class="big_container">
+                        <div class="inputbox">
+                            <span class="Title">First Name</span>
                             <div>
                                 <p>Susmita</p>
                             </div>
                         </div>
-                        <div class="inputbox name">
-                            <span class="Details-name">Last Name</span>
+                        <div class="inputbox">
+                            <span class="Title">Last Name</span>
                             <div>
                                 <p>Kunwar</p>
                             </div>
                         </div>
                     </div>
-                    <div class="inputbox name big_box">
-                            <span class="Details-name">Email :</span>
+                    <div class="inputbox big_box">
+                            <span class="Title">Email :</span>
                             <div>
                                 <p>susmitakunwar@gmail.com</p>
                             </div>
                     </div>
-                    <div class="inputbox name big_box">
-                            <span class="Details-name">Phone number :</span>
+                    <div class="inputbox big_box">
+                            <span class="Title">Phone number :</span>
                             <div>
                                 <p>9823125734</p>
                             </div>
                     </div>
                     <div class="big_container">
-                        <div class="inputbox name">
-                            <span class="Details-name">DOB :</span>
+                        <div class="inputbox">
+                            <span class="Title">DOB :</span>
                             <div>
                                 <p>2002/07/16</p>
                             </div>
                         </div>
-                        <div class="inputbox name">
-                            <span class="Details-name">Department</span>
+                        <div class="inputbox">
+                            <span class="Title">Department</span>
                             <div>
                                 <p>Computer</p>
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
 </body>
 
 </html>

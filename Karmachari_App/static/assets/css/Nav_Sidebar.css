@@ -1,10 +1,11 @@
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 :root {
     /* ==================MAIN COLORS==================*/
-    --hue-color: 250;
+    --hue-color: 207;
+    /* --color-mer:hsl(207, 75%, 50%); */
     /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
-    --primary-color: hsl(var(--hue-color), 69%, 61%);
+    --primary-color: hsl(var(--hue-color), 75%, 50%);
     --primary-color-alt: hsl(var(--hue-color), 100%, 90%);
     --primary-color-sec: hsl(var(--hue-color), 69%, 61%);
     --dark-color: rgb(51, 51, 51);
@@ -88,7 +89,7 @@ li {
     align-items: center;
     height: 90%;
     cursor: pointer;
-    border: 2px solid var(--primary-color-alt);
+    /* border: 2px solid var(--primary-color-alt); */
     width: 12%;
     transition: 0.3s;
 }
@@ -166,18 +167,24 @@ p.time-data {
 /* =================Menu Items============== */
 .menu_elements {
     background: var(--dark-selected);
+
 }
 
 .menu_item {
-    padding: 1rem 0 1rem 0;
+
     width: 100%;
     transition: .3s;
+    /* display: flex;
+    justify-content: left;
+    align-items: center; */
 }
 
 .menu_item a {
     color: whitesmoke;
+    padding: 1rem 0 1rem 0;
     transition: .3s;
     font-size: 0.7rem;
+    display: flex;
 }
 
 .menu_item:hover {
@@ -197,7 +204,6 @@ p.time-data {
 .menu_item:hover .menu-icon {
     color: var(--primary-color-alt);
 }
-
 .active-menu {
     background: var(--dark-color-alt);
     border-left: 4px solid var(--primary-color);
@@ -207,7 +213,27 @@ p.time-data {
     color: var(--primary-color-alt);
     font-size: .8rem;
 }
-
+.bell-notification
+{
+    /* background-color: blue; */
+    height: 0;
+}
+.bell-notification::after
+{
+    position: relative;
+    transform: translateY(-180%);
+    left: 30%;
+    font-size: .55rem;
+    content: attr(current-count);
+    width: 40%;
+    /* height: 20%; */
+    display: flex;
+    color: whitesmoke;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--checkout);
+    border-radius: 50%;
+}
 /* =====================Password Section===================== */
 .password-popup {
     display: inline-block;
@@ -246,13 +272,13 @@ p.time-data {
     margin-top: 1.6rem;
 }
 
-.question {
+.question_pw {
     font-size: .9rem;
     margin-top: .8rem;
     outline: none;
 }
 
-.Answer {
+.Answer_pw {
     border-radius: 5px;
     width: 100%;
     padding: .3rem;
@@ -350,7 +376,7 @@ p.time-data {
         opacity: .9;
         max-height: 0%;
         border-radius: 5px;
-        width: 17%;
+        width: 15%;
         overflow: hidden;
         transition: .3s;
         /* box-shadow: 2px 2px 5px 5px rgb(0, 0, 0, 0.15); */
@@ -392,7 +418,7 @@ p.time-data {
     }
 
     .sub-menu-active {
-        max-height: 50%;
+        max-height: 40%;
     }
 
     /* ===================== Sidebar ===================== */
@@ -401,7 +427,7 @@ p.time-data {
         position: absolute;
         top: 6.4%;
         left: 0;
-        width: 17%;
+        width: 15%;
         height: 93.666%;
     }
 
@@ -415,14 +441,19 @@ p.time-data {
     }
 
     .clock_section .avatar {
-        margin: .3rem auto .6rem;
+        /* margin: .3rem auto .6rem; */
+        transform:translateY(10%)
+    }
+    .menu_item
+    {
+        padding-left:.8rem;
     }
 
     /* =====================Hero Section===================== */
     .hero-section {
         position: absolute;
         z-index: -1;
-        top: 6.4%;
+        top: 7%;
         left: 15%;
         background: var(--text-light-color);
         width: max-content;
@@ -518,6 +549,7 @@ p.time-data {
         color: var(--primary-color-alt);
         cursor: pointer;
         width: 6%;
+        transition:.3s;
     }
 
     .drop-down {
@@ -560,6 +592,7 @@ p.time-data {
         border-radius: 5px;
         width: 100%;
         padding-left: 1rem;
+        margin-bottom: .3rem;
     }
     .menu_elements {
         margin-top: 20px;
