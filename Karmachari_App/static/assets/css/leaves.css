@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* =============================== Variables =========================== */
+:root {
+    /* ==================MAIN COLORS==================*/
+    --hue-color: 207;
+    /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
+    --primary-color: hsl(var(--hue-color), 75%, 50%);
+    --primary-color-alt: hsl(var(--hue-color), 100%, 90%);
+    --primary-color-sec: hsl(var(--hue-color), 70%, 20%);
+    --dark-color: rgb(51, 51, 51);
+    --dark-color-alt: hsl(0, 0%, 36%);
+    --dark-selected: hsl(0, 0%, 20%);
+    --Checkin: hsl(120, 50%, 50%);
+    --Checkin-hover: hsl(120, 50%, 30%);
+    --checkout: hsl(0, 100%, 70%);
+    /* =====================TEXTS ======================*/
+    --text-dark-color: #333;
+    --text-dark-color-alt: grey;
+    --text-light-color: whitesmoke;
+}
+*
+{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Poppins',sans-serif;
+}
+body{
+    height: 100vh;
+}
+.hero
+{
+    position: relative;
+    top: 7%;
+    left: 15%;
+    height: 93%;
+    width: 85%;
+    background-color: var(--text-light-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.title-text
+{
+    text-align: left;
+    width: 90%;
+}
+.container
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: top;
+    background-color: var(--primary-color-alt);
+    width: 90%;
+    height: 90%;
+    padding: 2.5% .5%;
+    border-radius: 5px;
+}
+.apply-leave
+{
+    /* align-self: center; */
+    background-color: var(--text-light-color);
+    height: 98%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    margin-left: 1%;
+    padding:1% 2%;
+    border-radius: 5px;
+}
+.heading
+{
+    font-size: .7rem;
+    color: var(--primary-color);
+    text-align: left;
+    width: 100%;
+    height: 10%;
+    margin: 2% 0;
+}
+.input-section-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 98%;
+    width: 100%;
+    /* background-color: red; */
+}
+.flexbox
+{
+    width: 100%;
+}
+.question_leave
+{
+    font-size: .9rem;
+}
+.answer_leave
+{
+    width: 100%;
+    height: 90%;
+    outline: none;
+}
+.bigbox
+{
+    height: 40%;
+}
+.option-leave
+{
+    width: 100%;
+}
+.submit_btn
+{
+    height: 9%;
+    width: 25%;
+    border-radius: 10%;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    color: var(--text-light-color);
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+/* ============Right Cntainer========= */
+.leave-records
+{
+    background-color: var(--text-light-color);
+    height: fit-content;
+    width: 66%;
+    border-radius:5px;
+    padding:1% 2%;
+}
+.show-option
+{
+    display: flex;
+    font-size: .9rem;
+    margin: 2% 0;
+}
+.number-of-item
+{
+    font-size: .7rem;
+    margin: 0 .5rem;
+}
+/* ===============Table CSS================ */
+.table-container {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: .7rem;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-container thead tr {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table-container th,
+.table-container td {
+    padding: 12px 15px;
+}
+
+.table-container tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table-container tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table-container tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}

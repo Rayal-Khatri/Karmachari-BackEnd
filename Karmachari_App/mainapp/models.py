@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 import uuid
 from datetime import datetime
+from django import forms
 
 User=get_user_model()
 
@@ -17,9 +18,12 @@ class Profile(models.Model):
         return self.user.username
     
 class Notice(models.Model):
-    username = models.CharField(max_length=100)
+    sn = models.IntegerField()
     title = models.CharField(max_length=100)
-    body = models.CharField(max_length=100000)
-    created_at =models.DateTimeField(default=datetime.now)                                
+    created_at = models.DateTimeField(default=datetime.now)
+    department = models.CharField(max_length=100, default="All Departments")
+    context = models.TextField(max_length=100000)        
     def __str__(self):
         return self.title
+
+        

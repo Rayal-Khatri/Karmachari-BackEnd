@@ -44,17 +44,13 @@
                         <th>description</th>
                     </strong>
                 <tbody>
-            {% for notice in notices reversed %}   
                     <tr>
-                        <a href="/postnotice/{{notice.id}}"> 
-                            <td>{{notice.sn}}</td>
-                            <td>{{notice.title}}</td>
-                            <td>{{notice.created_at}}</td>
-                            <td>{{notice.department}}</td>
-                            <td>{{notice.context|truncatewords:20}}</td>
-                        </a>
+                        <td>{{notices.sn}}</td>
+                        <td>{{notices.title}}</td>
+                        <td>{{notices.created_at}}</td>
+                        <td>((notices.department))</td>
+                        <td>{{notices.context}}</td>
                     </tr>
-            {% endfor %}
                 </tbody>
             </table>
         </main>

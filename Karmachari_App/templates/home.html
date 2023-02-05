@@ -28,7 +28,7 @@
                 <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change Password<i class="fas fa-arrow-right arrow-icon"></i></a></div>
                 
                 {%if user.is_authenticated%}
-                  <button class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="logout"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
+                  <div class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="logout"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></div>
                 {%endif%}
             
                 </ul>
@@ -58,12 +58,12 @@
 
         <div class="container menu_elements">
             <ul>
-                <li class="menu_item active-menu"><a href="#"><i class="fas fa-house menu-icon"></i>Home</a></li>
+                <li class="menu_item active-menu"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
                 <li class="menu_item"><a href="yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item"><a href="#"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
+                <li class="menu_item"><a href="notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
             </ul>
         </div> 
     </div>
