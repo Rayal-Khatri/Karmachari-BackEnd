@@ -1,95 +1,75 @@
-{% load static %}
-
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'assets/css/nav_sidebar.css' %}">
-    <!-- <link rel="stylesheet" href="assets/css/home.css"> -->
-    <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{%static 'assets/Css/Notices.css'%}">
+    <title>Notices</title>
 </head>
+
 <body>
-    {% include 'nav_sidebar.html' %}
-    <p id="counter" style="display:none;">0</p>
-    <!-- =====================Nav Bar Section===================== -->
-    <div class="nav-bar">
-        <div class="logo_container">
-            <a href="#" class="logo">Karmachari</a>
+    {% include 'Nav_Sidebar.html' %}
+    <div class="container">
+        <div class="top-nav">
+            <h2>NOTICES</h2>
         </div>
-        <div class="drop-down" id="drop-down">
-            <img src="{% static 'assets/img/avatar.jpg' %}" alt="" class="avatar">
-            <h1 class="Name">Aanand Rimal</h1>
-        </div>
-    </div>
-    <div class="sub-menu-wrap" id="sub-menu">
-        <div class="sub-menu">
-            <ul>
-                <div class="sub-item"><i class="fas fa-gear sub-item-icon"></i><a href="#"></i>Settings<i class="fas fa-arrow-right arrow-icon"></i></a></div>
-                <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change Password<i class="fas fa-arrow-right arrow-icon"></i></a></div>
-                <button class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="Login.html"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
-            </ul>
-        </div>
-     </div>
-
-    <div class="side_bar">
-        <div class="container clock_section">
-            <img src="{% static 'assets/img/avatar.jpg' %}" alt="" class="avatar">
-            <div class="side-clock" id="clock">
-                <i class="far fa-clock clock-icon"></i>
-                <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
-                <span id="session"> AM</span>
+        <hr class="horizontal-line">
+        <main>
+            <p>
+            <div class="view-notice">View Notice</div>
+            </p>
+            <div class="main-notice">
+                <div class="main-header">
+                    <p>Show</p>
+                    <select class="option-notice">
+                        <option value="notice">2</option>
+                        <option value="notice">5</option>
+                        <option value="notice">10</option>
+                    </select>
+                    <p>entries</p>
+                </div>
+                <input class="main-bottom" type="text" name="search" placeholder="search">
             </div>
-            
-            <div class="check-in-out">
+            <table class="content-table">
+                <thead>
 
-                    <p class="Title-data"><span>Check-In : </span><br><span> Check-Out : </span></p>
+                    <tr>
+                        <th>SN</th>
+                        <th>Title</th>
+                        <th>Published Date</th>
+                        <th>Department</th>
+                        <th>description</th>
+                    </tr>
+                </thead>
 
-
-                    <p class="time-data"><span id="in-time" class="time">--:--:-- --</span> <br><span id="out-time" class="time">--:--:-- --</span></p>
-
-            </div>
-            <button id="Check-in" class="check-inout-btn Check-in">Check In</button>
-            
-        </div>
-
-        <div class="container menu_elements">
-            <ul>
-                <li class="menu_item"><a href="home"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                <li class="menu_item"><a href="yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
-                <li class="menu_item"><a href="#"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
-                <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
-                <li class="menu_item"><a href="#"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item active-menu"><a href="/notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
-            </ul>
-        </div> 
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Notice 1</td>
+                        <td>2023/02/05</td>
+                        <td>computer</td>
+                        <td>This is a testing</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Notice 2</td>
+                        <td>2023/02/10</td>
+                        <td>computer</td>
+                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium nesciunt modi, itaque
+                            veritatis consectetur quo aspernatur corrupti expedita iusto numquam eos deserunt aut id
+                            nisi. Repellendus eos similique explicabo tempore.
+                            Similique nobis eligendi dolor deserunt repellendus. Optio tempore possimus expedita minus
+                            blanditiis consequuntur maiores culpa beatae. Autem, at pariatur eum sed doloremque
+                            reiciendis enim fugit! Exercitationem eaque minus amet maiores.</td>
+                    </tr>
+                    <tr></tr>
+                </tbody>
+            </table>
+        </main>
     </div>
-
-    <div class="container hero-section">
-       <p style="color: red;">CONTENT HERE!!</p>
-    </div>
-
-     
-    <div class="password-popup container">
-        <h1>CHANGE PASSWORD</h1>
-        <div class="close-icon">
-            <i class="fas fa-xmark"></i>
-        </div>
-        <form class="form" action="">
-            <p class="question">Current Password:</p>
-            <input class="Answer" type="password">
-            <p class="question">New Password:</p>
-            <input class="Answer" type="password">
-            <p class="question">Confirm Password:</p>
-            <input class="Answer" type="password"><br>
-            <input class="submit-btn" value="Save" type="submit"\>
-        </form>
-    </div>
-    <div id="loader-wrapper" class="loader-wrapper">
-        <span class="loader"><span class="loader-inner"></span></span>
-    </div>
-    <script src="{% static 'assets/js/nav_sidebar.js' %}"></script>
-    <!-- <script src="{% static 'asstes/javaScript/Home.js' %}"></script> -->
 </body>
+
 </html>
