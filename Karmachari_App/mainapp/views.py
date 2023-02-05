@@ -3,11 +3,12 @@ from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .models import Profile, Notice
 
-User = get_user_model
 # Create your views here.
 @login_required(login_url='/login')
-def index(request):
+def home(request):
     fullname =  request.user.get_full_name()
     context = {'fullname':fullname}
     return render(request,'Home.html',context)
@@ -38,3 +39,9 @@ def logout(request):
 @login_required(login_url='/login')
 def yourinformation(request):
     return render(request,'your_information.html')
+
+@login_required(login_url='/login')
+def notice(request):
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
+    return render(request,'notices.html')

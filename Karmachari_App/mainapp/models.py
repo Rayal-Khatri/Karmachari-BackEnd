@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+import uuid
+from datetime import datetime
 
 User=get_user_model()
 
@@ -12,4 +14,12 @@ class Profile(models.Model):
     department = models.CharField(max_length=100)
     def __str__(self):
         return self.user.username
+    
+class Notice(models.Model):
+    username = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    body = models.CharField(max_length=100000)
+    created_at =models.DateTimeField(default=datetime.now)                                
+    def __str__(self):
+        return self.title
     

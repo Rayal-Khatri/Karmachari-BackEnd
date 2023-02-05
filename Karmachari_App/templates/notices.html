@@ -1,14 +1,17 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="asstes/Css/Nav_sidebar.Css">
-    <!-- <link rel="stylesheet" href="asstes/Css/Home.Css"> -->
+    <link rel="stylesheet" href="{% static 'assets/css/nav_sidebar.css' %}">
+    <!-- <link rel="stylesheet" href="assets/css/home.css"> -->
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    {% include 'nav_sidebar.html' %}
     <p id="counter" style="display:none;">0</p>
     <!-- =====================Nav Bar Section===================== -->
     <div class="nav-bar">
@@ -16,7 +19,7 @@
             <a href="#" class="logo">Karmachari</a>
         </div>
         <div class="drop-down" id="drop-down">
-            <img src="asstes/Images/avatar.jpg" alt="" class="avatar">
+            <img src="{% static 'assets/img/avatar.jpg' %}" alt="" class="avatar">
             <h1 class="Name">Aanand Rimal</h1>
         </div>
     </div>
@@ -32,7 +35,7 @@
 
     <div class="side_bar">
         <div class="container clock_section">
-            <img src="asstes/Images/avatar.jpg" alt="" class="avatar">
+            <img src="{% static 'assets/img/avatar.jpg' %}" alt="" class="avatar">
             <div class="side-clock" id="clock">
                 <i class="far fa-clock clock-icon"></i>
                 <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
@@ -53,12 +56,12 @@
 
         <div class="container menu_elements">
             <ul>
-                <li class="menu_item"><a href="Home.html"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                <li class="menu_item"><a href="Your_Information.html"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
-                <li class="menu_item"><a href="Attendance.html"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
-                <li class="menu_item"><a href="Salary_Sheet.html"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
-                <li class="menu_item"><a href="Leaves.html"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item active-menu"><a href="#"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
+                <li class="menu_item"><a href="home"><i class="fas fa-house menu-icon"></i>Home</a></li>
+                <li class="menu_item"><a href="yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
+                <li class="menu_item"><a href="#"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
+                <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
+                <li class="menu_item"><a href="#"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
+                <li class="menu_item active-menu"><a href="/notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
             </ul>
         </div> 
     </div>
@@ -86,7 +89,7 @@
     <div id="loader-wrapper" class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
-    <script src="asstes/javaScript/Nav_sidebar.js"></script>
-    <!-- <script src="asstes/javaScript/Home.js"></script> -->
+    <script src="{% static 'assers/js/nav_sidebar.js' %}"></script>
+    <!-- <script src="{% static 'asstes/javaScript/Home.js' %}"></script> -->
 </body>
 </html>
