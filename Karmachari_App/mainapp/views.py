@@ -52,5 +52,11 @@ def yourinformation(request):
 
 @login_required(login_url='/login')
 def notice(request):
+    # user_object = User.objects.get(username=request.user.username)
+    # user_profile = Profile.objects.get(user=user_object)
+    notices= Notice.objects.all()
+    return render(request,'notices.html',{'notices': notices})
 
-  return render(request,'notices.html')
+def postnotice(request,pk):
+    notices= Notice.objects.get(id=pk)
+    return render(request,'notice.html',{'notices': notices})

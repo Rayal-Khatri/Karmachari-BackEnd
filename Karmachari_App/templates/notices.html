@@ -1,4 +1,5 @@
-{%load static%}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'assets/Css/Notices.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/notices.css' %}">
     <title>Notices</title>
 </head>
 
@@ -35,41 +36,26 @@
             </div>
             <table class="content-table">
                 <thead>
-
-                    <tr>
+                    <strong>
                         <th>SN</th>
-                        <th>Title</th>
+                        <th>title</th>
                         <th>Published Date</th>
                         <th>Department</th>
                         <th>description</th>
-                    </tr>
-                </thead>
-
+                    </strong>
                 <tbody>
+            {% for notice in notices reversed %}   
                     <tr>
-                        <td>1</td>
-                        <td>Notice 1</td>
-                        <td>2023/02/05</td>
-                        <td>computer</td>
-                        <td>This is a testing</td>
+                        <a href="/postnotice/{{notice.id}}"> 
+                            <td>{{notice.sn}}</td>
+                            <td>{{notice.title}}</td>
+                            <td>{{notice.created_at}}</td>
+                            <td>{{notice.department}}</td>
+                            <td>{{notice.context|truncatewords:20}}</td>
+                        </a>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Notice 2</td>
-                        <td>2023/02/10</td>
-                        <td>computer</td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium nesciunt modi, itaque
-                            veritatis consectetur quo aspernatur corrupti expedita iusto numquam eos deserunt aut id
-                            nisi. Repellendus eos similique explicabo tempore.
-                            Similique nobis eligendi dolor deserunt repellendus. Optio tempore possimus expedita minus
-                            blanditiis consequuntur maiores culpa beatae. Autem, at pariatur eum sed doloremque
-                            reiciendis enim fugit! Exercitationem eaque minus amet maiores.</td>
-                    </tr>
-                    <tr></tr>
+            {% endfor %}
                 </tbody>
             </table>
         </main>
     </div>
-</body>
-
-</html>

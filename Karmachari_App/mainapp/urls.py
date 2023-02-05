@@ -10,6 +10,7 @@ urlpatterns = [
     path('logout',views.logout,name='logout'),
     path('yourinformation',views.yourinformation, name='yourinformation'),
     path('notice',views.notice, name='notice'),
+    path('postnotice/<str:pk>',views.postnotice, name='postnotice'),
 ]
 
 
