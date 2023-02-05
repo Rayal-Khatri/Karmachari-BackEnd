@@ -1,192 +1,92 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="asstes/Css/Nav_sidebar.Css">
-        <link rel="stylesheet" href="asstes/Css/Home.Css">
-        <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
-    </head>
-
-    <body>
-        <p id="counter" style="display:none;">0</p>
-        <!-- =====================Nav Bar Section===================== -->
-        <div class="nav-bar">
-            <div class="menu-open" id="menu-open">
-                <i class="fas fa-bars" id="side-icon"></i>
-            </div>
-            <div class="logo_container">
-                <a href="#" class="logo">Karmachari</a>
-            </div>
-            <div class="drop-down" id="drop-down">
-                <img src="asstes/Images/avatar.jpg" alt="" class="avatar">
-                <h1 class="Name">Aanand Rimal</h1>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'assets/css/nav_sidebar.css'%}">
+    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
+    <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <p id="counter" style="display:none;">0</p>
+    <!-- =====================Nav Bar Section===================== -->
+    <div class="nav-bar">
+        <div class="logo_container">
+            <a href="#" class="logo">Karmachari</a>
         </div>
-        <div class="sub-menu-wrap" id="sub-menu">
-            <div class="sub-menu">
-                <ul>
-                    <div class="sub-item"><i class="fas fa-gear sub-item-icon"></i><a href="#"></i>Settings<i
-                                class="fas fa-arrow-right arrow-icon"></i></a></div>
-                    <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a
-                            href="#"></i>Change Password<i class="fas fa-arrow-right arrow-icon"></i></a></div>
-                    <button class="sub-item" id=><i class="fas fa-right-from-bracket sub-item-icon"></i><a
-                            href="Login.html"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
+        <div class="drop-down" id="drop-down">
+            <img src="{%static 'assets/img/avatar.jpg'%}" alt="" class="avatar">
+            <h1 class="Name">{{user.get_full_name}}</h1>
+        </div>
+    </div>
+    <div class="sub-menu-wrap" id="sub-menu">
+        <div class="sub-menu">
+            <ul>
+                <div class="sub-item"><i class="fas fa-gear sub-item-icon"></i><a href="#"></i>Settings<i class="fas fa-arrow-right arrow-icon"></i></a></div>
+                <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change Password<i class="fas fa-arrow-right arrow-icon"></i></a></div>
+                
+                {%if user.is_authenticated%}
+                  <button class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="logout"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
+                {%endif%}
+            
                 </ul>
-            </div>
         </div>
+     </div>
 
-        <div class="side_bar">
-            <div class="container clock_section" id="clock-check">
-                <img src="asstes/Images/avatar.jpg" alt="" class="avatar">
-                <div class="side-clock" id="clock">
-                    <i class="far fa-clock clock-icon"></i>
-                    <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
-                    <span id="session"> AM</span>
-                </div>
-
-                <div class="check-in-out">
+    <div class="side_bar">
+        <div class="container clock_section">
+            <img src="{%static 'assets/img/avatar.jpg'%}" alt="" class="avatar">
+            <div class="side-clock" id="clock">
+                <i class="far fa-clock clock-icon"></i>
+                <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
+                <span id="session"> AM</span>
+            </div>
+            
+            <div class="check-in-out">
 
                     <p class="Title-data"><span>Check-In : </span><br><span> Check-Out : </span></p>
 
 
-                    <p class="time-data"><span id="in-time" class="time">--:--:-- --</span> <br><span id="out-time"
-                            class="time">--:--:-- --</span></p>
-
-                </div>
-                <button id="Check-in" class="check-inout-btn Check-in">Check In</button>
+                    <p class="time-data"><span id="in-time" class="time">--:--:-- --</span> <br><span id="out-time" class="time">--:--:-- --</span></p>
 
             </div>
-
-            <div class="container menu_elements">
-                <ul>
-                    <li class="menu_item active-menu"><a href="#"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                    <div class="menu_item" onclick="location.href='Your_Information.html'"><a href="Home.html"><a
-                                href="Your_Information.html"><i class="fas fa-circle-info menu-icon"></i>Your
-                                Information</a></div>
-                    <li class="menu_item"><a href="Attendance.html"><i
-                                class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
-                    <li class="menu_item"><a href="Salary_Sheet.html"><i
-                                class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
-                    <li class="menu_item"><a href="Leaves.html"><i class="fas fa-door-open menu-icon"></i>Leaves</a>
-                    </li>
-                    <li class="menu_item"><a href="Notices.html"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
-                </ul>
-            </div>
+            <button id="Check-in" class="check-inout-btn Check-in">Check In</button>
+            
         </div>
 
-        <div class="container hero-section">
-            <div class="grid-container">
-                <div class="item right">
-                    <!-- <div class="flexbox-container"> -->
-                        <div class="flexbox clock"> 
-                            <h4>Clock</h4>
-                            <div class="watch">
-                                <span id="hours">00</span>
-                                <span>:</span>
-                                <span id="minutes">00</span>
-                                <span>:</span>
-                                <span id="seconds">00</span> 
-                                <span id="sessions">AM</span>
-                            </div>
-                        </div>
-                        <div class="flexbox works">
-                            <p>Total hrs Worked Today</p>
-                            <div class="flexbox work-time">       
-                                <span id="hrs">00</span>
-                                <span>:</span>
-                                <span id="mins">00</span>
-                                <span>:</span>
-                                <span id="secs">00</span> 
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                </div>
-                <div class="item left ">
-                    <div class="notice-head">
-                        <h4 class="h2-title">Notices</h4>
-                    </div>
-                        <div class="boxes-content">
-                            <div class="content">
-                                <div class="notice-title">
-                                    <h4>Breaks</h4>
-                                </div>
-                                <div class="date">2023/01/16
-                                </div>
-                            </div>
-                            <div class="content meet">
-                                <div class="notice-title"><h4>Meeting</h4></div>
-                                <div class="date">2023/01/17
-                                </div>
-                            </div>
-                            <div class="content holi">
-                                <div class="notice-title"><h4>Holiday</h4></div>
-                                <div class="date">2023/01/17
-                                    </div>   
-                            </div>
-                        </div>
-                </div>   
-                <div class="item bottom">
-                    <div class="atten-title">
-                        <h4 class="h2-title">Attendance <br> Records</h4>
-                    </div>
-                    <div class="footer">
-                        <div class="good-items A">
-                            <div class="atten-status">
-                                <h4>A</h4>
-                            </div>
-                            <div class="date">
-                                2023/01/17
-                            </div>
-                        </div>
-                        <div class="good-items P">
-                            <div class="atten-status">
-                                <h4>P</h4>
-                            </div>
-                            <div class="date">
-                                2023/01/17
-                            </div>
-                        </div>
-                        <div class="good-items L">
-                            <div class="atten-status">
-                                <h4>L</h4>
-                            </div>
-                            <div class="date">
-                                2023/01/17
-                            </div>
-                        </div>
-        
-                    </div>
-                </div>
-                        </div>  
-                    </div>
-            </div>
-        </div>
+        <div class="container menu_elements">
+            <ul>
+                <li class="menu_item active-menu"><a href="#"><i class="fas fa-house menu-icon"></i>Home</a></li>
+                <li class="menu_item"><a href="yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
+                <li class="menu_item"><a href="#"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
+                <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
+                <li class="menu_item"><a href="#"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
+                <li class="menu_item"><a href="#"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
+            </ul>
+        </div> 
+    </div>
 
-
-        <div class="password-popup container">
-            <h1>CHANGE PASSWORD</h1>
-            <div class="close-icon">
-                <i class="fas fa-xmark"></i>
-            </div>
-            <form class="form" action="">
-                <p class="question">Current Password:</p>
-                <input class="Answer" type="password">
-                <p class="question">New Password:</p>
-                <input class="Answer" type="password">
-                <p class="question">Confirm Password:</p>
-                <input class="Answer" type="password"><br>
-                <input class="submit-btn" value="Save" type="submit" \>
-            </form>
+    <div class="password-popup container">
+        <h1>CHANGE PASSWORD</h1>
+        <div class="close-icon">
+            <i class="fas fa-xmark"></i>
         </div>
-        <!-- Loading square for squar.red network -->
-        <div id="loader-wrapper" class="loader-wrapper">
-            <span class="loader"><span class="loader-inner"></span></span>
-        </div>
-        <script src="asstes/javaScript/Nav_sidebar.js"></script>
-        <!-- <script src="asstes/javaScript/Home.js"></script> -->
-    </body>
+        <form class="form" action="">
+            <p class="question">Current Password:</p>
+            <input class="Answer" type="password">
+            <p class="question">New Password:</p>
+            <input class="Answer" type="password">
+            <p class="question">Confirm Password:</p>
+            <input class="Answer" type="password"><br>
+            <input class="submit-btn" value="Save" type="submit"\>
+        </form>
+    </div>
+    <div id="loader-wrapper" class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <script src="{%static 'assets/js/nav_sidebar.js'%}"></script>
 
-</html>
+</body>
+

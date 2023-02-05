@@ -1,13 +1,12 @@
-{% load static %}
-
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'assets/css/Nav_Sidebar.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
+    <link rel="stylesheet" href="{%static 'assets/css/nav_sidebar.css'%}">
+    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -18,8 +17,8 @@
             <a href="#" class="logo">Karmachari</a>
         </div>
         <div class="drop-down" id="drop-down">
-            <img src="{% static 'assets/img/avatar.jpg' %}" alt="" class="avatar">
-            <h1 class="Name">Aanand Rimal</h1>
+            <img src="{%static 'assets/img/avatar.jpg'%}" alt="" class="avatar">
+            <h1 class="Name">{{user.get_full_name}}</h1>
         </div>
     </div>
     <div class="sub-menu-wrap" id="sub-menu">
@@ -27,14 +26,18 @@
             <ul>
                 <div class="sub-item"><i class="fas fa-gear sub-item-icon"></i><a href="#"></i>Settings<i class="fas fa-arrow-right arrow-icon"></i></a></div>
                 <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change Password<i class="fas fa-arrow-right arrow-icon"></i></a></div>
-                <button class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="Login.html"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
-            </ul>
+                
+                {%if user.is_authenticated%}
+                  <button class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="logout"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
+                {%endif%}
+            
+                </ul>
         </div>
      </div>
 
     <div class="side_bar">
         <div class="container clock_section">
-            <img src="{% static 'asstes/img/avatar.jpg' %}" alt="" class="avatar">
+            <img src="{%static 'assets/img/avatar.jpg'%}" alt="" class="avatar">
             <div class="side-clock" id="clock">
                 <i class="far fa-clock clock-icon"></i>
                 <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
@@ -172,7 +175,7 @@
     <div id="loader-wrapper" class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
-    <script src="{% static 'assets/js/Nav_Sidebar.js' %}"></script>
-    <script src="{% static 'assets/js/home.js' %}"></script>
+    <script src="{%static 'assets/js/nav_sidebar.js'%}"></script>
+    <script src="{%static 'assets/js/home.js'%)"></script>
 </body>
 </html>
