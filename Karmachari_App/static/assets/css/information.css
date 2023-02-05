@@ -3,11 +3,11 @@
 /* =============================== Variables =========================== */
 :root {
     /* ==================MAIN COLORS==================*/
-    --hue-color: 250;
+    --hue-color: 207;
     /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
-    --primary-color: hsl(var(--hue-color), 69%, 61%);
+    --primary-color: hsl(var(--hue-color), 75%, 50%);
     --primary-color-alt: hsl(var(--hue-color), 100%, 90%);
-    --primary-color-sec: hsl(var(--hue-color), 69%, 20%);
+    --primary-color-sec: hsl(var(--hue-color), 70%, 20%);
     --dark-color: rgb(51, 51, 51);
     --dark-color-alt: hsl(0, 0%, 36%);
     --dark-selected: hsl(0, 0%, 20%);
@@ -32,106 +32,56 @@
 
 body {
     margin: 0rem;
-    min-height: 100vh;
+    /* min-height: 100%; */
     /* background-color: black; */
 }
 
 .hero-content {
-    z-index: -2;
-    height: 100%;
+    height: 100vh;
     width: 100%;
-    background-color: var(--primary-color-sec);
+    background:var(--text-light-color);
     position: absolute;
+        z-index: -1;
+        top: 6.4%;
+        left: 15%;
+        /* background: var(--text-light-color); */
+        width: max-content;
+        width: 85%;
+        height: 93.66%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-/* ============================== BG aimation ======================= */
-.bg-animation
-{
-    /* opacity: 1; */
-    position: absolute;
-    z-index: -1;
-    width: 100%;  
-    height: 100vh;
-    overflow: hidden;
-}
-.bubbles
-{
-    height: 100vh;
-    z-index: -1;
-    position: absolute;
-    display: flex;
-}
-.bubbles span
-{
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background:#4fc3dc;
-    margin: 0 4px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 10px #4fc3dc44, 
-    0 0 50px #4fc3dc,
-    0 0 100px #4fc3dc;
-    animation: animate 15s linear infinite;
-    animation-duration: calc(195s/var(--i)) ;
-}
-.bubbles span:nth-child(even)
-{
-    background:#ff2d75;
-    box-shadow: 0 0 0 10px #ff2d7544, 
-    0 0 50px #ff2d75,
-    0 0 100px #ff2d75; 
-}
-@keyframes animate
-{
-    0%
-    {
-        transform: translateY(100vh) scale(0);
-    }
-    1000%
-    {
-        transform: translateY(-100vh) scale(1);
-    }
-}
-
-
-
-
-
-
-
-
 /* ============================== CSS starts ======================= */
 
 .hero {
-    width: 95%;
+    width: 97%;
     height: 95%;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: rgb(0, 0, 0,0.2);
+    background-color: rgb(20, 30,var(--hue-color),0.3 )
 }
 .Title-text
 {
     color: var(--text-dark-color);
     font-weight: bold;
     padding: 1rem 0 1rem 5%;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--text-light-color);
     /* background-color: yellow; */
 }
 
-.your {
-    height: 80%;
+/* ============================== Information Section (left Box)======================= */
+.information_section{
+    height: 75%;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.user-info {
+.User-basic-information {
     height: 100%;
     width: 25%;
     display: flex;
@@ -139,6 +89,7 @@ body {
     justify-content: space-around;
     align-items: center;
     border-radius: 5px;
+    opacity: .9;
     background-color: var(--primary-color-alt);
 }
 
@@ -166,93 +117,73 @@ body {
 .user-image {
     border-radius: 50%;
     border:.3rem solid white;
-    height: 100%;
+    height: 90%;
     width: 100%;
     color: var(--primary-color-alt);
 }
-
-.user-bottom {
-    height: 9%;
-    padding-top: 2%;
+.lines
+{
+    position: relative;
     width: 100%;
-    text-align: center;
-    color:  var(--text-dark-color);
-    /* color: rgb(192, 228, 216); */
-    /* background-color: rgb(207, 224, 218); */
+    height: 45px;
 }
-
-.user-bottom p {
+.lines::after, .lines::before
+{
+    content: '';
+    position: absolute;
+    margin: auto;
+    height: .1rem;
+    background: var(--text-light-color) ;
+    width: 40%;
+    top: 45%;
+}
+.lines::after
+{
+    left: 0;
+}
+.lines::before
+{
+    right: 0;
+}
+.circle
+{
+    height: 60%;
+    width: 10%;
+    border: .2rem solid var(--text-light-color);
+    left: 0;right: 0;top: 0;bottom: 0;
+    margin: auto;
+    border-radius: 50%;
+    transform: translateY(30%);
+}
+.user-details
+{
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    padding-bottom: 10%;
+}
+.Employee-name {
     font-size: 1.25rem;
     font-weight: bold;
-    /* color: red; */
 }
-
-.user-details {
-    height: 13%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 0.2fr 1fr 1fr;
-    grid-template-rows: 1% 1fr 1fr 1fr;
-    font-size: 0.94rem;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    text-align: left; */
-    /* font-weight: bold; */
-}
-
-.user-details-top1 {
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 3;
-
-}
-
-.user-details-bottom1 {
-    grid-column-start: 4;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 3;
-
-}
-
-.user-details-top2 {
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 4;
-
-}
-
-.user-details-bottom2 {
-    grid-column-start: 4;
-    grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 4;
-
-}
-
-.user-details-top3 {
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 4;
-    grid-row-end: 5;
-
-}
-
-.user-details-bottom3 {
-    grid-column-start: 4;
-    grid-column-end: 5;
-    grid-row-start: 4;
-    grid-row-end: 5;
-
-}
-
-
-.master-side {
-    height: 80%;
+.Question
+{
     width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.Answer
+{
+    width: 40%;
+    display: flex;
+    /* background-color: red; */
+    flex-direction: column;
+    text-align: right;
+}
+/* ============================== Master Section (Right Box)======================= */
+.master-section {
+    height: 85%;
+    width: 65%;
     background-color: var(--primary-color-alt);
     border-radius: 5px;
     display: flex;
@@ -260,38 +191,34 @@ body {
     justify-content: space-between;
     padding-bottom: 1.5%;
 }
-
-.master-head {
-    height: 10%;
-    /* text-align: center; */
+.master-title {
+    height: 12%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding-top: 3%; */
     font-size: 1.32rem;
     font-weight: bold;
     color: var(--text-light-color);
     background-color:var(--primary-color);
-    border-top-left-radius: 0.8rem;
-    border-top-right-radius: 0.8rem;
+    border-bottom: .1rem solid var(--text-light-color);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
-
 .big_container{
     height: 20%;
-    /* background-color: red; */
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.name {
+.inputbox{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     width: 45%;
 }
 
-.Details-name {
+.Title {
     font: 1.2rem;
     font-weight: bold;
     color: var(--text-dark-color-alt);
@@ -301,7 +228,7 @@ body {
 .inputbox div{
     height: 2.7rem;
     /* text-align: left; */
-    padding: 0 0 0 1%;
+    padding: 0 0 0 2%;
     font-size: 1rem;
     font-weight: bold;
     color: var(--text-dark-color);
@@ -334,51 +261,32 @@ body {
     justify-content: space-evenly;
 }
 
-.dep {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
 @media only screen and (max-width:900px) {
+    .hero
+    {
+        margin-bottom: 6px;
+    }
     .hero-content
     {
         height: fit-content;
+        width: 100%;
+        left: 0;
     }
-    .your{
+    .information_section
+    {
         flex-direction: column;
-        /* background-color: red; */
-        height: fit-content;
+        justify-content: space-around;
     }
-    .user-info
+    .User-basic-information
     {
         height: 500px;
-        width: 80%;
+        width: 85%;
+        margin-bottom: 40px;
     }
-    .master-side
+    .master-section
     {
-        height: 400px;
-        width: 80%;
+        height: 5   00px;
+        width: 85%;
+        margin-bottom: 20px;
     }
-}
-
-@media only screen and (max-width:400px){
-    .user-details {
-        height: 40%;
-        /* grid-template-columns:  1fr; */
-        /* grid-template-columns: 1fr;
-        grid-template-rows: 0.2fr 1fr 1fr 1fr 0.2fr;
-        text-align: left; */
-        font-size: 0.77rem;
-
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        justify-content: space-evenly;
-    }
-
 }
