@@ -5,10 +5,11 @@ from django.conf import settings #for media
 from django.conf.urls.static import static #for media
 
 urlpatterns = [
-    path('', views.index, name="index"),
+    path('', views.home, name="home"),
     path('login', views.login, name="login"),
     path('logout',views.logout,name='logout'),
-    path('yourinformation',views.yourinformation, name='yourinformation')
+    path('yourinformation',views.yourinformation, name='yourinformation'),
+    path('notice',views.notice, name='notice'),
 ]
 
 
