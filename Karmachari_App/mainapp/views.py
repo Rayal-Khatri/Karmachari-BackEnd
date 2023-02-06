@@ -14,18 +14,22 @@ def index(request):
 @login_required(login_url='login')
 def home(request):
     fullname =  request.user.get_full_name()
-    context = {'fullname':fullname}
-    return render(request,'home.html',context)
+    profile=Profile.objects.get(user=request.user)
+    context = {'fullname':fullname,
+               'profile':profile,
+               }
+    return render(request,'Home.html',context)
 
     
 #login request gets value from action of html.login/form
 def login(request):
+    if request.user.is_authenticated:
+         return redirect ('home')
     if request.method == 'POST':
         username = request.POST.get('username', None)
         password = request.POST.get('password', None)
 
         user = auth.authenticate(username= username, password= password)
-
         if user is not None:
             auth.login(request, user)
             return redirect('/')
@@ -42,14 +46,24 @@ def logout(request):
 
 @login_required(login_url='login')
 def yourinformation(request):
-    return render(request,'your_information.html')
+    profile=Profile.objects.get(user=request.user)
+    context={
+      'profile':profile,  
+    }
+    return render(request,'your_information.html',context)
+
 
 @login_required(login_url='login')
 def notice(request):
     # user_object = User.objects.get(username=request.user.username)
     # user_profile = Profile.objects.get(user=user_object)
     notices= Notice.objects.all()
-    return render(request,'notices.html',{'notices': notices})
+    profile=Profile.objects.get(user=request.user)
+    context={
+      'profile':profile, 
+      'notices': notices 
+    }
+    return render(request,'notices.html',context)
 
 def postnotice(request,pk):
     notices= Notice.objects.get(id=pk)

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%static 'assets/css/Nav_Sidebar.css'%}">
-    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
+    <!-- <link rel="stylesheet" href="{%static 'assets/css/home.css'%}"> -->
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -17,7 +17,7 @@
             <a href="#" class="logo">Karmachari</a>
         </div>
         <div class="drop-down" id="drop-down">
-            <img src="{%static 'assets/img/avatar.jpg'%}" alt="" class="avatar">
+            <img src="{{profile.profileimg.url}}" alt="" class="avatar">
             <h1 class="Name">{{user.get_full_name}}</h1>
         </div>
     </div>
@@ -37,7 +37,7 @@
 
     <div class="side_bar">
         <div class="container clock_section">
-            <img src="{%static 'assets/img/avatar.jpg'%}" alt="" class="avatar">
+            <img src="{{profile.profileimg.url}}" alt="" class="avatar">
             <div class="side-clock" id="clock">
                 <i class="far fa-clock clock-icon"></i>
                 <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
@@ -63,7 +63,7 @@
                 <li class="menu_item"><a href="#"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item"><a href="notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
+                <li class="menu_item"><a href="/notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
             </ul>
         </div> 
     </div>
@@ -89,4 +89,3 @@
     <script src="{%static 'assets/js/nav_sidebar.js'%}"></script>
 
 </body>
-
