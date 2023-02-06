@@ -169,7 +169,7 @@ p.time-data {
 /* =================Menu Items============== */
 .menu_elements {
     background: var(--dark-selected);
-
+    border-bottom: 1rem solid var(--dark-selected);
 }
 
 .menu_item {

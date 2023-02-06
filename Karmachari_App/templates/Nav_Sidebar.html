@@ -60,12 +60,12 @@
 
         <div class="container menu_elements">
             <ul>
-                <li class="menu_item active-menu"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                <li class="menu_item"><a href="yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
+                <li class="menu_item {% if page_index == '1' %}active-menu {% endif %}"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
+                <li class="menu_item {% if page_index == '2' %}active-menu {% endif %}"><a href="yourinformation "><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item"><a href="/notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
+                <li class="menu_item {% if page_index == '6' %}active-menu {% endif %}"><a href="/notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
             </ul>
         </div> 
     </div>

@@ -17,6 +17,7 @@ def home(request):
     profile=Profile.objects.get(user=request.user)
     context = {'fullname':fullname,
                'profile':profile,
+               'page_index':'1',
                }
     return render(request,'Home.html',context)
 
@@ -49,6 +50,7 @@ def yourinformation(request):
     profile=Profile.objects.get(user=request.user)
     context={
       'profile':profile,  
+      'page_index':'2',
     }
     return render(request,'your_information.html',context)
 
@@ -60,8 +62,9 @@ def notice(request):
     notices= Notice.objects.all()
     profile=Profile.objects.get(user=request.user)
     context={
-      'profile':profile, 
-      'notices': notices 
+        'profile':profile, 
+        'notices': notices, 
+        'page_index':'6'
     }
     return render(request,'notices.html',context)
 
