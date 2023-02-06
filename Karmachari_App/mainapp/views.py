@@ -6,9 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from mainapp.models import Profile
 from .models import Profile, Notice
+from django.http import HttpResponse
 
 # Create your views here.
-@login_required(login_url='/login')
+def index(request):
+    return render(request,'index.html')
+
+@login_required(login_url='login')
 def home(request):
     fullname =  request.user.get_full_name()
     profile=Profile.objects.get(user=request.user)
@@ -39,12 +43,12 @@ def login(request):
     else:
         return render(request,'login.html')
 
-@login_required(login_url='/login')
+@login_required(login_url='login')
 def logout(request):
     auth.logout(request)
-    return redirect('/login')
+    return redirect('login')
 
-@login_required(login_url='/login')
+@login_required(login_url='login')
 def yourinformation(request):
       profile=Profile.objects.get(user=request.user)
       context={
@@ -53,19 +57,23 @@ def yourinformation(request):
     }
       return render(request,'your_information.html',context)
 
-@login_required(login_url='/login')
+@login_required(login_url='login')
 def notice(request):
     # user_object = User.objects.get(username=request.user.username)
     # user_profile = Profile.objects.get(user=user_object)
     notices= Notice.objects.all()
-    profile=Profile.objects.get(user=request.user)
-    context={
-      'profile':profile,
-      'notices': notices
-      
-    }
-    return render(request,'notices.html',context)
+    return render(request,'notices.html',{'notices': notices})
 
 def postnotice(request,pk):
     notices= Notice.objects.get(id=pk)
     return render(request,'notice.html',{'notices': notices})
+
+# def post_notice(request):
+#     if request.method == 'POST':
+#         form = NoticeF(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('notice_list')
+#     else:
+#         form = NoticeForm()
+#     return render(request, 'post_notice.html', {'form': form})

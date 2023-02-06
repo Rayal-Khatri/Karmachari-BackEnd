@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 import uuid
 from datetime import datetime
+from django import forms
 
 User=get_user_model()
 
@@ -15,13 +16,14 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=100, default=0)
     def __str__(self):
         return self.user.username
-        
     
 class Notice(models.Model):
-    sn = models.IntegerField(default=0)
+    sn = models.IntegerField()
     title = models.CharField(max_length=100)
     created_at = models.DateTimeField(default=datetime.now)
     department = models.CharField(max_length=100, default="All Departments")
-    context = models.TextField(max_length=100000,default="00")        
+    context = models.TextField(max_length=100000)        
     def __str__(self):
         return self.title
+
+        
