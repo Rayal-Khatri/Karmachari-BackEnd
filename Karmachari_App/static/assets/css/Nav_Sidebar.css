@@ -104,6 +104,7 @@ li {
 /* ================Side_Bar=========== */
 .clock_section .avatar {
     width: 50%;
+    height: 100PX;
     border-radius: 50%;
     border: .6px solid var(--text-light-color);
 }
