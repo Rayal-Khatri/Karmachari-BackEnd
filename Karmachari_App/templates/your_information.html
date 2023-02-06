@@ -21,9 +21,10 @@
             <div class="information_section">
                 <div class="User-basic-information">
                     <div class="user-image-info">
-                        <img src="{%static 'assets/img/avatar.jpg'%}" class="user-image">
+                        <img src="{{profile.profileimg.url}}" class="user-image">
+                        {% comment %} {%static 'assets/img/avatar.jpg'%} {% endcomment %}
                         <div class="Employee-name">
-                            <p>Aanand Rimal</p>
+                            <p>{{user.get_full_name}}</p>
                         </div>
                         <div class="lines">
                             <div class="circle"></div>
@@ -51,39 +52,39 @@
                         <div class="inputbox">
                             <span class="Title">First Name</span>
                             <div>
-                                <p>Susmita</p>
+                                <p>{{user.first_name}}</p>
                             </div>
                         </div>
                         <div class="inputbox">
                             <span class="Title">Last Name</span>
                             <div>
-                                <p>Kunwar</p>
+                                <p>{{user.last_name}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="inputbox big_box">
                             <span class="Title">Email :</span>
                             <div>
-                                <p>susmitakunwar@gmail.com</p>
+                                <p>{{user.email}}</p>
                             </div>
                     </div>
                     <div class="inputbox big_box">
                             <span class="Title">Phone number :</span>
                             <div>
-                                <p>9823125734</p>
+                                <p>{{profile.phone_number}}</p>
                             </div>
                     </div>
                     <div class="big_container">
                         <div class="inputbox">
                             <span class="Title">DOB :</span>
                             <div>
-                                <p>2002/07/16</p>
+                                <p>{{profile.dob}}</p>
                             </div>
                         </div>
                         <div class="inputbox">
                             <span class="Title">Department</span>
                             <div>
-                                <p>Computer</p>
+                                <p>{{profile.department}}</p>
                             </div>
                         </div>
                     </div>

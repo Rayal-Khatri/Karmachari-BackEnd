@@ -1,14 +1,14 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'assets/css/nav_sidebar.css'%}">
-    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
-    <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{%static 'assets/css/Home.Css'%}">
 </head>
+
 <body>
     <p id="counter" style="display:none;">0</p>
     <!-- =====================Nav Bar Section===================== -->
@@ -72,53 +72,57 @@
         <div class="grid-container">
             <div class="item right">
                 <!-- <div class="flexbox-container"> -->
-                    <div class="flexbox clock"> 
-                        <h4>Clock</h4>
-                        <div class="watch">
-                            <span id="hours">00</span>
-                            <span>:</span>
-                            <span id="minutes">00</span>
-                            <span>:</span>
-                            <span id="seconds">00</span> 
-                            <span id="sessions">AM</span>
-                        </div>
+                <div class="flexbox clock">
+                    <h4>Clock</h4>
+                    <div class="watch">
+                        <span id="hours">00</span>
+                        <span>:</span>
+                        <span id="minutes">00</span>
+                        <span>:</span>
+                        <span id="seconds">00</span>
+                        <span id="sessions">AM</span>
                     </div>
-                    <div class="flexbox works">
-                        <p>Total hrs Worked Today</p>
-                        <div class="flexbox work-time">       
-                            <span id="hrs">00</span>
-                            <span>:</span>
-                            <span id="mins">00</span>
-                            <span>:</span>
-                            <span id="secs">00</span> 
-                        </div>
+                </div>
+                <div class="flexbox works">
+                    <p>Total hrs Worked Today</p>
+                    <div class="flexbox work-time">
+                        <span id="hrs">00</span>
+                        <span>:</span>
+                        <span id="mins">00</span>
+                        <span>:</span>
+                        <span id="secs">00</span>
                     </div>
-                    <!-- </div> -->
+                </div>
+                <!-- </div> -->
             </div>
             <div class="item left ">
                 <div class="notice-head">
                     <h4 class="h2-title">Notices</h4>
                 </div>
-                    <div class="boxes-content">
-                        <div class="content">
-                            <div class="notice-title">
-                                <h4>Breaks</h4>
-                            </div>
-                            <div class="date">2023/01/16
-                            </div>
+                <div class="boxes-content">
+                    <div class="content">
+                        <div class="notice-title">
+                            <h4>Breaks</h4>
                         </div>
-                        <div class="content meet">
-                            <div class="notice-title"><h4>Meeting</h4></div>
-                            <div class="date">2023/01/17
-                            </div>
-                        </div>
-                        <div class="content holi">
-                            <div class="notice-title"><h4>Holiday</h4></div>
-                            <div class="date">2023/01/17
-                                </div>   
+                        <div class="date">2023/01/16
                         </div>
                     </div>
-            </div>   
+                    <div class="content meet">
+                        <div class="notice-title">
+                            <h4>Meeting</h4>
+                        </div>
+                        <div class="date">2023/01/17
+                        </div>
+                    </div>
+                    <div class="content holi">
+                        <div class="notice-title">
+                            <h4>Holiday</h4>
+                        </div>
+                        <div class="date">2023/01/17
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="item bottom">
                 <div class="atten-title">
                     <h4 class="h2-title">Attendance <br> Records</h4>
@@ -148,34 +152,12 @@
                             2023/01/17
                         </div>
                     </div>
-    
+
                 </div>
             </div>
-                    </div>  
-                </div>
         </div>
     </div>
-
-     
-    <div class="password-popup container">
-        <h1>CHANGE PASSWORD</h1>
-        <div class="close-icon">
-            <i class="fas fa-xmark"></i>
-        </div>
-        <form class="form" action="">
-            <p class="question">Current Password:</p>
-            <input class="Answer" type="password">
-            <p class="question">New Password:</p>
-            <input class="Answer" type="password">
-            <p class="question">Confirm Password:</p>
-            <input class="Answer" type="password"><br>
-            <input class="submit-btn" value="Save" type="submit"\>
-        </form>
-    </div>
-    <div id="loader-wrapper" class="loader-wrapper">
-        <span class="loader"><span class="loader-inner"></span></span>
-    </div>
-    <script src="{%static 'assets/js/nav_sidebar.js'%}"></script>
-    <script src="{%static 'assets/js/home.js'%)"></script>
+    <script src="{%static 'assets/js/Home.js'%}"></script>
 </body>
+
 </html>
