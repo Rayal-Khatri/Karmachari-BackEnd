@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from mainapp.models import Profile
 from .models import Profile, Notice
 from django.http import HttpResponse
 
@@ -17,13 +18,14 @@ def home(request):
     profile=Profile.objects.get(user=request.user)
     context = {'fullname':fullname,
                'profile':profile,
-               'page_index':'1',
                }
     return render(request,'Home.html',context)
+
 
     
 #login request gets value from action of html.login/form
 def login(request):
+    
     if request.user.is_authenticated:
          return redirect ('home')
     if request.method == 'POST':
@@ -31,6 +33,7 @@ def login(request):
         password = request.POST.get('password', None)
 
         user = auth.authenticate(username= username, password= password)
+
         if user is not None:
             auth.login(request, user)
             return redirect('/')
@@ -47,37 +50,16 @@ def logout(request):
 
 @login_required(login_url='login')
 def yourinformation(request):
-    profile=Profile.objects.get(user=request.user)
-    context={
-      'profile':profile,  
-      'page_index':'2',
+      profile=Profile.objects.get(user=request.user)
+      context={
+      'profile':profile,
+      
     }
-    return render(request,'your_information.html',context)
-
+      return render(request,'your_information.html',context)
 
 @login_required(login_url='login')
 def notice(request):
     # user_object = User.objects.get(username=request.user.username)
     # user_profile = Profile.objects.get(user=user_object)
     notices= Notice.objects.all()
-    profile=Profile.objects.get(user=request.user)
-    context={
-        'profile':profile, 
-        'notices': notices, 
-        'page_index':'6'
-    }
-    return render(request,'notices.html',context)
-
-def postnotice(request,pk):
-    notices= Notice.objects.get(id=pk)
-    return render(request,'notice.html',{'notices': notices})
-
-# def post_notice(request):
-#     if request.method == 'POST':
-#         form = NoticeF(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('notice_list')
-#     else:
-#         form = NoticeForm()
-#     return render(request, 'post_notice.html', {'form': form})
+    return render(request,'notices.html',{'notices': notices})

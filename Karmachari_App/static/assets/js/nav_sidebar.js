@@ -145,4 +145,3 @@ document.querySelector("#menu-open").addEventListener("click",()=>
     document.querySelector(".side_bar").classList.toggle("active");
     document.querySelector(".sub-menu-wrap").classList.toggle("active");
 });
-

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%static 'assets/css/Nav_Sidebar.css'%}">
-    <!-- <link rel="stylesheet" href="{%static 'assets/css/home.css'%}"> -->
+    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -14,7 +14,7 @@
     <!-- =====================Nav Bar Section===================== -->
     <div class="nav-bar">
         <div class="logo_container">
-            <a href="#" class="logo">Karmachari</a>
+            <a href="/" class="logo">Karmachari</a>
         </div>
         <div class="drop-down" id="drop-down">
             <img src="{{profile.profileimg.url}}" alt="" class="avatar">
@@ -37,9 +37,7 @@
 
     <div class="side_bar">
         <div class="container clock_section">
-            <div class="img-wrap">
-                <img src="{{profile.profileimg.url}}" alt="" class="avatar">
-            </div>
+            <img src="{{profile.profileimg.url}}" alt="" class="avatar">
             <div class="side-clock" id="clock">
                 <i class="far fa-clock clock-icon"></i>
                 <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
@@ -60,12 +58,12 @@
 
         <div class="container menu_elements">
             <ul>
-                <li class="menu_item {% if page_index == '1' %}active-menu {% endif %}"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                <li class="menu_item {% if page_index == '2' %}active-menu {% endif %}"><a href="yourinformation "><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
+                <li class="menu_item active-menu"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
+                <li class="menu_item"><a href="yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
                 <li class="menu_item"><a href="#"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item {% if page_index == '6' %}active-menu {% endif %}"><a href="/notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
+                <li class="menu_item"><a href="/notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
             </ul>
         </div> 
     </div>

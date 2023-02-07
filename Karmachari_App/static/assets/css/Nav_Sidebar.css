@@ -104,8 +104,6 @@ li {
 /* ================Side_Bar=========== */
 .clock_section .avatar {
     width: 50%;
-    height: 100%;
-    height: 100PX;
     border-radius: 50%;
     border: .6px solid var(--text-light-color);
 }
@@ -169,7 +167,7 @@ p.time-data {
 /* =================Menu Items============== */
 .menu_elements {
     background: var(--dark-selected);
-    border-bottom: 1rem solid var(--dark-selected);
+
 }
 
 .menu_item {
@@ -280,13 +278,14 @@ p.time-data {
     outline: none;
 }
 
-.Answer_pw {
+.Answer {
     border-radius: 5px;
     width: 100%;
     padding: .3rem;
     outline: none;
     transition: .3s;
 }
+
 
 .Answer:focus {
     border: 2px solid var(--primary-color);
@@ -358,7 +357,6 @@ p.time-data {
 
     .drop-down .avatar {
         width: 18%;
-        height: 60%;
         border-radius: 50%;
     }
 
