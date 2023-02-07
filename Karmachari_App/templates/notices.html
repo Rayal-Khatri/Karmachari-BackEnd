@@ -3,17 +3,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'assets/css/notices.css' %}">
     <title>Notices</title>
+    <link rel="stylesheet" href="{% static 'assets/css/notices.css' %}">
+    <title>Notices</title>
 </head>
+
 
 <body>
     {% include 'Nav_Sidebar.html' %}
-    <div class="container">
+    <div class="container-notice">
+        <div class="top-nav">
+            <h2>NOTICES</h2>
+    {% include 'Nav_Sidebar.html' %}
+    <div class="container-notice">
         <div class="top-nav">
             <h2>NOTICES</h2>
         </div>
@@ -33,7 +41,47 @@
                     <p>entries</p>
                 </div>
                 <input class="main-bottom" type="text" name="search" placeholder="search">
+        <hr class="horizontal-line">
+        <main>
+            <p>
+            <div class="view-notice">View Notice</div>
+            </p>
+            <div class="main-notice">
+                <div class="main-header">
+                    <p>Show</p>
+                    <select class="option-notice">
+                        <option value="notice">2</option>
+                        <option value="notice">5</option>
+                        <option value="notice">10</option>
+                    </select>
+                    <p>entries</p>
+                </div>
+                <input class="main-bottom" type="text" name="search" placeholder="search">
             </div>
+            <table class="content-table">
+                <thead>
+                    <strong>
+                        <th>SN</th>
+                        <th>title</th>
+                        <th>Published Date</th>
+                        <th>Department</th>
+                        <th>description</th>
+                    </strong>
+                <tbody>
+            {% for notice in notices reversed %}   
+                    <tr>
+                        <a href="/postnotice/{{notice.id}}"> 
+                            <td>{{notice.sn}}</td>
+                            <td>{{notice.title}}</td>
+                            <td>{{notice.created_at}}</td>
+                            <td>{{notice.department}}</td>
+                            <td>{{notice.context|truncatewords:20}}</td>
+                        </a>
+                    </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+        </main>
             <table class="content-table">
                 <thead>
                     <strong>
