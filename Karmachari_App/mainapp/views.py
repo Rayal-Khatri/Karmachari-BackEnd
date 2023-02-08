@@ -1,12 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import auth
+from django.contrib import auth
 from django.contrib import messages
-from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from mainapp.models import Profile
-from .models import Profile, Notice
-from django.http import HttpResponse
+from mainapp.models import *
 
 # Create your views here.
 def index(request):
@@ -61,5 +57,5 @@ def yourinformation(request):
 def notice(request):
     # user_object = User.objects.get(username=request.user.username)
     # user_profile = Profile.objects.get(user=user_object)
-    notices= Notice.objects.all()
-    return render(request,'notices.html',{'notices': notices})
+    #notices= Notice.objects.all()
+    return render(request,'notices.html')#,{'notices': notices})
