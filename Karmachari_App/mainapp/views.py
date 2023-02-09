@@ -10,12 +10,12 @@ def index(request):
 
 @login_required(login_url='login')
 def home(request):
-    fullname =  request.user.get_full_name()
-    profile=Profile.objects.get(user=request.user)
-    context = {'fullname':fullname,
-               'profile':profile,
-               }
-    return render(request,'Home.html',context)
+    # fullname =  request.user.get_full_name()
+    # profile=Profile.objects.get(user=request.user)
+    # context = {'fullname':fullname,
+    #            'profile':profile,
+    #            }
+    return render(request,'Home.html')#,context)
 
 
     
@@ -46,12 +46,12 @@ def logout(request):
 
 @login_required(login_url='login')
 def yourinformation(request):
-      profile=Profile.objects.get(user=request.user)
-      context={
-      'profile':profile,
+    #   profile=Profile.objects.get(user=request.user)
+    #   context={
+    #   'profile':profile,
       
-    }
-      return render(request,'your_information.html',context)
+    # }
+      return render(request,'your_information.html')#,context)
 
 @login_required(login_url='login')
 def notice(request):

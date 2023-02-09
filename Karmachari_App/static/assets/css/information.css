@@ -25,15 +25,11 @@
     padding: 0rem;
     margin: 0rem;
     box-sizing: border-box;
-    /* overflow: hidden; */
-    /* font-size: 1rem; */
     font-family: 'poppins', sans-serif;
 }
 
 body {
     margin: 0rem;
-    /* min-height: 100%; */
-    /* background-color: black; */
 }
 
 .hero-content {
@@ -44,7 +40,6 @@ body {
         z-index: -1;
         top: 6.4%;
         left: 15%;
-        /* background: var(--text-light-color); */
         width: max-content;
         width: 85%;
         height: 93.66%;
@@ -99,9 +94,7 @@ body {
     font-weight: bold;
     font-size: 1.25rem;
     color: var(--text-dark-color);
-    /* color: rgb(207, 224, 218); */
     text-align: center;
-    /* background-color: rgb(231, 176, 105); */
 }
 
 .user-image-info {
