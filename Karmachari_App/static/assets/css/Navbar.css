@@ -1,8 +1,8 @@
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 :root {
     /* ==================MAIN COLORS==================*/
-    --hue-color: 207;
+    --hue-color: 100;
     /* --color-mer:hsl(207, 75%, 50%); */
     /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
     --primary-color: hsl(var(--hue-color), 75%, 50%);
@@ -189,12 +189,13 @@ p.time-data {
 
 .menu_item:hover {
     cursor: pointer;
-    border-left: 4px solid var(--primary-color);
+    border-left: 8px solid var(--primary-color);
     background-color: var(--dark-color-alt);
 }
 
 .menu_item:hover a {
     color: var(--primary-color-alt);
+    font-size: .8rem;
 }
 
 .menu-icon {
@@ -369,6 +370,7 @@ p.time-data {
 
     /* =====================Sub menu===================== */
     .sub-menu-wrap {
+        z-index: 999999;
         position: absolute;
         top: 3.2rem;
         right: 1%;
