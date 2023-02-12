@@ -10,6 +10,8 @@ urlpatterns = [
     path('logout',views.logout,name='logout'),
     path('yourinformation',views.yourinformation, name='yourinformation'),
     path('notice',views.notice, name='notice'),
+    path('leaves',views.leaves, name='leaves'),
+    path('leavesform',views.leavesform, name='leavesform'),
 ]
 
 

@@ -46,24 +46,14 @@
                 </thead>
 
                 <tbody>
+                    {% for notice in notices reversed %}
                     <tr>
-                        <td>1</td>
-                        <td>Notice 1</td>
-                        <td>2023/02/05</td>
-                        <td>computer</td>
-                        <td>This is a testing</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Notice 2</td>
-                        <td>2023/02/10</td>
-                        <td>computer</td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium nesciunt modi, itaque
-                            veritatis consectetur quo aspernatur corrupti expedita iusto numquam eos deserunt aut id
-                            nisi. Repellendus eos similique explicabo tempore.
-                            Similique nobis eligendi dolor deserunt repellendus. Optio tempore possimus expedita minus
-                            blanditiis consequuntur maiores culpa beatae. Autem, at pariatur eum sed doloremque
-                            reiciendis enim fugit! Exercitationem eaque minus amet maiores.</td>
+                        <td>{{notice.id}}</td>
+                        <td>{{notice.title}}</td>
+                        <td>{{notice.created_at}}</td>
+                        <td>{{notice.department}}</td>
+                        <td>{{notice.context|truncatewords:20}}</td>
+                    {% endfor %}
                     </tr>
                     <tr></tr>
                 </tbody>

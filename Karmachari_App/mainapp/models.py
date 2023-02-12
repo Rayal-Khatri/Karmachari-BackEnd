@@ -37,13 +37,24 @@ class Notice(models.Model):
         return self.title
 
 class Leaves(models.Model):
-    title = models.CharField(max_length=100, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    leave_condn = (
+        ('Sick Leave','Sick Leave'),
+        ('Vacation','Vacation'),
+        ('Emergency','Emergency')
+    )
+    leave_permission = (
+        ('Approved','Approved'),
+        ('Pending','Pending'),
+        ('Not Approved','Not Approved')
+    )
     subject = models.CharField(max_length=100, null=True)
-    context = models.TextField(max_length=100000, null=True)
+    date = models.DateTimeField(default=datetime.now)
+    duration = models.DateTimeField(default=datetime.now)
+    leave_type = models.CharField(max_length=100, null=True,choices= leave_condn)
+    message = models.TextField(max_length=100000, null=True)
+    status = models.CharField(max_length=100, choices= leave_permission, default='Pending')
     def __str__(self):
-        return self.title
+        return self.subject
     
 class Calendar(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)

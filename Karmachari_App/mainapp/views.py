@@ -55,7 +55,18 @@ def yourinformation(request):
 
 @login_required(login_url='login')
 def notice(request):
-    # user_object = User.objects.get(username=request.user.username)
-    # user_profile = Profile.objects.get(user=user_object)
-    #notices= Notice.objects.all()
-    return render(request,'notices.html')#,{'notices': notices})
+    notices= Notice.objects.all()
+    return render(request,'notices.html', {'notices': notices})
+
+@login_required(login_url='login')
+def leaves(request):
+        leaves= Leaves.objects.all()
+        return render(request,'leaves.html', {'leaves': leaves})
+    
+@login_required(login_url='login')
+def leavesform(request):
+    if request.method == 'POST':
+        return render(request,'leaves.html', {'leaves': leaves})
+    else:
+        return render(request,'leavesform.html', {'leaves': leaves})
+

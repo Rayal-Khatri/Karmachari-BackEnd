@@ -1,3 +1,5 @@
+{% load static %} 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,47 +7,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/Css/Leaves.css">
+    <link rel="stylesheet" href="{% static 'assets/css/Leaves.css' %}">
     <title>Leaves</title>
 </head>
 
 <body>
+    {% include 'Nav_Sidebar.html' %}
     <section class="hero">
         <div class="title-text">
             <h1>Leaves</h1>
         </div>
         <div class="container">
-            <div class="apply-leave">
-                <div class="heading">
-                    <h2>Apply For Leave</h2>
-                </div>
-
-                <form action="" class="input-section-container">
-                    <div class="flexbox">
-                        <h4 class="question_leave">Leave Subject</h4>
-                        <input type="text" class="answer_leave">
-                    </div>
-                    <div class="flexbox">
-                        <h4 class="question_leave">Leave Date</h4>
-                        <input type="text" class="answer_leave">
-                    </div>
-                    <div class="flexbox  bigbox">
-                        <h4 class="question_leave">Leave message</h4>
-                        <textarea name="" id="message-leave" cols="40" class="answer_leave" rows="10" placeholder=""></textarea>
-                    </div>
-                    <div class="flexbox">
-                        <h4 class="question_leave">Leave Type</h4>
-                        <select name="" id="leave-type" class="option-leave">
-                            <option value="leave-type" selected disabled hidden>Please Choose</option>
-                            <option value="sick-leave">Sick Leave</option>
-                            <option value="vacation-leave">Vacation</option>
-                            <option value="Emergency-leave">Emergency</option>
-                            <option value="jpt-leave">Fuck you aauna maan xaina</option>
-                        </select>
-                    </div>
-                    <input type="submit" class="submit_btn" value="Submit" />
-                </form>
-            </div>
             <div class="leave-records">
                 <div class="heading">
                     <h2>My Leaves</h2>
@@ -73,27 +45,17 @@
                         </thead>
 
                         <tbody>
+                            {% for leave in leaves reversed %}
                             <tr>
-                                <td>1</td>
-                                <td>Leave For One Week</td>
-                                <td>023/02/05 - 023/02/12</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eligendi debitis at
-                                    nam sed consectetur dolor temporibus, impedit magnam, ipsum eos praesentium
-                                    assumenda, doloribus reiciendis enim nostrum ad natus nulla.</td>
-                                <td>Sick Leave</td>
-                                <td>Approved</td>
+                                <td>{{leave.id}}</td>
+                                <td>{{leave.subject}}</td>
+                                <!-- <td>{{leave.duration}}</td> -->
+                                <td>{{leave.date}}</td>
+                                <td>{{leave.message|truncatewords:20}}</td>
+                                <td>{{leave.leave_type}}</td>
+                                <td>{{leave.status}}</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>IDGAF</td>
-                                <td>2023/02/10 - </td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim nulla placeat
-                                    quibusdam minus ipsa ducimus exercitationem alias mollitia saepe quisquam at
-                                    corrupti, officiis recusandae sequi quae blanditiis veritatis. Doloremque, odio.
-                                </td>
-                                <td>I Quit</td>
-                                <td>Pending </td>
-                            </tr>
+                            {% endfor %}
                             <tr></tr>
                         </tbody>
                 </div>
