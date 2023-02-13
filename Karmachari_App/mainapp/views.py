@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from mainapp.models import *
+from mainapp.forms import *
 
 # Create your views here.
 def index(request):
@@ -10,12 +11,12 @@ def index(request):
 
 @login_required(login_url='login')
 def home(request):
-    # fullname =  request.user.get_full_name()
-    # profile=Profile.objects.get(user=request.user)
-    # context = {'fullname':fullname,
-    #            'profile':profile,
-    #            }
-    return render(request,'Home.html')#,context)
+    fullname =  request.user.get_full_name()
+    profile=Profile.objects.get(user=request.user)
+    context = {'fullname':fullname,
+               'profile':profile,
+               }
+    return render(request,'Home.html',context)
 
 
     
@@ -46,13 +47,14 @@ def logout(request):
 
 @login_required(login_url='login')
 def yourinformation(request):
-    #   profile=Profile.objects.get(user=request.user)
-    #   context={
-    #   'profile':profile,
+      profile=Profile.objects.get(user=request.user)
+      context={
+      'profile': profile,
+      'navbar':'yourinformation',
       
-    # }
-      return render(request,'your_information.html')#,context)
-
+    }
+      return render(request,'your_information.html',context)
+  
 @login_required(login_url='login')
 def notice(request):
     notices= Notice.objects.all()
@@ -64,9 +66,25 @@ def leaves(request):
         return render(request,'leaves.html', {'leaves': leaves})
     
 @login_required(login_url='login')
-def leavesform(request):
-    if request.method == 'POST':
-        return render(request,'leaves.html', {'leaves': leaves})
-    else:
-        return render(request,'leavesform.html', {'leaves': leaves})
 
+def leavesform(request):
+    form = LeavesForm()
+    if request.method == 'POST':
+        form = LeavesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('leaves')
+    context = {'form': form}
+    return render(request, 'leavesform.html', context)
+
+def mark_attendance(request):
+    form = AttendanceForm()
+    if request.method == 'POST':
+        form = AttendanceForm(request.POST)
+        if form.is_valid():
+            attendance = form.save(commit=False)
+            attendance.attendee = request.user
+            attendance.save()
+            return redirect('attendance')
+    return render(request, 'attendanceform.html', {'form': form})
+    

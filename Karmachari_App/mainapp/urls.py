@@ -12,6 +12,7 @@ urlpatterns = [
     path('notice',views.notice, name='notice'),
     path('leaves',views.leaves, name='leaves'),
     path('leavesform',views.leavesform, name='leavesform'),
+    path('attendance', views.mark_attendance, name='attendance')
 ]
 
 

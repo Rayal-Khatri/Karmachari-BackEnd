@@ -1,7 +1,12 @@
 from django import forms
 from .models import *
 
-class EventForm(forms.ModelForm):
+class LeavesForm(forms.ModelForm):
     class Meta:
-        model = Calendar
-        fields = '__all__'
+        model = Leaves
+        fields = ['subject', 'date', 'duration', 'leave_type', 'message', ]
+        
+class AttendanceForm(forms.ModelForm):
+    class Meta:
+        model = Attendance
+        fields = ['attendee', 'is_present', 'duration']

@@ -56,12 +56,13 @@ class Leaves(models.Model):
     def __str__(self):
         return self.subject
     
-class Calendar(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    dateOfQuestion = models.DateField(null=True)
-    checkInTime = models.DateTimeField(auto_now_add=True)
-    checkOutTime = models.DateTimeField(auto_now_add=True)
-    overtime = models.DateTimeField(null=True)
+class Attendance(models.Model):
+    attendee = models.ForeignKey(User,on_delete=models.CASCADE)
+    date = models.DateField(auto_now=True, null=True)
+    checkIn = models.DateTimeField(auto_now_add=True, blank=True)
+    checkOut = models.DateTimeField(auto_now_add=True, blank=True)
+    is_present = models.BooleanField(default=False)
+    duration = models.TimeField(null=True)
     def __str__(self):
         return self.user.username
     
