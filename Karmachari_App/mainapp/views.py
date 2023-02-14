@@ -16,7 +16,7 @@ def home(request):
     context = {'fullname':fullname,
                'profile':profile,
                }
-    return render(request,'Home.html',context)
+    return render(request,'home.html',context)
 
 
     

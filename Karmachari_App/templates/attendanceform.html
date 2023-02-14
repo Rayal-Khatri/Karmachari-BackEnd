@@ -11,8 +11,7 @@
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- {% include 'Nav_Sidebar.html' %} -->
-<form action="" method="post">
+<form action="attendance" method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Mark Attendance">

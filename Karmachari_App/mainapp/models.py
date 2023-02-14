@@ -64,7 +64,7 @@ class Attendance(models.Model):
     is_present = models.BooleanField(default=False)
     duration = models.TimeField(null=True)
     def __str__(self):
-        return self.user.username
+        return self.attendee.username
     
 class Salary(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)

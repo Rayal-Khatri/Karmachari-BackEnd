@@ -11,28 +11,7 @@
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    {% include 'Nav_Sidebar.html' %}
-    <p id="counter" style="display:none;">0</p>
-    <!-- =====================Nav Bar Section===================== -->
-    <div class="nav-bar">
-        <div class="logo_container">
-            <a href="#" class="logo">Karmachari</a>
-        </div>
-        <div class="drop-down" id="drop-down">
-            <img src="asstes/Images/avatar.jpg" alt="" class="avatar">
-            <h1 class="Name">Aanand Rimal</h1>
-        </div>
-    </div>
-    <div class="sub-menu-wrap" id="sub-menu">
-        <div class="sub-menu">
-            <ul>
-                <div class="sub-item"><i class="fas fa-gear sub-item-icon"></i><a href="#"></i>Settings<i class="fas fa-arrow-right arrow-icon"></i></a></div>
-                <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change Password<i class="fas fa-arrow-right arrow-icon"></i></a></div>
-                <button class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="Login.html"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
-            </ul>
-        </div>
-     </div>
-
+    
     <div class="side_bar">
         <div class="container clock_section">
             <img src="{% static 'asstes/img/avatar.jpg' %}" alt="" class="avatar">
@@ -54,42 +33,17 @@
             
         </div>
 
-        <div class="container menu_elements">
-            <ul>
-                <li class="menu_item"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                <li class="menu_item "><a href="#"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
-                <li class="menu_item active-menu"><a href="attendance"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
-                <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
-                <li class="menu_item"><a href="leaves"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item"><a href="notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
-            </ul>
-        </div> 
-    </div>
 
     <div class="container hero-section">
-       <p style="color: red;">CONTENT HERE!!</p>
+       <p style="color: red;"></p>
     </div>
 
-     
-    <div class="password-popup container">
-        <h1>CHANGE PASSWORD</h1>
-        <div class="close-icon">
-            <i class="fas fa-xmark"></i>
-        </div>
-        <form class="form" action="">
-            <p class="question">Current Password:</p>
-            <input class="Answer" type="password">
-            <p class="question">New Password:</p>
-            <input class="Answer" type="password">
-            <p class="question">Confirm Password:</p>
-            <input class="Answer" type="password"><br>
-            <input class="submit-btn" value="Save" type="submit"\>
-        </form>
+
     </div>
     <div id="loader-wrapper" class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
-    <script src="{%s static 'asstes/js/Nav_sidebar.js' %}"></script>
+    <script src="{% static 'asstes/js/Nav_sidebar.js' %}"></script>
     <!-- <script src="asstes/javaScript/Home.js"></script> -->
 </body>
 </html>

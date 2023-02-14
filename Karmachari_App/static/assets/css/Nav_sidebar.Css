@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 :root {
     /* ==================MAIN COLORS==================*/
-    --hue-color: 100;
+    --hue-color: 207;
     /* --color-mer:hsl(207, 75%, 50%); */
     /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
     --primary-color: hsl(var(--hue-color), 75%, 50%);
@@ -53,7 +53,7 @@ li {
     list-style: none;
 }
 
-/* ===============Navbar overall code ======*/
+/* ===============NAVBAR OVERALL CODE ======*/
 .nav-bar {
     height: 7%;
     width: 100%;
@@ -61,6 +61,7 @@ li {
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    top: 0;
     z-index: 5;
     background: var(--primary-color);
     padding: 0.1em 1em;
@@ -79,7 +80,6 @@ li {
 .logo_container {
     width: 40%;
     text-align: left;
-    /* text-align: center; */
     transition: .3s;
 }
 
@@ -89,8 +89,8 @@ li {
     align-items: center;
     height: 90%;
     cursor: pointer;
-    /* border: 2px solid var(--primary-color-alt); */
-    width: 12%;
+    min-width: 12%;
+    max-width: 30%;
     transition: 0.3s;
 }
 
@@ -101,7 +101,7 @@ li {
     color: var(--text-light-color);
 }
 
-/* ================Side_Bar=========== */
+/* ================SIDE BAR OVERALL CODE=========== */
 .clock_section .avatar {
     width: 50%;
     border-radius: 50%;
@@ -164,19 +164,16 @@ p.time-data {
     background-color: grey;
 }
 
-/* =================Menu Items============== */
+/* ================= Menu Items ============== */
 .menu_elements {
     background: var(--dark-selected);
-
+    padding-bottom: 1rem;
 }
 
 .menu_item {
 
     width: 100%;
     transition: .3s;
-    /* display: flex;
-    justify-content: left;
-    align-items: center; */
 }
 
 .menu_item a {
@@ -189,13 +186,12 @@ p.time-data {
 
 .menu_item:hover {
     cursor: pointer;
-    border-left: 8px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
     background-color: var(--dark-color-alt);
 }
 
 .menu_item:hover a {
     color: var(--primary-color-alt);
-    font-size: .8rem;
 }
 
 .menu-icon {
@@ -216,7 +212,6 @@ p.time-data {
 }
 .bell-notification
 {
-    /* background-color: blue; */
     height: 0;
 }
 .bell-notification::after
@@ -227,7 +222,6 @@ p.time-data {
     font-size: .55rem;
     content: attr(current-count);
     width: 40%;
-    /* height: 20%; */
     display: flex;
     color: whitesmoke;
     justify-content: center;
@@ -268,7 +262,7 @@ p.time-data {
     color: var(--primary-color);
 }
 
-.form {
+.form_pw {
 
     margin-top: 1.6rem;
 }
@@ -287,11 +281,11 @@ p.time-data {
     transition: .3s;
 }
 
-.Answer:focus {
+.Answer_pw:focus {
     border: 2px solid var(--primary-color);
 }
 
-.submit-btn {
+.submit-btn_pw {
     align-self: center;
     margin: 1.6rem auto 0;
     width: 100%;
@@ -305,12 +299,12 @@ p.time-data {
     transition: .3s;
 }
 
-.submit-btn:hover {
+.submit-btn_pw:hover {
     background-color: var(--primary-color-alt);
     color: black;
 }
 
-.close-icon {
+.close-icon_pw {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -318,7 +312,6 @@ p.time-data {
     top: .4rem;
     right: .7rem;
     padding: .2rem;
-    /* background-color: var(--primary-color); */
     border-radius: 50%;
     width: 1.9rem;
     height: 1.9rem;
@@ -326,19 +319,29 @@ p.time-data {
     transition: .3s;
 }
 
-.close-icon:hover {
+.close-icon_pw:hover {
     background-color: var(--primary-color-alt);
 }
-
+.message-container-pw
+{
+    color: var(--checkout);
+    width: 80%;
+    justify-self:center;
+    padding: .3rem 0 0 1rem;
+}
+#Error-Message
+{
+    font-size: .55rem;
+}
 /* ===========================Sub_menu============== */
 
-.arrow-icon {
+.arrow-icon-sub {
     position: absolute;
     right: 8%;
     transition: .3s;
 }
 
-.sub-item:hover .arrow-icon {
+.sub-item:hover .arrow-icon-sub {
     color: var(--primary-color-alt);
     transform: translate3d(.3rem, 0rem, 0);
 }
@@ -349,14 +352,17 @@ p.time-data {
     .menu-open {
         display: none;
     }
-
+    .drop-down
+    {
+        border-radius: 5px;
+    }
     .drop-down:hover {
         background: var(--primary-color-alt);
         border-color: black;
     }
 
     .drop-down .avatar {
-        width: 18%;
+        width: 30px;
         border-radius: 50%;
     }
 
@@ -370,7 +376,6 @@ p.time-data {
 
     /* =====================Sub menu===================== */
     .sub-menu-wrap {
-        z-index: 999999;
         position: absolute;
         top: 3.2rem;
         right: 1%;
@@ -426,11 +431,11 @@ p.time-data {
     /* ===================== Sidebar ===================== */
     .side_bar {
         background-color: var(--dark-color-alt);
-        position: absolute;
-        top: 6.4%;
+        position: fixed;
+        top: 7%;
         left: 0;
         width: 15%;
-        height: 93.666%;
+        height: 93%;
     }
 
     .clock_section {
@@ -443,8 +448,9 @@ p.time-data {
     }
 
     .clock_section .avatar {
-        /* margin: .3rem auto .6rem; */
-        transform:translateY(10%)
+    width: 60%;
+    height: 100px;        
+    transform:translateY(10%)
     }
     .menu_item
     {
@@ -555,7 +561,7 @@ p.time-data {
     }
 
     .drop-down {
-        width: 40px;
+        width: 44px;
         border: none;
     }
 
@@ -568,12 +574,17 @@ p.time-data {
     .Name {
         display: none;
     }
-
     /*=================== Drop Down Check/Inout============*/
     .clock_section.active {
         height: 40%;
     }
-
+    .clock_section.active .avatar{
+        height: 100px;
+    }
+    .check-inout-btn
+    {
+        margin-bottom: .3rem;
+    }
     /*=================== Sidebar============*/
     .side_bar {
         position: fixed;
@@ -599,7 +610,6 @@ p.time-data {
     .menu_elements {
         margin-top: 20px;
         border-bottom: 1rem solid rgb(31, 31, 31);
-        /* padding: .3rem .1rem; */
         width: 100%;
         display: flex;
         justify-content: center;
@@ -671,7 +681,6 @@ p.time-data {
     .sub-item a {
         color: whitesmoke;
         transition: .3s;
-        /* font-size: .3rem; */
     }
 
     .sub-item:hover a {
@@ -693,7 +702,6 @@ p.time-data {
         top: 6.5%;
         left: 0%;
         background-color:var(--text-light-color);
-        /* background: var(--text-light-color); */
         width: max-content;
         width: 100%;
         height: 100vh;

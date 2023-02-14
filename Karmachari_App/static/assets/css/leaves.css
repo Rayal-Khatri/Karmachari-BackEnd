@@ -25,9 +25,11 @@
    padding: 0;
    box-sizing: border-box;
    font-family: 'Poppins',sans-serif;
+   /* overflow: hidden; */
 }
 body{
     height: 100vh;
+    width: 100vw;
 }
 .hero
 {
@@ -36,24 +38,26 @@ body{
     left: 15%;
     height: 93%;
     width: 85%;
-    background-color: var(--text-light-color);
+    /* background-color: var(--text-light-color); */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    background-color: rgb(20, 30,var(--hue-color),0.3 )
 }
 .title-text
 {
     text-align: left;
     width: 90%;
+    font-size: 1.2rem;
+    color: whitesmoke;
 }
 .container
 {
     display: flex;
     justify-content: space-around;
     align-items: top;
-    background-color: var(--primary-color-alt);
-    width: 90%;
+    width: 99%;
     height: 90%;
     padding: 2.5% .5%;
     border-radius: 5px;
@@ -67,7 +71,6 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* justify-content: space-around; */
     margin-left: 1%;
     padding:1% 2%;
     border-radius: 5px;
@@ -148,13 +151,20 @@ body{
 .table-container {
     border-collapse: collapse;
     margin: 25px 0;
+    width: 100%;
     font-size: .7rem;
     min-width: 400px;
     border-radius: 5px 5px 0 0;
-    overflow: hidden;
+    overflow: scroll;
+    /* background-color: red; */
+    height: 350px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-
+.table-container thead
+{
+    position: sticky;
+    top: 0;
+}
 .table-container thead tr {
     background-color: var(--primary-color);
     color: #ffffff;
@@ -177,4 +187,111 @@ body{
 
 .table-container tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
+}
+.status_lv
+{
+    text-align: center;
+    border-radius: 5px;
+    padding: 0 .5rem;
+}
+.s0
+{
+    background-color: grey;
+}
+.s1
+{
+    background-color: var(--Checkin);
+}
+.s2
+{
+    background-color: var(--checkout);
+}
+@media screen and (max-width:900px)
+{   
+    body
+    {
+        height: fit-content;
+    }
+    .hero
+    {
+        position: absolute;
+        left: 0;
+        top: 7%;
+        width: 100%;
+        height: fit-content;
+    }
+    .container
+    {
+        /* display: none; */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .apply-leave
+    {
+        width: 97%;
+        height: 550px;
+    }
+    .flexbox
+    {
+        height: 50px;
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .answer_leave
+    {
+        height: 50%;
+    }
+    #message-leave
+    {
+        height: 80%;
+    }
+    .bigbox
+    {
+        height: 150px;
+    }
+    /* MY LEAVES TABLE================= */
+    .leave-records
+    {
+        margin-top: 15px;
+        width: 98%;
+        height: 600px;
+        overflow: hidden;
+    }
+    .table-container
+    {
+        padding: 0;
+        height: fit-content;
+        margin: 0;
+        width: 100%;
+        transform: translateX(-1rem);
+        /* background-color: red; */
+        font-size: .7rem;
+    }
+    .table-container th,
+    .table-container td
+    {
+        width: 5%;
+    }
+    .SN
+    {
+        width: 10px;
+    }
+    .message_lv
+    {
+        display: none;
+    }
+    .status_lv
+    {
+        padding: 0;
+        color: transparent;
+        width: 18px;
+        border-radius: 50%;
+    }
+    .Date_lv
+    {
+        display: none;
+    }
 }

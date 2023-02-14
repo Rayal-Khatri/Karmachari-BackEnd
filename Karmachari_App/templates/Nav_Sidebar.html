@@ -14,79 +14,99 @@
     <p id="counter" style="display:none;">0</p>
     <!-- =====================Nav Bar Section===================== -->
     <div class="nav-bar">
+        <div class="menu-open" id="menu-open">
+            <i class="fas fa-bars" id="side-icon"></i>
+        </div>
         <div class="logo_container">
-            <a href="/" class="logo">Karmachari</a>
+            <a href="#" class="logo">Karmachari</a>
         </div>
         <div class="drop-down" id="drop-down">
-            <img src="{{profile.profileimg.url}}" alt="" class="avatar">
+            <img src="{{profile.profileimg.url}}" alt="Avatar" class="avatar">
             <h1 class="Name">{{user.get_full_name}}</h1>
         </div>
     </div>
     <div class="sub-menu-wrap" id="sub-menu">
         <div class="sub-menu">
             <ul>
-                <div class="sub-item"><i class="fas fa-gear sub-item-icon"></i><a href="#"></i>Settings<i class="fas fa-arrow-right arrow-icon"></i></a></div>
-                <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change Password<i class="fas fa-arrow-right arrow-icon"></i></a></div>
-                
-                {%if user.is_authenticated%}
-                  <button class="sub-item" id= ><i class="fas fa-right-from-bracket sub-item-icon"></i><a href="logout"></i>Logout<i class="fas fa-arrow-right arrow-icon"></i></a></button>
-                {%endif%}
-            
-                </ul>
+                <div class="sub-item"><i class="fas fa-gear sub-item-icon"></i><a href="#"></i>Settings<i
+                            class="fas fa-arrow-right arrow-icon-sub"></i></a></div>
+                <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change
+                        Password<i class="fas fa-arrow-right arrow-icon-sub"></i></a></div>
+                <button class="sub-item" id=><i class="fas fa-right-from-bracket sub-item-icon"></i><a
+                        href="login"></i>Logout<i class="fas fa-arrow-right arrow-icon-sub"></i></a></button>
+            </ul>
         </div>
-     </div>
-
+    </div>
+<!-- =============================SIDEBAR ================== -->
     <div class="side_bar">
-        <div class="container clock_section">
-            <img src="{{profile.profileimg.url}}" alt="" class="avatar">
+        <div class="clock_section" id="clock-check">
+            <img src="{{profile.profileimg.url}}" alt="assets/Images/avatar.jpg" class="avatar">
             <div class="side-clock" id="clock">
                 <i class="far fa-clock clock-icon"></i>
                 <span id="hrs">00</span> : <span id="min">00</span> : <span id="sec">00</span>
                 <span id="session"> AM</span>
             </div>
-            
+
             <div class="check-in-out">
 
                 <p class="Title-data"><span>Check-In : </span><br><span> Check-Out : </span></p>
-
-
-                    <p class="time-data"><span id="in-time" class="time">--:--:-- --</span> <br><span id="out-time" class="time">--:--:-- --</span></p>
+                <p class="time-data"><span id="in-time" class="time">--:--:-- --</span> <br><span id="out-time"
+                        class="time">--:--:-- --</span></p>
 
             </div>
             <button id="Check-in" class="check-inout-btn Check-in">Check In</button>
-            
+
         </div>
 
-        <div class="container menu_elements">
+        <div class="menu_elements">
             <ul>
                 <li class="menu_item active-menu"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                <li class="menu_item"><a href="yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
-                <li class="menu_item"><a href="attendance"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
-                <li class="menu_item"><a href="#"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
-                <li class="menu_item"><a href="leaves"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item"><a href="/notice"><i class="fas fa-bell menu-icon"></i>Notices</a></li>
+                <div class="menu_item"><a href="youtinformation"><i class="fas fa-circle-info menu-icon"></i>Your
+                            Information</a></div>
+                <li class="menu_item"><a href="attendance">
+                    <i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
+                <li class="menu_item"><a href="#"><i
+                            class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
+                <li class="menu_item "><a href="leaves"><i class="fas fa-door-open menu-icon"></i>Leaves</a>
+                </li>
+                <li class="menu_item notice">
+                    <a href="notice">
+                        <div class="bell-notification" current-count="8">
+                            <i class="fas fa-bell menu-icon"></i>
+                        </div>Notices
+                    </a>
+                </li>
             </ul>
-        </div> 
+        </div>
     </div>
 
-    <div class="password-popup container">
+    <div class="hero-section">
+    </div>
+
+
+    <div class="password-popup">
         <h1>CHANGE PASSWORD</h1>
-        <div class="close-icon">
+        <div class="close-icon_pw">
             <i class="fas fa-xmark"></i>
         </div>
-        <form class="form" action="">
-            <p class="question">Current Password:</p>
-            <input class="Answer" type="password">
-            <p class="question">New Password:</p>
-            <input class="Answer" type="password">
-            <p class="question">Confirm Password:</p>
-            <input class="Answer" type="password"><br>
-            <input class="submit-btn" value="Save" type="submit"\>
+        <form class="form_pw" action="">
+            <p class="question_pw">Current Password:</p>
+            <input class="Answer_pw" type="password">
+            <p class="question_pw">New Password:</p>
+            <input class="Answer_pw" type="password">
+            <p class="question_pw">Confirm Password:</p>
+            <input class="Answer_pw" type="password"><br>
+            <input class="submit-btn_pw" value="Save" type="submit" \>
         </form>
+        {% for message in messages %}
+        <div class="message-container-pw">
+            <h3 id="Error-Message">{{message}}</h3>
+        </div>
+        {% endfor %}
     </div>
-    <div id="loader-wrapper" class="loader-wrapper">
+        <div id="loader-wrapper" class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
-    <script src="{% static 'assets/js/nav_sidebar.js' %}"></script>
-
+    <script src="{% static 'assets/js/Nav_sidebar.js' %}"></script>
+    <!-- <script src="{% static 'assets/js/nav_sidebar.js' %}"></script> -->
 </body>

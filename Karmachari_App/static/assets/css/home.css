@@ -50,7 +50,6 @@ h3 {
 
 /* ============================= Hero section ============================= */
 .hero-section {
-    /* display:none; */
     width: 85%;
     height: 93%;
     position: relative;
@@ -422,8 +421,6 @@ h3 {
 }
 
 .content {
-    /* width: 78%;
-    height: 20%; */
     background-color: var(--text-light-color);
     display: flex;
     flex-direction: column;

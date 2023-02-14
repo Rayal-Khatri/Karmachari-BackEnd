@@ -15,23 +15,28 @@
 </head>
 <body>
     <div class="Login_Bar">
-        <a href="#">
-        <img src="{%static '/assets/img/img.png'%}" alt="Logo" id="applogo" href="#">
+        <a href="yourinformation">
+        <img src="{% static 'assets/img/img.png' %}" alt="Logo" id="applogo" href="#">
         </a>
         <div id="clock">
             <span id="hrs">00 </span>:<span id="min">00 </span>:<span id="sec">00 </span>
             <span id="session">AM</span>
         </div>
-        <form  action="login" method='POST'>
+        <form  action="" method="POST">
             {% csrf_token %}
-            <input type="text" name='username' placeholder="Enter ID"onfocus="this.placeholder = ''"
+            <input type="text" placeholder="Enter ID"onfocus="this.placeholder = ''"
             onblur="this.placeholder = 'Enter ID'"/>
-            <input type="password" name='password' placeholder="Enter Password" onfocus="this.placeholder = ''"
+            <input type="password" placeholder="Enter Password" onfocus="this.placeholder = ''"
             onblur="this.placeholder = 'Enter Password'"/> <br>
             <input type="Submit" id="Login_Btn" value="Login"/><br>
-            <a href="#" id="forgot_pw">Forgot Password?</a>
+            <a href="/" id="forgot_pw">Forgot Password?</a>
         </form>
+        {% for message in messages %}
+        <div class="message-container-pw">
+            <h3 id="Error-Message">{{message}}</h3>
+        </div>
+        {% endfor %}
     </div>
-    <script src="{%static 'assets/js/nav_sidebar.js'%}"></script>
+    <script src="{% static 'assets/js/Nav_sidebar.js' %}"></script>
 </body>
 </html>

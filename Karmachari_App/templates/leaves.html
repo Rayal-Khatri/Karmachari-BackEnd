@@ -12,18 +12,44 @@
 </head>
 
 <body>
-    {% include 'Nav_Sidebar.html' %}
     <section class="hero">
         <div class="title-text">
             <h1>Leaves</h1>
         </div>
         <div class="container">
+            <div class="apply-leave">
+                <div class="heading">
+                    <h2>Apply For Leave</h2>
+                </div>
+
+                <form action="" method class="input-section-container">
+                    <div class="flexbox">
+                        <h4 class="question_leave">Leave Subject</h4>
+                        <input type="text" class="answer_leave">
+                    </div>
+                    <div class="flexbox">
+                        <h4 class="question_leave">Leave Date</h4>
+                        <input type="text" class="answer_leave">
+                    </div>
+                    <div class="flexbox  bigbox">
+                        <h4 class="question_leave">Leave message</h4>
+                        <textarea name="" id="message-leave" cols="40" class="answer_leave" rows="10" placeholder=""></textarea>
+                    </div>
+                    <div class="flexbox">
+                        <h4 class="question_leave">Leave Type</h4>
+                        <select name="" id="leave-type" class="option-leave">
+                            <option value="leave-type" selected disabled hidden>Please Choose</option>
+                            <option value="sick-leave">Sick Leave</option>
+                            <option value="vacation-leave">Vacation</option>
+                            <option value="Emergency-leave">Emergency</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="submit_btn" value="Submit" />
+                </form>
+            </div>
             <div class="leave-records">
                 <div class="heading">
                     <h2>My Leaves</h2>
-                </div>
-                <div class="apply for leave">
-                    <a href="leavesform">Apply For Leave</a>
                 </div>
                 <div class="show-option">
                     <p>Show </p>
@@ -38,10 +64,10 @@
                     <table class="content-table">
                         <thead>
                             <tr>
-                                <th>SN</th>
-                                <th>Subject</th>
-                                <th>Dates</th>
-                                <th>Message</th>
+                                <th class="SN">SN</th>
+                                <th class="subject">Subject</th>
+                                <th class="Date_lv">Dates</th>
+                                <th class="message_lv">Message</th>
                                 <th>Type</th>
                                 <th>Status</th>
                             </tr>
@@ -59,7 +85,7 @@
                                 <td>{{leave.status}}</td>
                             </tr>
                             {% endfor %}
-                            <tr></tr>
+                            </tr>
                         </tbody>
                 </div>
             </div>

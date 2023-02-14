@@ -108,3 +108,15 @@ html
 {
     font-weight: bold;
 }
+.message-container-pw
+{
+    color: var(--checkout);
+    width: 80%;
+    justify-self:center;
+    padding: .3rem 0 0 1rem;
+}
+#Error-Message
+{
+    color: red;
+    font-size: .9rem;
+}
