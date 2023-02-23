@@ -37,34 +37,22 @@ class Notice(models.Model):
         return self.title
 
 class Leaves(models.Model):
-    leave_condn = (
-        ('Sick Leave','Sick Leave'),
-        ('Vacation','Vacation'),
-        ('Emergency','Emergency')
-    )
-    leave_permission = (
-        ('Approved','Approved'),
-        ('Pending','Pending'),
-        ('Not Approved','Not Approved')
-    )
+    title = models.CharField(max_length=100, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     subject = models.CharField(max_length=100, null=True)
-    date = models.DateTimeField(default=datetime.now)
-    duration = models.DateTimeField(default=datetime.now)
-    leave_type = models.CharField(max_length=100, null=True,choices= leave_condn)
-    message = models.TextField(max_length=100000, null=True)
-    status = models.CharField(max_length=100, choices= leave_permission, default='Pending')
+    context = models.TextField(max_length=100000, null=True)
     def __str__(self):
-        return self.subject
+        return self.title
     
-class Attendance(models.Model):
-    attendee = models.ForeignKey(User,on_delete=models.CASCADE)
-    date = models.DateField(auto_now=True, null=True)
-    checkIn = models.DateTimeField(auto_now_add=True, blank=True)
-    checkOut = models.DateTimeField(auto_now_add=True, blank=True)
-    is_present = models.BooleanField(default=False)
-    duration = models.TimeField(null=True)
+class Calendar(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    dateOfQuestion = models.DateField(null=True)
+    checkInTime = models.DateTimeField(auto_now_add=True)
+    checkOutTime = models.DateTimeField(auto_now_add=True)
+    overtime = models.DateTimeField(null=True)
     def __str__(self):
-        return self.attendee.username
+        return self.user.username
     
 class Salary(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)

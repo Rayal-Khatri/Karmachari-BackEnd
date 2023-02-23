@@ -1,4 +1,3 @@
-
 // =====================Clock section==================
 
 function displayTime()
@@ -52,10 +51,10 @@ document.addEventListener("click",function(event)
 })
 
 //===================== Check in/out Time Section =====================
-
 let checkIn=document.getElementById('Check-in')
 let inTime=document.getElementById('in-time')
 let outTime=document.getElementById('out-time')
+
 checkIn.addEventListener('click',()=>
 {
 var n=document.getElementById('counter').textContent
@@ -64,6 +63,9 @@ var hrs=dateTime.getHours();
 var min=dateTime.getMinutes();
 var sec=dateTime.getSeconds();
 var ses = document.getElementById('session');
+var n = localStorage.getItem("counter") || 0;
+n++;
+localStorage.setItem("counter", n);
 if(hrs>12)
 {
     hrs-=12;
@@ -73,16 +75,25 @@ else
 {
     ses='AM'
 }
-    n++
+    // n++
     if(n==1)
     {
         document.getElementById('counter').textContent='1'
         checkIn.textContent="Check Out"
         checkIn.classList.remove('Check-in')
         checkIn.classList.add('Check-out')
-        inTime.textContent= hrs + " : " + min + " : " + sec + " " +ses  
-    }
-    
+        inTime.textContent= hrs + " : " + min + " : " + sec + " " +ses    
+              $.ajax({
+                type: 'POST',
+                url: '/checkin',
+                success: function(data) {
+                  console.log(data);
+                }
+              });
+            
+        }
+          
+        
     if(n==2)
     {
         checkIn.classList.remove('Check-out')
@@ -91,7 +102,15 @@ else
         document.getElementById('counter').textContent='2'
         outTime.textContent= hrs + " : " + min + " : " + sec + " " + ses
         // reset()
+              $.ajax({
+                type: 'POST',
+                url: '/checkout',
+                success: function(data) {
+                  console.log(data);
+                }
+              });
     }
+         
     if(n==3)
     {
         checkIn.classList.remove('Reset')
@@ -100,6 +119,8 @@ else
         document.getElementById('counter').textContent=''
         outTime.textContent= "--:--:-- --"
         inTime.textContent= "--:--:-- --"
+        localStorage.removeItem("counter");
+        n = 0;
     }
 
 })
@@ -145,4 +166,6 @@ document.querySelector("#menu-open").addEventListener("click",()=>
     document.querySelector(".side_bar").classList.toggle("active");
     document.querySelector(".sub-menu-wrap").classList.toggle("active");
 });
+
+
 

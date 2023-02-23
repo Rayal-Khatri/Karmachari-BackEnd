@@ -1,4 +1,5 @@
-{%load static%}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'assets/css/Notices.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/Navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/notices.css' %}">
     <title>Notices</title>
 </head>
 
 <body>
-    {%include 'Nav_Sidebar.html'%}
-    <div class="container_notice">
+    {% include 'Nav_Sidebar.html' %}
+    <div class="container-notice">
         <div class="top-nav">
             <h2>NOTICES</h2>
         </div>
@@ -35,31 +37,27 @@
             </div>
             <table class="content-table">
                 <thead>
-
-                    <tr>
+                    <strong>
                         <th>SN</th>
-                        <th>Title</th>
+                        <th>title</th>
                         <th>Published Date</th>
                         <th>Department</th>
                         <th>description</th>
-                    </tr>
-                </thead>
-
+                    </strong>
                 <tbody>
-                    {% for notice in notices reversed %}
+            {% for notice in notices reversed %}   
                     <tr>
-                        <td>{{notice.id}}</td>
-                        <td>{{notice.title}}</td>
-                        <td>{{notice.created_at}}</td>
-                        <td>{{notice.department}}</td>
-                        <td>{{notice.context|truncatewords:20}}</td>
-                    {% endfor %}
+                        <a href="/postnotice/{{notice.id}}"> 
+                            <td>{{notice.sn}}</td>
+                            <td>{{notice.title}}</td>
+                            <td>{{notice.created_at}}</td>
+                            <td>{{notice.department}}</td>
+                            <td>{{notice.context|truncatewords:20}}</td>
+                        </a>
                     </tr>
-                    <tr></tr>
+            {% endfor %}
                 </tbody>
             </table>
         </main>
     </div>
 </body>
-
-</html>

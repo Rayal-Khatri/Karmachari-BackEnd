@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
+    'password_reset',
     # 'debug_toolbar',
 ]
 
@@ -89,7 +90,7 @@ DATABASES = {
         'NAME': 'karmachari-db', 
         'USER': 'postgres',
         'PASSWORD': 'useradmin404',
-        'HOST': '127.0.0.1', 
+        'HOST': 'localhost', 
         'PORT': '5432',
     }
 }
@@ -140,3 +141,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL='/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+
+
+#SMTP CONFIGURATION
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER='karmachari07@gmail.com'
+EMAIL_HOST_PASSWORD='wsnpeplgmtomwrez'

@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from mainapp.models import *
-from mainapp.forms import *
+from django.utils import timezone
+from django.http import JsonResponse
+from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
@@ -15,8 +19,9 @@ def home(request):
     profile=Profile.objects.get(user=request.user)
     context = {'fullname':fullname,
                'profile':profile,
+               'navbar':'home',
                }
-    return render(request,'home.html',context)
+    return render(request,'Home.html',context)
 
 
     
@@ -49,42 +54,65 @@ def logout(request):
 def yourinformation(request):
       profile=Profile.objects.get(user=request.user)
       context={
-      'profile': profile,
+      'profile':profile,
       'navbar':'yourinformation',
       
     }
       return render(request,'your_information.html',context)
-  
+
 @login_required(login_url='login')
 def notice(request):
+    user_object = User.objects.get(username=request.user.username)
+    profile = Profile.objects.get(user=user_object)
     notices= Notice.objects.all()
-    return render(request,'notices.html', {'notices': notices})
+    context={
+        'profile':profile,
+        'notices':notices,
+        'navbar':'notice',
+        
+    }
+    return render(request,'notices.html',context)
 
-@login_required(login_url='login')
+
+
+@csrf_exempt
+def checkin(request):
+    # if request.is_ajax():
+    if request.method == 'POST':
+        print("CHECK IN")
+        user = request.user
+        dateOfQuestion = datetime.today()
+        checkInTime = timezone.now()
+        Calendar.objects.create(user=user, checkInTime=checkInTime,dateOfQuestion=dateOfQuestion)
+        return JsonResponse({'in_time': checkInTime})
+    response = {'message': 'Success'}
+    return JsonResponse(response)
+
+@csrf_exempt
+def checkout(request):
+    # if request.is_ajax():
+    if request.method == 'POST':
+        print("CHECK OUT") 
+        user = request.user
+        checkOutTime = timezone.now()
+        current_calendar = Calendar.objects.filter(user=user).latest('checkInTime')
+        current_calendar.checkOutTime = checkOutTime
+        current_calendar.save()
+        return JsonResponse({'out_time': checkOutTime})
+    response = {'message': 'Success'}
+    return JsonResponse(response)
+
+
+# def check_in_out(request):
+#     print("Checkin")
+#     return redirect('/notices')
+
+
+#####################################LEAVES############################################
 def leaves(request):
-        leaves= Leaves.objects.all()
-        return render(request,'leaves.html', {'leaves': leaves})
-    
-@login_required(login_url='login')
-
-def leavesform(request):
-    form = LeavesForm()
-    if request.method == 'POST':
-        form = LeavesForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('leaves')
-    context = {'form': form}
-    return render(request, 'leavesform.html', context)
-
-def mark_attendance(request):
-    form = AttendanceForm()
-    if request.method == 'POST':
-        form = AttendanceForm(request.POST)
-        if form.is_valid():
-            attendance = form.save(commit=False)
-            attendance.attendee = request.user
-            attendance.save()
-            return redirect('attendance')
-    return render(request, 'attendanceform.html', {'form': form})
-    
+    profile=Profile.objects.get(user=request.user)
+    context={
+      'profile':profile,
+      'navbar':'leaves',
+      }
+    return render(request,'leaves.html',context)

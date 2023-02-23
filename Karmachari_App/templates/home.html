@@ -1,106 +1,107 @@
-{% load static %}
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{%static 'assets/css/navbar.css'%}">
+        <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
+        <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
+    </head>
 
-<body>
-    {% include 'Nav_Sidebar.html' %}
-    <div class="container hero-section">
-        <div class="grid-container">
-            <div class="item right">
-                <div class="flexbox clock">
-                    <h4>Clock</h4>
-                    <div class="watch">
-                        <span id="hours">00</span>
-                        <span>:</span>
-                        <span id="minutes">00</span>
-                        <span>:</span>
-                        <span id="seconds">00</span>
-                        <span id="sessions">AM</span>
+    <body>
+        {% include 'Nav_Sidebar.html' %}
+        <div class="container hero-section">
+            <div class="grid-container">
+                <div class="item right">
+                    <!-- <div class="flexbox-container"> -->
+                    <div class="flexbox clock">
+                        <h4>Clock</h4>
+                        <div class="watch">
+                            <span id="hours">00</span>
+                            <span>:</span>
+                            <span id="minutes">00</span>
+                            <span>:</span>
+                            <span id="seconds">00</span>
+                            <span id="sessions">AM</span>
+                        </div>
+                    </div>
+                    <div class="flexbox works">
+                        <p>Total hrs Worked Today</p>
+                        <div class="flexbox work-time">
+                            <span id="hrs">00</span>
+                            <span>:</span>
+                            <span id="mins">00</span>
+                            <span>:</span>
+                            <span id="secs">00</span>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div class="item left ">
+                    <div class="notice-head">
+                        <h4 class="h2-title">Notices</h4>
+                    </div>
+                    <div class="boxes-content">
+                        <div class="content">
+                            <div class="notice-title">
+                                <h4>Breaks</h4>
+                            </div>
+                            <div class="date">2023/01/16
+                            </div>
+                        </div>
+                        <div class="content meet">
+                            <div class="notice-title">
+                                <h4>Meeting</h4>
+                            </div>
+                            <div class="date">2023/01/17
+                            </div>
+                        </div>
+                        <div class="content holi">
+                            <div class="notice-title">
+                                <h4>Holiday</h4>
+                            </div>
+                            <div class="date">2023/01/17
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flexbox works">
-                    <p>Total hrs Worked Today</p>
-                    <div class="flexbox work-time">
-                        <span id="hrs">00</span>
-                        <span>:</span>
-                        <span id="mins">00</span>
-                        <span>:</span>
-                        <span id="secs">00</span>
+                <div class="item bottom">
+                    <div class="atten-title">
+                        <h4 class="h2-title">Attendance <br> Records</h4>
                     </div>
-                </div>
-                <!-- </div> -->
-            </div>
-            <div class="item left ">
-                <div class="notice-head">
-                    <h4 class="h2-title">Notices</h4>
-                </div>
-                <div class="boxes-content">
-                    <div class="content">
-                        <div class="notice-title">
-                            <h4>Breaks</h4>
+                    <div class="footer">
+                        <div class="good-items A">
+                            <div class="atten-status">
+                                <h4>A</h4>
+                            </div>
+                            <div class="date">
+                                2023/01/17
+                            </div>
                         </div>
-                        <div class="date">2023/01/16
+                        <div class="good-items P">
+                            <div class="atten-status">
+                                <h4>P</h4>
+                            </div>
+                            <div class="date">
+                                2023/01/17
+                            </div>
                         </div>
-                    </div>
-                    <div class="content meet">
-                        <div class="notice-title">
-                            <h4>Meeting</h4>
+                        <div class="good-items L">
+                            <div class="atten-status">
+                                <h4>L</h4>
+                            </div>
+                            <div class="date">
+                                2023/01/17
+                            </div>
                         </div>
-                        <div class="date">2023/01/17
-                        </div>
-                    </div>
-                    <div class="content holi">
-                        <div class="notice-title">
-                            <h4>Holiday</h4>
-                        </div>
-                        <div class="date">2023/01/17
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item bottom">
-                <div class="atten-title">
-                    <h4 class="h2-title">Attendance <br> Records</h4>
-                </div>
-                <div class="footer">
-                    <div class="good-items A">
-                        <div class="atten-status">
-                            <h4>A</h4>
-                        </div>
-                        <div class="date">
-                            2023/01/17
-                        </div>
-                    </div>
-                    <div class="good-items P">
-                        <div class="atten-status">
-                            <h4>P</h4>
-                        </div>
-                        <div class="date">
-                            2023/01/17
-                        </div>
-                    </div>
-                    <div class="good-items L">
-                        <div class="atten-status">
-                            <h4>L</h4>
-                        </div>
-                        <div class="date">
-                            2023/01/17
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="{% static'assets/js/Home.js' %}"></script>
-    <!-- <script src="{%static 'assets/js/Home.js'%}"></script> -->
+        <script src="{%static 'assets/js/home.js'%}"></script>
 </body>
-
 </html>

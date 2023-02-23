@@ -1,15 +1,17 @@
 {%load static%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="{%static 'assets/css/Nav_Sidebar.css'%}"> -->
-    <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}">
-    <!-- <link rel="stylesheet" href="{%static 'assets/css/home.css'%}"> -->
+    <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}{% now "U" %}">
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}"> -->
 </head>
+
 <body>
     <p id="counter" style="display:none;">0</p>
     <!-- =====================Nav Bar Section===================== -->
@@ -32,8 +34,10 @@
                             class="fas fa-arrow-right arrow-icon-sub"></i></a></div>
                 <div class="sub-item" id="password-popup"><i class="fas fa-key sub-item-icon"></i><a href="#"></i>Change
                         Password<i class="fas fa-arrow-right arrow-icon-sub"></i></a></div>
+			{%if user.is_authenticated%}
                 <button class="sub-item" id=><i class="fas fa-right-from-bracket sub-item-icon"></i><a
-                        href="login"></i>Logout<i class="fas fa-arrow-right arrow-icon-sub"></i></a></button>
+                        href="/logout"></i>Logout<i class="fas fa-arrow-right arrow-icon-sub"></i></a></button>
+			{%endif%}
             </ul>
         </div>
     </div>
@@ -60,17 +64,13 @@
 
         <div class="menu_elements">
             <ul>
-                <li class="menu_item active-menu"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                <div class="menu_item"><a href="youtinformation"><i class="fas fa-circle-info menu-icon"></i>Your
-                            Information</a></div>
-                <li class="menu_item"><a href="attendance">
-                    <i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
-                <li class="menu_item"><a href="#"><i
-                            class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
-                <li class="menu_item "><a href="leaves"><i class="fas fa-door-open menu-icon"></i>Leaves</a>
-                </li>
-                <li class="menu_item notice">
-                    <a href="notice">
+                <li class="menu_item {% if navbar == 'home'%} active-menu{%endif%}"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
+                <li class="menu_item {% if navbar == 'yourinformation'%} active-menu{%endif%}"><a href="/yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
+                <li class="menu_item"><a href="/"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
+                <li class="menu_item"><a href=""><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
+                <li class="menu_item {% if navbar == 'leaves'%} active-menu{%endif%}"><a href="/leaves"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
+                <li class="menu_item {% if navbar == 'notice'%} active-menu{%endif%}">
+                    <a href="/notice">
                         <div class="bell-notification" current-count="8">
                             <i class="fas fa-bell menu-icon"></i>
                         </div>Notices
@@ -89,13 +89,14 @@
         <div class="close-icon_pw">
             <i class="fas fa-xmark"></i>
         </div>
-        <form class="form_pw" action="">
-            <p class="question_pw">Current Password:</p>
-            <input class="Answer_pw" type="password">
-            <p class="question_pw">New Password:</p>
-            <input class="Answer_pw" type="password">
-            <p class="question_pw">Confirm Password:</p>
-            <input class="Answer_pw" type="password"><br>
+        <form class="form_pw" method="POST">
+            {% csrf_token %}
+            <p class="question_pw">Current Password:{{form.old_password}}</p>
+            
+            <p class="question_pw">New Password:{{form.new_password1}}</p>
+            
+            <p class="question_pw">Confirm Password:{{form.new_password2}}</p>
+            <br>
             <input class="submit-btn_pw" value="Save" type="submit" \>
         </form>
         {% for message in messages %}
@@ -107,6 +108,6 @@
         <div id="loader-wrapper" class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
-    <script src="{% static 'assets/js/Nav_sidebar.js' %}"></script>
-    <!-- <script src="{% static 'assets/js/nav_sidebar.js' %}"></script> -->
+    <script src="assets/javaScript/Nav_sidebar.js"></script>
+    <script src="{% static 'assets/js/nav_sidebar.js' %}"></script>
 </body>

@@ -2,94 +2,95 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'assets/Css/information.css'%}">
-    <!-- <link rel="stylesheet" href="asstes/Css/Home.Css"> -->
-    <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{%static 'assets/Css/information.css'%}">
+        <link rel="stylesheet" href="{%static 'assets/Css/Navbar.css'%}">
+        <!-- <link rel="stylesheet" href="asstes/Css/Home.Css"> -->
+        <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
+    </head>
 
-<body>
-    {% include 'Nav_Sidebar.html' %}
-    <div class="hero-content">
-        <div class="hero main">
-            <div class="Title-text">
-                <p>Your Information</p>
-            </div>
-            <div class="information_section">
-                <div class="User-basic-information">
-                    <div class="user-image-info">
-                        <img src="{{profile.profileimg.url}}" class="user-image">
-                        {% comment %} {%static 'assets/img/avatar.jpg'%} {% endcomment %}
-                        <div class="Employee-name">
-                            <p>{{user.get_full_name}}</p>
-                        </div>
-                        <div class="lines">
-                            <div class="circle"></div>
-                        </div>
-                    </div>
-                    <div class="user-details">
-                        <div class="Question">
-                            <span>Total Working hrs:</span>
-                            <span>Total Days Late:</span>
-                            <span>Total's Schedule:</span>
-                        </div>
-                        <div class="Answer">
-                            <span>08hrs</span>
-                            <span>4 days</span>
-                            <span>8 AM - 4 PM</span>
-                        </div>
-                    </div>
+    <body>
+        {% include 'Nav_Sidebar.html' %}
+        <div class="hero-content">
+            <div class="hero main">
+                <div class="Title-text">
+                    <p>Your Information</p>
                 </div>
+                <div class="information_section">
+                    <div class="User-basic-information">
+                        <div class="user-image-info">
+                            <img src="{{profile.profileimg.url}}" class="user-image">
+                            {% comment %} {%static 'assets/img/avatar.jpg'%} {% endcomment %}
+                            <div class="Employee-name">
+                                <p>{{user.get_full_name}}</p>
+                            </div>
+                            <div class="lines">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                        <div class="user-details">
+                            <div class="Question">
+                                <span>Total Working hrs:</span>
+                                <span>Total Days Late:</span>
+                                <span>Total's Schedule:</span>
+                            </div>
+                            <div class="Answer">
+                                <span>08hrs</span>
+                                <span>4 days</span>
+                                <span>8 AM - 4 PM</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="master-section">
-                    <div class="master-title">
-                        <p>Master Information</p>
-                    </div>
-                    <div class="big_container">
-                        <div class="inputbox">
-                            <span class="Title">First Name</span>
-                            <div>
-                                <p>{{user.first_name}}</p>
+                    <div class="master-section">
+                        <div class="master-title">
+                            <p>Master Information</p>
+                        </div>
+                        <div class="big_container">
+                            <div class="inputbox">
+                                <span class="Title">First Name</span>
+                                <div>
+                                    <p>{{user.first_name}}</p>
+                                </div>
+                            </div>
+                            <div class="inputbox">
+                                <span class="Title">Last Name</span>
+                                <div>
+                                    <p>{{user.last_name}}</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="inputbox">
-                            <span class="Title">Last Name</span>
-                            <div>
-                                <p>{{user.last_name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inputbox big_box">
+                        <div class="inputbox big_box">
                             <span class="Title">Email :</span>
                             <div>
                                 <p>{{user.email}}</p>
                             </div>
-                    </div>
-                    <div class="inputbox big_box">
+                        </div>
+                        <div class="inputbox big_box">
                             <span class="Title">Phone number :</span>
                             <div>
                                 <p>{{profile.phone_number}}</p>
                             </div>
-                    </div>
-                    <div class="big_container">
-                        <div class="inputbox">
-                            <span class="Title">DOB :</span>
-                            <div>
-                                <p>{{profile.dob}}</p>
-                            </div>
                         </div>
-                        <div class="inputbox">
-                            <span class="Title">Department</span>
-                            <div>
-                                <p>{{profile.department}}</p>
+                        <div class="big_container">
+                            <div class="inputbox">
+                                <span class="Title">DOB :</span>
+                                <div>
+                                    <p>{{profile.dob}}</p>
+                                </div>
+                            </div>
+                            <div class="inputbox">
+                                <span class="Title">Department</span>
+                                <div>
+                                    <p>{{profile.department}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-</body>
+    </body>
 
 </html>
