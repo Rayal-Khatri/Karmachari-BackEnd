@@ -6,12 +6,6 @@ from datetime import datetime
 User=get_user_model()
 
 # Create your models here.
-# deparment= (
-#         ('BCT','BCT'),
-#         ('BCE', 'BCE'),
-#         ('BEX','BEX')
-#     )
-
 class Department(models.Model):
     name = models.CharField(max_length=100, default="Everyone", null=True)
     # Post = models.CharField(max_length=100, null=True)
@@ -83,3 +77,8 @@ class Payroll(models.Model):
     overttimeBonus = models.FloatField(null=True)
     def __str__(self):
         return self.user.username
+
+class AllowedIP(models.Model):
+    ip_address = models.GenericIPAddressField(null=True)
+    # def __str__(self):
+    #     return self.ip

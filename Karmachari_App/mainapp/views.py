@@ -1,27 +1,37 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib import auth
-from django.contrib import messages
+from django.http import HttpResponse, JsonResponse
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from mainapp.models import *
 from django.utils import timezone
-from django.http import JsonResponse
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
+from mainapp.utils import check_allowed_ip
 
 # Create your views here.
 def index(request):
-    return render(request,'index.html')
+    if check_allowed_ip(request):
+        # User's IP address is allowed
+        user = Profile.objects.all()
+        context = {'user': user}
+        return render(request, 'index.html', context)
+    else:
+        # User's IP address is not allowed
+        return HttpResponse('Access Denied')
 
 @login_required(login_url='login')
 def home(request):
-    fullname =  request.user.get_full_name()
-    profile=Profile.objects.get(user=request.user)
-    context = {'fullname':fullname,
-               'profile':profile,
-               'navbar':'home',
-               }
-    return render(request,'Home.html',context)
+    if check_allowed_ip(request):
+        fullname =  request.user.get_full_name()
+        profile=Profile.objects.all()
+        context = {'fullname':fullname,
+                'profile':profile,
+                'navbar':'home',
+                }
+        return render(request,'Home.html',context)
+    else:
+        # User's IP address is not allowed
+        return HttpResponse('Access Denied')
 
 
     
