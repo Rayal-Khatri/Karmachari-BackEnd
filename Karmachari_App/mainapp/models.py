@@ -64,13 +64,7 @@ class Schedule(models.Model):
     
     
 class Payroll(models.Model):
-    status =(
-        ('On Time','On Time'),
-        ('Late','Late'),
-        ('Absent','Absent'),
-    )
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    remarks = models.CharField(max_length=100, null=True, choices=status)
     salary = models.ForeignKey(Salary, on_delete=models.CASCADE)
     deduction = models.FloatField(null=True)
     bonus = models.FloatField(null=True)
