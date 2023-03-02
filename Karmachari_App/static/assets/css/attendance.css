@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    /* ==================MAIN COLORS==================*/
+    --hue-color: 207;
+    /* --color-mer:hsl(207, 75%, 50%); */
+    /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
+    --primary-color: hsl(var(--hue-color), 75%, 50%);
+    --primary-color-alt: hsl(var(--hue-color), 100%, 90%);
+    --primary-color-sec: hsl(var(--hue-color), 69%, 61%);
+    --dark-color: rgb(51, 51, 51);
+    --dark-color-alt: hsl(0, 0%, 36%);
+    --dark-selected: hsl(0, 0%, 20%);
+    --Checkin: hsl(120, 50%, 50%);
+    --Checkin-hover: hsl(120, 50%, 30%);
+    --checkout: hsl(0, 100%, 70%);
+    /* =====================TEXTS ======================*/
+    --text-dark-color: #333;
+    --text-dark-color-alt: grey;
+    --text-light-color: whitesmoke;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "poppins", sans-serif;
+}
+
+body {
+    height: calc(100vh-3px);
+    font-weight: 100;
+}
+
+main {
+    padding: 48px;
+    position: absolute;
+    left: 15%;
+    top: 7%;
+    width: 85%;
+    height: 93%;
+    overflow: hidden;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 15%;
+    width: 99%;
+}
+
+.calendar {
+    height: 90%;
+}
+
+.calendar__week,
+.calendar__header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar__week {
+    height: 18.2%;
+    text-align: right;
+}
+
+.calendar__header {
+    grid-auto-rows: 50px;
+    align-items: center;
+    text-align: center;
+}
+
+.calendar__day {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    /* background-color: rgb(255, 0, 0,0.4); */
+    width: 80%;
+    height: 25%;
+}
+
+.atten-status {
+    width: 95%;
+    height: 30%;
+    display: flex;
+    justify-content: flex-start;
+    color: var(--text-light-color);
+    align-items: center;
+    padding: 0 1rem;
+    border-radius: 8px;
+}
+
+.p {
+    background-color: var(--Checkin);
+}
+
+.a {
+    background-color: var(--checkout);
+}
+
+.l {
+    background-color: grey;
+}
+
+:root {
+    --red: #ED5454;
+}
+
+
+sidebar {
+    background-color: white;
+    box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    background-color: whitesmoke
+}
+
+.calendar {
+    background-color: white;
+    border: 1px solid #e1e1e1;
+}
+
+.calendar__header {
+    color: var(--primary-color);
+}
+
+.calendar__header>div {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.calendar__day {
+    border-right: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+}
+
+.calendar__day:last-child {
+    border-right: 0;
+}
+
+.toggle {
+    width: 20%;
+    text-align: center;
+    font-size: 0.9em;
+    display: flex;
+    height: 60%;
+}
+
+.toggle__option {
+    width: 60%;
+    height: 100%;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.toggle__option {
+    display: flex;
+    justify-content: center;
+    border-color: white;
+    background-color: white;
+    color: var(--primary-color);
+    font-weight: 500;
+    align-items: center;
+    box-shadow: 1px 2px 30px -5px var(--primary-color);
+}
+
+.schedule-time {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    font-size: .8rem;
+    /* height: 40%; */
+    width: 28%;
+}
+
+.question_atten {
+    font-weight: bold;
+}
+
+.current-month {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrow-icon {
+    cursor: pointer;
+}
+
+.date-icon {
+    margin-right: .5rem;
+    color: var(--primary-color);
+}
+/* =================Mobile View=========== */
+@media screen and (max-width:900px)
+{
+    *
+    {
+        overflow: hidden;
+        font-size: .9rem;
+    }
+    main
+    {
+        left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+    .toolbar
+    {
+        width: 98%;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+    .toggle
+    {
+        display: none;
+        width: 20%;
+    }
+    .toggle__option
+    {
+        width: 100%;
+    }
+    .current-month
+    {
+        width: 40%;
+        justify-self: center;
+    }
+    .schedule-time
+    {
+        position: absolute;
+        right: 2%;
+        align-self: flex-end;
+        width: 35%;
+        flex-direction: column;
+        /* background-color: red; */
+    }
+    .question_atten
+    {
+        display: none;
+        font-size: .6rem;
+    }
+    .answer_atten
+    {
+        font-size: .7rem;
+    }
+    .calendar
+    {
+        height: 65%;
+    }
+    .atten-status
+    {
+        color: transparent;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+}

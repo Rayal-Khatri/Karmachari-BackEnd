@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}{% now "U" %}">
+    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
+    <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}">
+    <link rel="stylesheet" href="{%static 'assets/Css/information.css'%}">
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}"> -->
@@ -41,6 +44,7 @@
             </ul>
         </div>
     </div>
+    
 <!-- =============================SIDEBAR ================== -->
     <div class="side_bar">
         <div class="clock_section" id="clock-check">
@@ -65,9 +69,9 @@
         <div class="menu_elements">
             <ul>
                 <li class="menu_item {% if navbar == 'home'%} active-menu{%endif%}"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
-                <li class="menu_item {% if navbar == 'yourinformation'%} active-menu{%endif%}"><a href="/yourinformation"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
-                <li class="menu_item"><a href="/"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
-                <li class="menu_item"><a href=""><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
+                <li class="menu_item {% if navbar == 'yourinformation'%} active-menu{%endif%}"><a href="/information"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
+                <li class="menu_item {% if navbar == 'attendance'%} active-menu{%endif%}"><a href="/attendance"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
+                <li class="menu_item {% if navbar == 'salary'%} active-menu{%endif%}"><a href="/salary"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
                 <li class="menu_item {% if navbar == 'leaves'%} active-menu{%endif%}"><a href="/leaves"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
                 <li class="menu_item {% if navbar == 'notice'%} active-menu{%endif%}">
                     <a href="/notice">
@@ -82,7 +86,7 @@
 
     <div class="hero-section">
     </div>
-
+    
 
     <div class="password-popup">
         <h1>CHANGE PASSWORD</h1>
@@ -108,6 +112,10 @@
         <div id="loader-wrapper" class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
-    <script src="assets/javaScript/Nav_sidebar.js"></script>
+    
+    {% comment %} <script src="assets/javaScript/Nav_sidebar.js"></script> {% endcomment %}
     <script src="{% static 'assets/js/nav_sidebar.js' %}"></script>
+    {% block content %}{% endblock content %}
 </body>
+</html>
+

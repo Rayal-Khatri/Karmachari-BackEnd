@@ -26,7 +26,7 @@
             <div class="main-notice">
                 <div class="main-header">
                     <p>Show</p>
-                    <select class="option-notice">
+                    <select class="option_notice">
                         <option value="notice">2</option>
                         <option value="notice">5</option>
                         <option value="notice">10</option>
@@ -48,7 +48,7 @@
             {% for notice in notices reversed %}   
                     <tr>
                         <a href="/postnotice/{{notice.id}}"> 
-                            <td>{{notice.sn}}</td>
+                            <td>{{forloop.counter}}</td>
                             <td>{{notice.title}}</td>
                             <td>{{notice.created_at}}</td>
                             <td>{{notice.department}}</td>

@@ -14,9 +14,6 @@ urlpatterns = [
     path('leaves',views.leaves, name='leaves'),
     path('checkin',views.checkin,name='checkin'),
     path('checkout',views.checkout,name='checkout'),
-    # path('checkin',views.checkin, name='checkin'),
-    # path('checkout',views.checkout, name='checkout'),
-    # # path('check_in',views.check_in_out, name='check_in_out'),
 ]
 
 

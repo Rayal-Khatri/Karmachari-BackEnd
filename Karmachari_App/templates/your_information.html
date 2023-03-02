@@ -1,19 +1,7 @@
-{%load static%}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'Nav_Sidebar.html' %}
+{% load static %}
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{%static 'assets/Css/information.css'%}">
-        <link rel="stylesheet" href="{%static 'assets/Css/Navbar.css'%}">
-        <!-- <link rel="stylesheet" href="asstes/Css/Home.Css"> -->
-        <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
-    </head>
-
-    <body>
-        {% include 'Nav_Sidebar.html' %}
+        {% block content %}
         <div class="hero-content">
             <div class="hero main">
                 <div class="Title-text">
@@ -91,6 +79,4 @@
                         </div>
                     </div>
                 </div>
-    </body>
-
-</html>
+                {% endblock content %}

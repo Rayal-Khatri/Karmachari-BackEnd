@@ -1,18 +1,8 @@
+{% extends 'Nav_Sidebar.html' %}
 {%load static%}
-<!DOCTYPE html>
-<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{%static 'assets/css/navbar.css'%}">
-        <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
-        <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
-    </head>
-
-    <body>
-        {% include 'Nav_Sidebar.html' %}
+        {% comment %} {% include 'Nav_Sidebar.html' %} {% endcomment %}
+        {% block content %}
         <div class="container hero-section">
             <div class="grid-container">
                 <div class="item right">
@@ -103,5 +93,4 @@
             </div>
         </div>
         <script src="{%static 'assets/js/home.js'%}"></script>
-</body>
-</html>
+    {% endblock content %}

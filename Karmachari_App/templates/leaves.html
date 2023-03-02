@@ -1,4 +1,5 @@
-{%load static%}
+{% load static %} 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'assets/Css/Leaves.css'%}">
-    <link rel="stylesheet" href="{%static 'assets/Css/Navbar.css'%}">
+    <link rel="stylesheet" href="{%static 'assets/css/Leaves.css' %}">
+    <link rel="stylesheet" href="{%static 'assets/css/navbar.css'%}">
+
     <title>Leaves</title>
 </head>
 
 <body>
-    {% include 'Nav_Sidebar.html' %}
+    {%include 'Nav_Sidebar.html'%}
     <section class="hero">
         <div class="title-text">
             <h1>Leaves</h1>
@@ -23,30 +25,33 @@
                     <h2>Apply For Leave</h2>
                 </div>
 
-                <form action="" class="input-section-container">
+                <form action="" method=POST class="input-section-container">
+                    {% csrf_token %}
                     <div class="flexbox">
                         <h4 class="question_leave">Leave Subject</h4>
-                        <input type="text" class="answer_leave">
+                        {{form.subject}}
                     </div>
+                    &nbsp
                     <div class="flexbox">
                         <h4 class="question_leave">Leave Date</h4>
-                        <input type="text" class="answer_leave">
+                        {{form.date}}
                     </div>
+                    &nbsp
+                    <div class="flexbox">
+                        <h4 class="question_leave">Duration</h4>
+                        {{form.duration}}
+                    </div>
+                    &nbsp
                     <div class="flexbox  bigbox">
                         <h4 class="question_leave">Leave message</h4>
-                        <textarea name="" id="message-leave" cols="40" class="answer_leave" rows="10" placeholder=""></textarea>
+                        {{form.message}}
                     </div>
                     <div class="flexbox">
                         <h4 class="question_leave">Leave Type</h4>
-                        <select name="" id="leave-type" class="option-leave">
-                            <option value="leave-type" selected disabled hidden>Please Choose</option>
-                            <option value="sick-leave">Sick Leave</option>
-                            <option value="vacation-leave">Vacation</option>
-                            <option value="Emergency-leave">Emergency</option>
-                            <option value="jpt-leave">Fuck you aauna maan xaina</option>
-                        </select>
-                    </div>
-                    <input type="submit" class="submit_btn" value="Submit" />
+                        {{form.leave_type}}
+                    </div> 
+                    {% comment %} {{form.as_p}} {% endcomment %}
+                    <input type="submit" class="submit_btn" value="Submit">
                 </form>
             </div>
             <div class="leave-records">
@@ -76,30 +81,19 @@
                         </thead>
 
                         <tbody>
+                            
+                            {% for leave in leaves reversed %}
                             <tr>
-                                <td class="SN">1</td>
-                                <td>Leave For One Week</td>
-                                <td class="Date_lv">023/02/05 - 023/02/12</td>
-                                <td class="message_lv">Approved </td>
-                                <td>Hello World</td>
-                                <td><div class="s1 status_lv">Approved </div></td>
+                                
+                                <td>{{ forloop.counter}}</td>
+                                <td>{{leave.subject}}</td>
+                                <!-- <td>{{leave.duration}}</td> -->
+                                <td>{{leave.date}}</td>
+                                <td>{{leave.message|truncatewords:20}}</td>
+                                <td>{{leave.leave_type}}</td>
+                                <td>{{leave.status}}</td>
                             </tr>
-                            <tr>
-                                <td class="SN">2</td>
-                                <td>IDGAF</td>
-                                <td class="Date_lv">2023/02/10 - </td>
-                                <td class="message_lv">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab quo enim neque sequi, nesciunt voluptatum, in nostrum, repudiandae tempora quam voluptates porro quia deleniti labore excepturi nemo iusto repellendus asperiores.
-                                Consequuntur, dolorum doloremque ipsum pariatur, sint quisquam repudiandae sunt ullam voluptatem et hic explicabo possimus nemo, alias nisi vitae dicta repellendus. Veritatis vitae dignissimos beatae sint ea rerum at maiores!</td>
-                                <td>Sick Leave</td>
-                                <td><div class="s0 status_lv">Pending </div></td>
-                            </tr>
-                            <tr>
-                                <td class="SN">3</td>
-                                <td>IDGAF</td>
-                                <td class="Date_lv">2023/02/10 - </td>
-                                <td class="message_lv">Approved</td>
-                                <td>Sick Leave</td>
-                                <td><div class="s2 status_lv">Rejected </div> </td>
+                            {% endfor %}
                             </tr>
                         </tbody>
                 </div>

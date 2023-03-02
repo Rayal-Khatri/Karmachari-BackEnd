@@ -22,5 +22,6 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')), #for debuger tool
     path('', include('mainapp.urls')), # for main app of our project
     path('',include('password_reset.urls')),
+    path('',include('calendarr.urls')),
 ]
 

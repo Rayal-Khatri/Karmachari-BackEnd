@@ -188,14 +188,6 @@ main {
     margin-right: 1rem;
 }
 
-a {
-    text-decoration: none;
-    display: inline-block;
-    width: 3%;
-    height: 50%;
-    font-size: 4rem;
-    padding-left: 1.25%;
-}
 
 a:hover {
     background-color: #ddd;

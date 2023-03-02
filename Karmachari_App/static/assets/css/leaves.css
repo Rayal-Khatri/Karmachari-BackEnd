@@ -19,20 +19,21 @@
     --text-dark-color-alt: grey;
     --text-light-color: whitesmoke;
 }
-*
-{
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: 'Poppins',sans-serif;
-   /* overflow: hidden; */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    /* overflow: hidden; */
 }
-body{
+
+body {
     height: 100vh;
     width: 100vw;
 }
-.hero
-{
+
+.hero {
     position: relative;
     top: 7%;
     left: 15%;
@@ -43,17 +44,17 @@ body{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(20, 30,var(--hue-color),0.3 )
+    background: linear-gradient(45deg,red,blue);
 }
-.title-text
-{
+
+.title-text {
     text-align: left;
     width: 90%;
     font-size: 1.2rem;
     color: whitesmoke;
 }
-.container
-{
+
+.container {
     display: flex;
     justify-content: space-around;
     align-items: top;
@@ -62,8 +63,8 @@ body{
     padding: 2.5% .5%;
     border-radius: 5px;
 }
-.apply-leave
-{
+
+.apply-leave {
     /* align-self: center; */
     background-color: var(--text-light-color);
     height: 98%;
@@ -72,11 +73,11 @@ body{
     align-items: center;
     flex-direction: column;
     margin-left: 1%;
-    padding:1% 2%;
+    padding: 1% 2%;
     border-radius: 5px;
 }
-.heading
-{
+
+.heading {
     font-size: .7rem;
     color: var(--primary-color);
     text-align: left;
@@ -84,8 +85,8 @@ body{
     height: 10%;
     margin: 2% 0;
 }
-.input-section-container
-{
+
+.input-section-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -93,30 +94,30 @@ body{
     width: 100%;
     /* background-color: red; */
 }
-.flexbox
-{
+
+.flexbox {
     width: 100%;
 }
-.question_leave
-{
+
+.question_leave {
     font-size: .9rem;
 }
-.answer_leave
-{
+
+.answer_leave {
     width: 100%;
     height: 90%;
     outline: none;
 }
-.bigbox
-{
+
+.bigbox {
     height: 40%;
 }
-.option-leave
-{
+
+.option_leave {
     width: 100%;
 }
-.submit_btn
-{
+
+.submit_btn {
     height: 9%;
     width: 25%;
     border-radius: 10%;
@@ -127,26 +128,27 @@ body{
     background-color: var(--primary-color);
     cursor: pointer;
 }
+
 /* ============Right Cntainer========= */
-.leave-records
-{
+.leave-records {
     background-color: var(--text-light-color);
     height: fit-content;
     width: 66%;
-    border-radius:5px;
-    padding:1% 2%;
+    border-radius: 5px;
+    padding: 1% 2%;
 }
-.show-option
-{
+
+.show-option {
     display: flex;
     font-size: .9rem;
     margin: 2% 0;
 }
-.number-of-item
-{
+
+.number-of-item {
     font-size: .7rem;
     margin: 0 .5rem;
 }
+
 /* ===============Table CSS================ */
 .table-container {
     border-collapse: collapse;
@@ -160,11 +162,12 @@ body{
     height: 350px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-.table-container thead
-{
+
+.table-container thead {
     position: sticky;
     top: 0;
 }
+
 .table-container thead tr {
     background-color: var(--primary-color);
     color: #ffffff;
@@ -188,80 +191,93 @@ body{
 .table-container tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
-.status_lv
-{
+
+.status_lv {
     text-align: center;
     border-radius: 5px;
     padding: 0 .5rem;
 }
-.s0
-{
+
+.s0 {
     background-color: grey;
 }
-.s1
-{
+
+.s1 {
     background-color: var(--Checkin);
 }
-.s2
-{
+
+.s2 {
     background-color: var(--checkout);
 }
-@media screen and (max-width:900px)
-{   
-    body
-    {
+
+@media screen and (max-width:900px) {
+    body {
         height: fit-content;
     }
-    .hero
-    {
+
+    .hero {
         position: absolute;
         left: 0;
         top: 7%;
         width: 100%;
         height: fit-content;
     }
-    .container
-    {
+
+    .container {
         /* display: none; */
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    .apply-leave
-    {
+
+    .apply-leave {
         width: 97%;
         height: 550px;
     }
-    .flexbox
-    {
-        height: 50px;
+
+    .input-section-container {
+        justify-content: space-around;
+    }
+
+    .flexbox {
+        height: 70px;
         /* background-color: red; */
         display: flex;
+        padding-bottom: .5rem;
         flex-direction: column;
         justify-content: space-between;
     }
-    .answer_leave
-    {
+
+    .answer_leave {
         height: 50%;
     }
-    #message-leave
-    {
-        height: 80%;
+
+.message_leave {
+    background-color: red;
+    width: 100%;
+    height: 90%;
+    outline: none;
     }
-    .bigbox
-    {
-        height: 150px;
+
+    .bigbox {
+        height: 100px;
+        padding: .1rem 0;
     }
+
+    .option_leave {
+        padding: .1rem 0;
+    }
+
     /* MY LEAVES TABLE================= */
-    .leave-records
-    {
+    .leave-records {
         margin-top: 15px;
         width: 98%;
-        height: 600px;
+        min-height: 600px;
+        height: fit-content;
         overflow: hidden;
     }
-    .table-container
-    {
+
+    .table-container {
         padding: 0;
         height: fit-content;
         margin: 0;
@@ -270,28 +286,38 @@ body{
         /* background-color: red; */
         font-size: .7rem;
     }
+
     .table-container th,
-    .table-container td
-    {
+    .table-container td {
         width: 5%;
     }
-    .SN
-    {
+
+    .table-container thead {
+        position: sticky;
+        top: 0;
+    }
+
+    .SN {
         width: 10px;
     }
-    .message_lv
-    {
+
+    .message_lv {
         display: none;
     }
-    .status_lv
-    {
+
+    .status_lv {
         padding: 0;
         color: transparent;
         width: 18px;
         border-radius: 50%;
     }
-    .Date_lv
-    {
+
+    .Date_lv {
         display: none;
     }
+}
+
+input#id_message {
+    height: 80%;
+    width:100%;
 }

@@ -1,3 +1,41 @@
+let checkIn=document.getElementById('Check-in')
+let inTime=document.getElementById('in-time')
+let outTime=document.getElementById('out-time')
+var n = localStorage.getItem("counter");
+var n=document.getElementById('counter').textContent
+var dateTime = new Date();
+var hrs=dateTime.getHours();
+var min=dateTime.getMinutes();
+var sec=dateTime.getSeconds();
+var ses = document.getElementById('session');
+var n = localStorage.getItem("counter") || 0;
+document.addEventListener('DOMContentLoaded',function(){
+if(n==1)
+    {
+        checkIn.textContent="Check Out"
+        checkIn.classList.remove('Check-in')
+        checkIn.classList.add('Check-out')
+        console.log('it works')
+            
+}
+
+if(n==2)
+    {
+        checkIn.classList.remove('Check-out')
+        checkIn.classList.add('Reset')
+        checkIn.textContent="Reset"
+    }
+
+    if(n==3)
+    {
+        checkIn.classList.remove('Reset')
+        checkIn.classList.add('Check-in')
+        checkIn.textContent="Check In"
+
+    }
+})
+
+
 // =====================Clock section==================
 
 function displayTime()
@@ -51,18 +89,11 @@ document.addEventListener("click",function(event)
 })
 
 //===================== Check in/out Time Section =====================
-let checkIn=document.getElementById('Check-in')
-let inTime=document.getElementById('in-time')
-let outTime=document.getElementById('out-time')
+
 
 checkIn.addEventListener('click',()=>
 {
-var n=document.getElementById('counter').textContent
-var dateTime = new Date();
-var hrs=dateTime.getHours();
-var min=dateTime.getMinutes();
-var sec=dateTime.getSeconds();
-var ses = document.getElementById('session');
+
 var n = localStorage.getItem("counter") || 0;
 n++;
 localStorage.setItem("counter", n);
@@ -90,7 +121,7 @@ else
                   console.log(data);
                 }
               });
-            
+            console.log(n)
         }
           
         
@@ -166,6 +197,5 @@ document.querySelector("#menu-open").addEventListener("click",()=>
     document.querySelector(".side_bar").classList.toggle("active");
     document.querySelector(".sub-menu-wrap").classList.toggle("active");
 });
-
 
 
