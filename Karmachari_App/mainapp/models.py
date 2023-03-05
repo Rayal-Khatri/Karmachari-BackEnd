@@ -3,10 +3,19 @@ from django.contrib.auth import get_user_model
 import uuid
 from datetime import datetime
 from django.utils import timezone
+from django.utils.html import format_html
+from django.urls import reverse
+from django.utils.html import mark_safe
 
-User = get_user_model()
+User=get_user_model()
 
 # Create your models here.
+# deparment= (
+#         ('BCT','BCT'),
+#         ('BCE', 'BCE'),
+#         ('BEX','BEX')
+#     )
+
 class Department(models.Model):
     name = models.CharField(max_length=100, default="Everyone", null=True)
     # Post = models.CharField(max_length=100, null=True)
@@ -17,12 +26,16 @@ class Profile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     userID = uuid.uuid4()
     profileimg = models.ImageField(upload_to='profile_images',default='img.png')
-    dob = models.DateField(auto_now=True)
+    dob = models.DateField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    post = models.CharField(max_length=50, null=True)
     phone_number = models.CharField(max_length=100, default=0)
     def __str__(self):
         return self.user.username
-
+    
+    def img_preview(self): #new
+        return mark_safe(f'<img src = "{self.profileimg.url}" width = "300"/>')
+    
 class Notice(models.Model):
     title = models.CharField(max_length=100, null=True)
     created_at = models.DateTimeField(default=datetime.now)
@@ -52,34 +65,35 @@ class Leaves(models.Model):
     def __str__(self):
         return self.subject
     
-class Salary(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    post = models.CharField(max_length=100, null=True)
-    amount = models.FloatField(null=True)
-    def __str__(self):
-        return self.user.username
-    
 class Schedule(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    Schedule_start = models.CharField(max_length=100, null=True)
-    schedule_end = models.CharField(max_length=100, null=True)
+    schedule_start = models.TimeField()
+    schedule_end = models.TimeField()
     def __str__(self):
         return self.department.name
     
     
+# class Payroll(models.Model):
+    # status =(
+    #     ('On Time','On Time'),
+    #     ('Late','Late'),
+    #     ('Absent','Absent'),
+    # )
+    # user = models.ForeignKey(User,on_delete=models.CASCADE)
 class Payroll(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    salary = models.ForeignKey(Salary, on_delete=models.CASCADE)
-    deduction = models.FloatField(null=True)
-    bonus = models.FloatField(null=True)
-    overttimeBonus = models.FloatField(null=True)
+    basic_pay_rate = models.DecimalField(max_digits=8, default=10000, decimal_places=2)
+    overtime_pay_rate = models.DecimalField(max_digits=8,null=True, decimal_places=2)
+    hours_worked = models.DecimalField(max_digits=8,null=True, decimal_places=2)
+    deductions = models.DecimalField(max_digits=8,null=True, decimal_places=2)
+    net_pay = models.DecimalField(max_digits=8,null=True, decimal_places=2)
     def __str__(self):
         return self.user.username
-
+    
 class AllowedIP(models.Model):
     ip_address = models.GenericIPAddressField(null=True)
     # def __str__(self):
-    #     return self.ip
+    #     return self.
     
 class Attendance(models.Model):
     STATUS_CHOICES = (
@@ -90,9 +104,9 @@ class Attendance(models.Model):
     )
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     dateOfQuestion = models.DateField(null=True)
-    checkInTime = models.DateTimeField(auto_now_add=True,null=True)
+    checkInTime = models.DateTimeField(null=True)
     checkOutTime = models.DateTimeField(null=True)
-    overtime = models.DateTimeField(null=True)
+    overtime = models.DateTimeField(null=True,blank=True)
     name=models.CharField(max_length=255,null=True)
     duration = models.FloatField(null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
@@ -119,3 +133,5 @@ class Events(models.Model):
  
     class Meta:  
         db_table = "tblevents"
+        
+        

@@ -9,7 +9,9 @@ from django.views.decorators.csrf import csrf_exempt
 from mainapp.utils import check_allowed_ip
 from .forms import *
 
+
 # Create your views here.
+########################HOME#########################################
 def index(request):
     if check_allowed_ip(request):
         # User's IP address is allowed
@@ -20,7 +22,6 @@ def index(request):
         # User's IP address is not allowed
         return HttpResponse('Access Denied')
 
-########################HOME#########################################
 @login_required(login_url='login')
 def home(request):
     fullname =  request.user.get_full_name()
@@ -32,7 +33,7 @@ def home(request):
     return render(request,'Home.html',context)
 
 
- ########################LOGIN#########################################   
+########################LOGIN#########################################      
 #login request gets value from action of html.login/form
 def login(request):
     
@@ -59,9 +60,10 @@ def logout(request):
     auth.logout(request)
     return redirect('login')
 
+
 ########################YOUR INFORMATION#########################################
 @login_required(login_url='login')
-def yourinformation(request):
+def information(request):
       profile=Profile.objects.get(user=request.user)
       context={
       'profile':profile,
@@ -69,6 +71,7 @@ def yourinformation(request):
       
     }
       return render(request,'your_information.html',context)
+
 
 ########################NOTICE#########################################
 @login_required(login_url='login')
@@ -84,6 +87,7 @@ def notice(request):
     }
     return render(request,'notices.html',context)
 
+
 ########################ATTENDANCE#########################################
 @login_required(login_url='login')
 def attendance(request):
@@ -97,6 +101,8 @@ def attendance(request):
         
     }
     return render(request,'attendance.html',context)
+    
+    
 
 ########################CHECKED IN#########################################
 @csrf_exempt
@@ -111,6 +117,7 @@ def checkin(request):
         return JsonResponse({'in_time': checkInTime})
     response = {'message': 'Success'}
     return JsonResponse(response)
+
 
 ########################CHECKED OUT#########################################
 @csrf_exempt
@@ -136,13 +143,13 @@ def checkout(request):
 
         # Determine the status based on the schedule and check-in time
         if current_attendance.checkInTime.time() > late_time:
-            status = 'L'  # Late
+            status = 'Late'  # Late
         elif current_attendance.checkOutTime.time() < schedule.schedule_end:
-            status = 'LV'  # Leave
+            status = 'Leave'  # Leave
         elif duration > (schedule.schedule_end - schedule.schedule_start).total_seconds() / 3600.0:
-            status = 'A'  # Absent
+            status = 'Absent'  # Absent
         else:
-            status = 'P'  # Presents
+            status = 'Present'  # Presents
     try:
         attendance = Attendance.objects.filter(user=user, dateOfQuestion=attendance_date).latest('checkInTime')
     except Attendance.DoesNotExist:
@@ -169,7 +176,11 @@ def checkout(request):
     response = {'message': 'Success'}
     return JsonResponse(response)
 
-########################LEAVES#########################################
+
+
+
+
+#####################################LEAVES############################################
 @login_required(login_url='login')
 def leaves(request):
     leaves= Leaves.objects.filter(user_id=request.user.id)
@@ -196,10 +207,10 @@ def leaves(request):
             'leaves':leaves,
             }
             return render(request,'leaves.html',context)
-        
-########################SALARY#########################################
+
+########################PAYROLL######################################### 
 @login_required(login_url='login')
-def salary(request):
+def payroll(request):
     user_object = User.objects.get(username=request.user.username)
     profile = Profile.objects.get(user=user_object)
     context={
@@ -208,5 +219,3 @@ def salary(request):
         
     }
     return render(request,'Salary_Sheet.html',context)
-
-########################PAYROLL#########################################

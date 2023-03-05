@@ -16,7 +16,10 @@
     <title>{% block title %}{{ title }} | {{ jazzmin_settings.site_title }}{% endblock %}</title>
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{% static "vendor/fontawesome-free/css/all.min.css" %}">
+    {% comment %} <link rel="stylesheet" href="{% static "vendor/fontawesome-free/css/all.min.css" %}"> {% endcomment %}
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap and adminLTE -->
     <link rel="stylesheet" href="{% static "vendor/adminlte/css/adminlte.min.css" %}" id="adminlte-css">

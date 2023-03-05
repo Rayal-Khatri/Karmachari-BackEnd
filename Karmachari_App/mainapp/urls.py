@@ -9,11 +9,17 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('login', views.login, name="login"),
     path('logout',views.logout,name='logout'),
-    path('yourinformation',views.yourinformation, name='yourinformation'),
+    path('information',views.information, name='information'),
     path('notice',views.notice, name='notice'),
+    path('attendance',views.attendance, name='attendance'),
     path('leaves',views.leaves, name='leaves'),
     path('checkin',views.checkin,name='checkin'),
     path('checkout',views.checkout,name='checkout'),
+    path('payroll',views.payroll,name='payroll'),
+    # path('leavesform',views.leavesform, name='leavesform'),
+    # path('checkin',views.checkin, name='checkin'),
+    # path('checkout',views.checkout, name='checkout'),
+    # # path('check_in',views.check_in_out, name='check_in_out'),
 ]
 
 

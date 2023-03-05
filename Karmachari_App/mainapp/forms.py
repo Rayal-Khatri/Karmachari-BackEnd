@@ -18,3 +18,4 @@ class LeavesForm(forms.ModelForm):
             'leave_type':forms.Select(attrs={'class':'option_leave'}),
             'message':forms.TextInput(attrs={'class':'message_leave','height':'800px'}),
 }
+        
