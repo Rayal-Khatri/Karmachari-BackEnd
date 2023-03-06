@@ -17,18 +17,22 @@ User=get_user_model()
 #     )
 
 class Department(models.Model):
-    name = models.CharField(max_length=100, default="Everyone", null=True)
-    # Post = models.CharField(max_length=100, null=True)
+    dname = models.CharField(max_length=100, default="Everyone", null=True)
     def __str__(self):
-        return self.name
-
+        return self.dname
+class Post(models.Model):
+    post= models.CharField(max_length=100, default="Everyone", null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.post
+    
 class Profile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     userID = uuid.uuid4()
     profileimg = models.ImageField(upload_to='profile_images',default='img.png')
     dob = models.DateField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    post = models.CharField(max_length=50, null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=100, default=0)
     def __str__(self):
         return self.user.username

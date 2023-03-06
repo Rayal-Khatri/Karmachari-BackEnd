@@ -58,6 +58,7 @@ class AttendanceAdmin(admin.ModelAdmin):
 admin.site.register(Profile,ProfileAdmin)
 admin.site.register(Notice,NoticeAdmin)
 admin.site.register(Department)
+admin.site.register(Post)
 admin.site.register(Leaves,LeavesAdmin)
 admin.site.register(Events)
 admin.site.register(Payroll)
