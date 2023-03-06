@@ -19,3 +19,11 @@ class LeavesForm(forms.ModelForm):
             'message':forms.TextInput(attrs={'class':'message_leave','height':'800px'}),
 }
         
+class PayrollForm(forms.ModelForm):
+    class Meta:
+        model = Payroll
+        fields = ('basic_pay_rate', 'overtime', 'deductions', 'net_pay', 'hours_worked')
+        widgets = {
+            'net_salary': forms.TextInput(attrs={'readonly': True}),
+            'hours_worked': forms.TextInput(attrs={'readonly': True}),
+        }

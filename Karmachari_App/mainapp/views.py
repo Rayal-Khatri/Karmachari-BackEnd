@@ -211,11 +211,17 @@ def leaves(request):
 ########################PAYROLL######################################### 
 @login_required(login_url='login')
 def payroll(request):
+    payrolls = Payroll.objects.all()
+    for payroll in payrolls:
+        payroll.calculate_net_salary()
+    # gross_pay = payroll.hours_worked * payroll.basic_pay_rate
+    # net_pay = gross_pay + payroll.ovetime - payroll.deductions
+    # print(net_pay)
     user_object = User.objects.get(username=request.user.username)
     profile = Profile.objects.get(user=user_object)
     context={
         'profile':profile,
         'navbar':'salary',
-        
+        'payroll': payroll,
     }
     return render(request,'Salary_Sheet.html',context)

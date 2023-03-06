@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import *
+from mainapp.models import *
+from mainapp.forms import *
 from django.urls import reverse
 from django.utils.html import format_html
 from django.urls import path
@@ -52,6 +53,11 @@ class AttendanceAdmin(admin.ModelAdmin):
         except User.DoesNotExist:
             return queryset.filter(name=search_term), True
     
+class PayrollAdmin(admin.ModelAdmin):
+    # form = PayrollForm
+    fields = ('user','basic_pay_rate', 'overtime', 'deductions', 'net_pay')
+
+
     
     
     
@@ -61,7 +67,7 @@ admin.site.register(Department)
 admin.site.register(Post)
 admin.site.register(Leaves,LeavesAdmin)
 admin.site.register(Events)
-admin.site.register(Payroll)
+admin.site.register(Payroll, PayrollAdmin)
 admin.site.register(Schedule,ScheduleAdmin)
 admin.site.register(Attendance,AttendanceAdmin)
 

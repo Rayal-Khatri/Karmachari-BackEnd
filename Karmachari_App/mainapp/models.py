@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.html import mark_safe
+from decimal import Decimal
 
 User=get_user_model()
 
@@ -20,6 +21,7 @@ class Department(models.Model):
     dname = models.CharField(max_length=100, default="Everyone", null=True)
     def __str__(self):
         return self.dname
+    
 class Post(models.Model):
     post= models.CharField(max_length=100, default="Everyone", null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
@@ -87,10 +89,26 @@ class Schedule(models.Model):
 class Payroll(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     basic_pay_rate = models.DecimalField(max_digits=8, default=10000, decimal_places=2)
-    overtime_pay_rate = models.DecimalField(max_digits=8,null=True, decimal_places=2)
-    hours_worked = models.DecimalField(max_digits=8,null=True, decimal_places=2)
+    overtime = models.DecimalField(max_digits=8,null=True, decimal_places=2)
+    hours_worked = models.DecimalField(max_digits=8,default= 10, blank=True, decimal_places=2)
     deductions = models.DecimalField(max_digits=8,null=True, decimal_places=2)
-    net_pay = models.DecimalField(max_digits=8,null=True, decimal_places=2)
+    net_pay = models.DecimalField(max_digits=8,null=True, blank=True, decimal_places=2)
+
+    def calculate_net_salary(self):
+        gross_pay = self.hours_worked * self.basic_pay_rate
+        net_pay = gross_pay + self.overtime - self.deductions
+        # try:
+        #     self.net_pay.save()
+        # except AttributeError:
+        #     print("Couldn't save image {}".format(net_pay))
+        if net_pay is not None:
+            net_pay.save()
+        
+
+    # def save(self, *args, **kwargs):
+    #     self.net_salary = self.calculate_net_salary()
+    #     super(Payroll, self).save(*args, **kwargs)
+    
     def __str__(self):
         return self.user.username
     
