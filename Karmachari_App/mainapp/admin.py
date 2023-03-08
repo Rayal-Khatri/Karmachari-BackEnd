@@ -55,7 +55,8 @@ class AttendanceAdmin(admin.ModelAdmin):
     
 class PayrollAdmin(admin.ModelAdmin):
     # form = PayrollForm
-    fields = ('user','basic_pay_rate', 'overtime', 'deductions', 'net_pay')
+    fields = ('user','basic_pay_rate', 'overtime', 'deductions')
+    readonly_fields = ['hours_worked', 'net_pay']
 
 
     

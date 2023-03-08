@@ -8,6 +8,8 @@ from datetime import datetime, timedelta, date
 from django.views.decorators.csrf import csrf_exempt
 from mainapp.utils import check_allowed_ip
 from .forms import *
+from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView
 
 
 # Create your views here.
@@ -211,24 +213,26 @@ def leaves(request):
 ########################PAYROLL######################################### 
 @login_required(login_url='login')
 def payroll(request):
-    payrolls = Payroll.objects.filter(user=request.user)
-    bpr = payrolls.basic_pay_rate
-    hw = payrolls.hours_worked
-    ot = payrolls.overtime
-    dd = payrolls.deductions
-    gross_pay = hw * bpr
-    payrolls.net_pay = gross_pay + ot - dd
-    payrolls.net_pay.save()
-    # for payroll in payrolls:
-    #     payroll.calculate_net_salary()
-    # gross_pay = payroll.hours_worked * payroll.basic_pay_rate
-    # net_pay = gross_pay + payroll.ovetime - payroll.deductions
-    # print(net_pay)
+    # user = get_object_or_404(Profile, pk=profile.id)
+    # if request.method == 'POST':
+    #     # process payroll data and save to database
+    #     payroll = Payroll.objects.create(
+    #         user=user,
+    #         # ... other payroll data ...
+    #     )
+    #     # redirect to payroll detail page
+    #     return redirect('payroll_detail', payroll_id=payroll.id)
+    payroll = Payroll.object.filter(user=request.user)
+    if payroll is not None:
+        net_salary = payroll.calculate_net_salary()
     user_object = User.objects.get(username=request.user.username)
     profile = Profile.objects.get(user=user_object)
     context={
         'profile':profile,
         'navbar':'salary',
         'payroll': payroll,
+        'net_salary':net_salary,
     }
     return render(request,'Salary_Sheet.html',context)
+
+

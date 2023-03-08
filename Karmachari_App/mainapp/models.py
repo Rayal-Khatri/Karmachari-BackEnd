@@ -17,17 +17,17 @@ User=get_user_model()
 #         ('BEX','BEX')
 #     )
 
+class Post(models.Model):
+    user_post= models.CharField(max_length=100, default="Everyone", null=True)
+    salary = models.DecimalField(max_digits=8, default=10000, decimal_places=2)
+    def __str__(self):
+        return self.user_post
+
 class Department(models.Model):
     dname = models.CharField(max_length=100, default="Everyone", null=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     def __str__(self):
         return self.dname
-    
-class Post(models.Model):
-    postname= models.CharField(max_length=100, default="Everyone", null=True)
-    
-    def __str__(self):
-        return self.post
     
 class Profile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -94,24 +94,21 @@ class Payroll(models.Model):
     hours_worked = models.DecimalField(max_digits=8,default= 10, blank=True, decimal_places=2)
     deductions = models.DecimalField(max_digits=8,null=True, decimal_places=2)
     net_pay = models.DecimalField(max_digits=8,null=True, blank=True, decimal_places=2)
-
-    # def calculate_net_salary(self):
-    #     gross_pay = self.hours_worked * self.basic_pay_rate
-    #     net_pay = gross_pay + self.overtime - self.deductions
-    #     # try:
-    #     #     self.net_pay.save()
-    #     # except AttributeError:
-    #     #     print("Couldn't save image {}".format(net_pay))
-    #     if net_pay is not None:
-    #         net_pay.save()
-        
-
-    # def save(self, *args, **kwargs):
-    #     self.net_salary = self.calculate_net_salary()
-    #     super(Payroll, self).save(*args, **kwargs)
+    created_date = models.DateTimeField(default=timezone.now)
+    def calculate_net_pay(self):
+        overtime_pay = self.overtime_hours * (self.basic_salary / 160) * 1.5
+        net_pay =self.basic_salary + overtime_pay - self.deduction
+        net_pay.save()
+        return(net_pay)
+    
+    def salary_preview(self):
+        return (self.net_pay)
+    
+    def hour_worked_preview(self):
+        return (self.hours_worked)
     
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username}'s Payroll for {self.created_date.strftime('%Y-%m-%d')}"
     
 class AllowedIP(models.Model):
     ip_address = models.GenericIPAddressField(null=True)
