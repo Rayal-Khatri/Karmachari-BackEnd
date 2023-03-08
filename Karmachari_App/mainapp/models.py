@@ -19,12 +19,13 @@ User=get_user_model()
 
 class Department(models.Model):
     dname = models.CharField(max_length=100, default="Everyone", null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     def __str__(self):
         return self.dname
     
 class Post(models.Model):
-    post= models.CharField(max_length=100, default="Everyone", null=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    postname= models.CharField(max_length=100, default="Everyone", null=True)
+    
     def __str__(self):
         return self.post
     
@@ -94,15 +95,15 @@ class Payroll(models.Model):
     deductions = models.DecimalField(max_digits=8,null=True, decimal_places=2)
     net_pay = models.DecimalField(max_digits=8,null=True, blank=True, decimal_places=2)
 
-    def calculate_net_salary(self):
-        gross_pay = self.hours_worked * self.basic_pay_rate
-        net_pay = gross_pay + self.overtime - self.deductions
-        # try:
-        #     self.net_pay.save()
-        # except AttributeError:
-        #     print("Couldn't save image {}".format(net_pay))
-        if net_pay is not None:
-            net_pay.save()
+    # def calculate_net_salary(self):
+    #     gross_pay = self.hours_worked * self.basic_pay_rate
+    #     net_pay = gross_pay + self.overtime - self.deductions
+    #     # try:
+    #     #     self.net_pay.save()
+    #     # except AttributeError:
+    #     #     print("Couldn't save image {}".format(net_pay))
+    #     if net_pay is not None:
+    #         net_pay.save()
         
 
     # def save(self, *args, **kwargs):

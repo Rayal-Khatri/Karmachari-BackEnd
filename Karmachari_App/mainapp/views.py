@@ -211,9 +211,16 @@ def leaves(request):
 ########################PAYROLL######################################### 
 @login_required(login_url='login')
 def payroll(request):
-    payrolls = Payroll.objects.all()
-    for payroll in payrolls:
-        payroll.calculate_net_salary()
+    payrolls = Payroll.objects.filter(user=request.user)
+    bpr = payrolls.basic_pay_rate
+    hw = payrolls.hours_worked
+    ot = payrolls.overtime
+    dd = payrolls.deductions
+    gross_pay = hw * bpr
+    payrolls.net_pay = gross_pay + ot - dd
+    payrolls.net_pay.save()
+    # for payroll in payrolls:
+    #     payroll.calculate_net_salary()
     # gross_pay = payroll.hours_worked * payroll.basic_pay_rate
     # net_pay = gross_pay + payroll.ovetime - payroll.deductions
     # print(net_pay)
