@@ -89,16 +89,16 @@ class Schedule(models.Model):
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
 class Payroll(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    basic_pay_rate = models.DecimalField(max_digits=8, default=10000, decimal_places=2)
+    basic_pay = models.DecimalField(max_digits=8, default=10000, decimal_places=2)
     overtime = models.DecimalField(max_digits=8,null=True, decimal_places=2)
-    hours_worked = models.DecimalField(max_digits=8,default= 10, blank=True, decimal_places=2)
+    overtime_multiplier = models.DecimalField(max_digits=8, default= 2, decimal_places=2)
+    # hours_worked = models.DecimalField(max_digits=8,default= 10, blank=True, decimal_places=2)
     deductions = models.DecimalField(max_digits=8,null=True, decimal_places=2)
-    net_pay = models.DecimalField(max_digits=8,null=True, blank=True, decimal_places=2)
+    net_pay = models.DecimalField(max_digits=8,default= 0, blank=True, decimal_places=2)
     created_date = models.DateTimeField(default=timezone.now)
     def calculate_net_pay(self):
-        overtime_pay = self.overtime_hours * (self.basic_salary / 160) * 1.5
-        net_pay =self.basic_salary + overtime_pay - self.deduction
-        net_pay.save()
+        overtime_pay = self.overtime * self.overtime_multiplier
+        net_pay =self.basic_pay + overtime_pay - self.deductions
         return(net_pay)
     
     def salary_preview(self):
