@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Payroll PDF</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Payroll List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee Name</th>
+          <th>Basic Pay</th>
+          <th>Overtime</th>
+          <th>Deductions</th>
+          <th>Net Pay</th>
+        </tr>
+      </thead>
+        <tbody>
+        <tr>
+          <td>{{ payrolls.employee_name }}</td>
+          <td>{{ payrolls.basic_pay}}</td>
+          <td>{{ payrolls.overtim }}</td>
+          <td>{{ payrolls.deductions }}</td>
+          <td>{{ payrolls.net_pay }}</td>
+        </tbody>
+    </table>
+  </body>

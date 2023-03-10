@@ -8,6 +8,9 @@ from datetime import datetime, timedelta, date
 from django.views.decorators.csrf import csrf_exempt
 from mainapp.utils import check_allowed_ip
 from .forms import *
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from io import BytesIO
 
 
 # Create your views here.
@@ -233,4 +236,22 @@ def payroll(request):
     }
     return render(request,'Salary_Sheet.html',context)
 
+def payroll_pdf(request):  
+    user_object = User.objects.get(username=request.user.username)
+    payrolls = Payroll.objects.filter(user=user_object)
+    profile = Profile.objects.get(user=user_object)
+    context={
+        'profile':profile,
+        'navbar':'payroll-pdf',
+        'payrolls': payrolls,
+    } 
+    template_path = 'payroll_pdf.html'
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="payroll.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    pdf = pisa.CreatePDF(BytesIO(html.encode('UTF-8')), response)
+    if pdf.err:
+        return HttpResponse('Error generating PDF file')
+    return response
 

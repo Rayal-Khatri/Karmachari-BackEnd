@@ -16,6 +16,7 @@ urlpatterns = [
     path('checkin',views.checkin,name='checkin'),
     path('checkout',views.checkout,name='checkout'),
     path('payroll',views.payroll,name='payroll'),
+    path('payroll-pdf',views.payroll_pdf,name='payroll-pdf'),
 ]
 
 
