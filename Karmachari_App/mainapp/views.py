@@ -220,6 +220,7 @@ def payroll(request):
         # payroll = Payroll.object.filter(user=user_object)
         if payrolls is not None:
             net_salary = payrolls.calculate_net_pay()
+        payrolls.net_pay = net_salary
         payrolls.save()
     except IndexError:
         print("No payroll object found for this user")
@@ -228,13 +229,15 @@ def payroll(request):
     
     print(net_salary)
     profile = Profile.objects.get(user=user_object)
+    pays=[]
     context={
         'profile':profile,
         'navbar':'salary',
         'payrolls': payrolls,
-        'net_salary':net_salary,
+        'net_salary': net_salary,
     }
-    return render(request,'Salary_Sheet.html',context)
+    pays.append(context)
+    return render(request,'Salary_Sheet.html', {'pays':pays})
 
 def payroll_pdf(request):  
     user_object = User.objects.get(username=request.user.username)
