@@ -6,17 +6,10 @@ from django.utils import timezone
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.html import mark_safe
-from django.core.validators import RegexValidator
 
 User=get_user_model()
 
 # Create your models here.
-# deparment= (
-#         ('BCT','BCT'),
-#         ('BCE', 'BCE'),
-#         ('BEX','BEX')
-#     )
-
 class Post(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE)
     designation= models.CharField(max_length=100, default="Everyone", null=True)
@@ -25,13 +18,13 @@ class Post(models.Model):
         return self.user_post
 
 class Department(models.Model):
-    dname = models.CharField(max_length=100, default="Everyone", null=True)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, default="Everyone", null=True)
+    # Post = models.CharField(max_length=100, null=True)
     def __str__(self):
-        return self.dname
-    
+        return self.name
+
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     userID = uuid.uuid4()
     profileimg = models.ImageField(upload_to='profile_images',default='img.png')
     dob = models.DateField()
@@ -49,7 +42,7 @@ class Notice(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     context = models.TextField(max_length=100000, null=True)        
     def __str__(self):
-        return  f"{self.title}'s notice for {self.created_at.strftime('%Y-%m-%d')}"
+        return self.title
 
 class Leaves(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
@@ -70,7 +63,14 @@ class Leaves(models.Model):
     message = models.TextField(max_length=100000, null=True)
     status = models.CharField(max_length=100, choices= leave_permission, default='Pending')
     def __str__(self):
-        return f"{self.subject}'s leaves for {self.date.strftime('%Y-%m-%d')}"
+        return self.subject
+    
+class Salary(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    post = models.CharField(max_length=100, null=True)
+    amount = models.FloatField(null=True)
+    def __str__(self):
+        return self.user.username
     
 class Schedule(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
@@ -80,13 +80,6 @@ class Schedule(models.Model):
         return self.department.name
     
     
-# class Payroll(models.Model):
-    # status =(
-    #     ('On Time','On Time'),
-    #     ('Late','Late'),
-    #     ('Absent','Absent'),
-    # )
-    # user = models.ForeignKey(User,on_delete=models.CASCADE)
 class Payroll(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     basic_pay = models.DecimalField(max_digits=8, default=10000, decimal_places=2)
@@ -109,11 +102,12 @@ class Payroll(models.Model):
     def __str__(self):
         return f"{self.user.username}'s Payroll for {self.date.strftime('%Y-%m-%d')}"
     
+    
 class AllowedIP(models.Model):
     ip_address = models.GenericIPAddressField(null=True)
     # def __str__(self):
     #     return self.
-
+    
 # class Device(models.Model):
 #     mac_address = models.CharField(max_length=17,)
 #         # validators=[RegexValidator(
@@ -139,6 +133,8 @@ class Attendance(models.Model):
     duration = models.FloatField(null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
 
+    def __str__(self):
+        return self.name
     def save(self, *args, **kwargs):
         self.name = f"{self.user.first_name} {self.user.last_name}"
         super().save(*args, **kwargs)
@@ -146,20 +142,31 @@ class Attendance(models.Model):
     def calculate_duration(self):
         if self.checkOutTime:
             duration = self.checkOutTime - self.checkInTime
-            return duration.total_seconds() / 3600.0  # Convert to hours
+            return duration.total_seconds() / 3600 # Convert to hours
         else:
-            return 0
-    def __str__(self):
-        return  f"{self.name}'s leaves for {self.dateOfQuestion.strftime('%Y-%m-%d')}"
+            return 0.0
+        
+    def calculate_duration_hms(self):
+        if self.checkOutTime:
+            duration = self.checkOutTime - self.checkInTime
+            seconds = int(duration.total_seconds())
+            hours = seconds // 3600
+            minutes = (seconds % 3600) // 60
+            seconds = seconds % 60
+            return hours, minutes, seconds
+        else:
+            return 0, 0, 0
 
 class Events(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255,null=True,blank=True)
+    event_status= models.CharField(max_length=255,null=True)
     start = models.DateTimeField(null=True,blank=True)
     end = models.DateTimeField(null=True,blank=True)
  
     class Meta:  
         db_table = "tblevents"
+
+
         
         

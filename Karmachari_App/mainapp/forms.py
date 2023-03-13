@@ -1,6 +1,5 @@
 from django import forms
 from .models import *
-from django.views.generic import DetailView
 
 # class EventForm(forms.ModelForm):
 #     class Meta:
@@ -13,9 +12,10 @@ class LeavesForm(forms.ModelForm):
         fields = ['subject', 'date', 'duration', 'leave_type', 'message', ]
         
         widgets={
-            'subject':forms.TextInput(attrs={'class':'answer_leave'}),
+            'subject':forms.TextInput(attrs={'class':'answer_leave','rows':'1'}),
             'date':forms.DateInput(attrs={'class':'answer_leave'}),
             'duration':forms.DateInput(attrs={'class':'answer_leave'}),
             'leave_type':forms.Select(attrs={'class':'option_leave'}),
-            'message':forms.TextInput(attrs={'class':'message_leave','height':'800px'}),
+            'message':forms.Textarea(attrs={'class':'message-leave','rows':"5"}),
 }
+        

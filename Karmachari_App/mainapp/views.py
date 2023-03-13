@@ -1,53 +1,50 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-from django.contrib import auth, messages
+from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib import auth
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from mainapp.models import *
 from django.utils import timezone
+from django.http import JsonResponse
 from datetime import datetime, timedelta, date
 from django.views.decorators.csrf import csrf_exempt
-from mainapp.utils import *
-from .forms import *
-from django_otp.plugins.otp_totp.models import TOTPDevice
-
+from .forms import LeavesForm
+from .utlis import *
 
 # Create your views here.
-########################HOME#########################################
 def index(request):
-    # TOTPDevice.objects.create(name='My Device')
-    # user.totp_devices.add(device)
-
-    # devices = Device.objects.prefetch_related('related_field')
-    # for device in devices:
-    #     device.related_field.get_mac_address()
-    # # mac_address = Device.mac_address.get_mac_address(request)
-    # # device = Device(mac_address='01:23:45:67:89:ab')
-    # device.save()
-    # print(device)
-    # context = {'device':device}
-    # return render(request, 'index.html', context)
-    
-    # if check_allowed_ip(request):
-    #     # User's IP address is allowed
-    #     user = Profile.objects.all()
-    #     context = {'user': user}
-    #     return render(request, 'index.html', context)
-    # else:
-    #     # User's IP address is not allowed
-    return HttpResponse('Access Denied')
+    if check_allowed_ip(request):
+        # User's IP address is allowed
+        user = Profile.objects.all()
+        context = {'user': user}
+        return render(request, 'index.html', context)
+    else:
+        # User's IP address is not allowed
+        return HttpResponse('Access Denied')
 
 @login_required(login_url='login')
 def home(request):
-    fullname =  request.user.get_full_name()
-    profile=Profile.objects.get(user=request.user)
-    context = {'fullname':fullname,
-               'profile':profile,
-               'navbar':'home',
-               }
-    return render(request,'Home.html',context)
+    user = request.user
+    fullname = request.user.get_full_name()
+    profile = Profile.objects.get(user=request.user)
+    today = timezone.now().date()
+    attendance = Attendance.objects.filter(user=user, dateOfQuestion=today).first()
+    if attendance:
+        hours, minutes, seconds = attendance.calculate_duration_hms()
+    else:
+        hours, minutes, seconds = 00, 00, 00
+    context = {
+        'fullname': fullname,
+        'profile': profile,
+        'navbar': 'home',
+        'attendance': attendance,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds,
+    }
+    return render(request, 'home.html', context)
 
 
-########################LOGIN#########################################      
 #login request gets value from action of html.login/form
 def login(request):
     
@@ -68,14 +65,11 @@ def login(request):
     else:
         return render(request,'login.html')
 
-########################LOGOUT#########################################
 @login_required(login_url='login')
 def logout(request):
     auth.logout(request)
     return redirect('login')
 
-
-########################YOUR INFORMATION#########################################
 @login_required(login_url='login')
 def information(request):
       profile=Profile.objects.get(user=request.user)
@@ -86,8 +80,6 @@ def information(request):
     }
       return render(request,'your_information.html',context)
 
-
-########################NOTICE#########################################
 @login_required(login_url='login')
 def notice(request):
     user_object = User.objects.get(username=request.user.username)
@@ -101,8 +93,6 @@ def notice(request):
     }
     return render(request,'notices.html',context)
 
-
-########################ATTENDANCE#########################################
 @login_required(login_url='login')
 def attendance(request):
     user_object = User.objects.get(username=request.user.username)
@@ -111,13 +101,13 @@ def attendance(request):
     context={
         'profile':profile,
         'notices':notices,
-        'navbar':'attendance',   
+        'navbar':'attendance',
+        
     }
     return render(request,'attendance.html',context)
     
     
 
-########################CHECKED IN#########################################
 @csrf_exempt
 def checkin(request):
     # if request.is_ajax():
@@ -126,20 +116,20 @@ def checkin(request):
         user = request.user
         dateOfQuestion = datetime.today()
         checkInTime = timezone.now()
+        print(checkInTime)
         Attendance.objects.create(user=user, checkInTime=checkInTime,dateOfQuestion=dateOfQuestion)
         return JsonResponse({'in_time': checkInTime})
     response = {'message': 'Success'}
     return JsonResponse(response)
 
-
-########################CHECKED OUT#########################################
 @csrf_exempt
 def checkout(request):
     # if request.is_ajax():
     if request.method == 'POST':
+        
         print("CHECK OUT") 
         user = request.user
-        checkOutTime = timezone.now()
+        checkOutTime =timezone.now()
         current_attendance = Attendance.objects.filter(user=user).latest('checkInTime')
         current_attendance.checkOutTime = checkOutTime
         current_attendance.save()
@@ -152,21 +142,21 @@ def checkout(request):
         late_time = datetime.combine(date.today(), schedule.schedule_start) + timedelta(minutes=15)
         late_time = late_time.time()
         attendance_date = date.today()
+    
 
 
         # Determine the status based on the schedule and check-in time
-        if current_attendance.checkInTime.time() > late_time:
-            status = 'Late'  # Late
-        elif current_attendance.checkOutTime.time() < schedule.schedule_end:
-            status = 'Leave'  # Leave
-        elif duration > (schedule.schedule_end - schedule.schedule_start).total_seconds() / 3600.0:
-            status = 'Absent'  # Absent
+        if current_attendance.checkInTime.time() < late_time:
+            status = 'Present'  # Late
         else:
-            status = 'Present'  # Presents
+            status = 'Late'  # Presents
     try:
         attendance = Attendance.objects.filter(user=user, dateOfQuestion=attendance_date).latest('checkInTime')
     except Attendance.DoesNotExist:
         attendance = None
+    print('checkInTime:', current_attendance.checkInTime)
+    print('late_time:', late_time)
+    print('status:', status)
 
     # If an attendance object already exists, update its checkOutTime, duration, and status
     if attendance is not None:
@@ -193,6 +183,7 @@ def checkout(request):
 
 
 
+
 #####################################LEAVES############################################
 @login_required(login_url='login')
 def leaves(request):
@@ -212,16 +203,15 @@ def leaves(request):
         form=LeavesForm()
         if 'submitted in request.GET':
             submitted=True
-            context={
-            'profile':profile,
-            # 'navbar':'leaves',
-            'form': form,
-            'submitted':submitted,
-            'leaves':leaves,
+    context={
+        'profile':profile,
+        'navbar':'leaves',
+        'form': form,
+        'submitted':submitted,
+        'leaves':leaves,
             }
-            return render(request,'leaves.html',context)
+    return render(request,'leaves.html',context)
 
-########################PAYROLL######################################### 
 @login_required(login_url='login')
 def payroll(request):
     user_object = User.objects.get(username=request.user.username)
@@ -237,47 +227,49 @@ def payroll(request):
         print("No payroll object found for this user")
     else:
         print("Payroll object found:", payrolls)
-    # for i in payrolls:
-    #     print(i)
-    # print(net_salary)
     profile = Profile.objects.get(user=user_object)
     context={
         'profile':profile,
-        'navbar':'Salary;-Sheet',
+        'navbar':'Salary-Sheet',
         'payrolls': payrolls,
         'net_salary': net_salary,
     }
     return render(request,'Salary_Sheet.html', context)
 
-########################VIEW PAYROLL PDF######################################### 
 def view_pdf(request, pk):
     user_object = User.objects.get(username=request.user.username)
     payroll = Payroll.objects.filter(user=user_object, id=pk)[0]
     profile = Profile.objects.get(user=user_object)
+    user = request.user
+    fullname = request.user.get_full_name()
     data = {
+            'fullname':fullname,
             'payroll': payroll,
             'user': user_object,
             'profile': profile,
             }
+    print(data)
     pdf = render_to_pdf('payroll_pdf.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
-########################DOWNLOAD PAYROLL PDF######################################### 
 def download_pdf(request, pk):
     user_object = User.objects.get(username=request.user.username)
+    user = request.user
+    fullname = request.user.get_full_name()
     payroll = Payroll.objects.filter(user=user_object, id=pk)[0]
     profile = Profile.objects.get(user=user_object)
     data = {
+            'fullname':fullname,
             'payroll': payroll,
             'user': user_object,
             'profile': profile,
             }
+    print(data)	
     pdf = render_to_pdf('payroll_pdf.html', data)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="payroll.pdf"'
     return response
 
-########################CHART######################################### 
 def chart(request):
     end_date = datetime.today()
     start_date = end_date - timedelta(days=7)

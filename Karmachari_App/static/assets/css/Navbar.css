@@ -40,7 +40,7 @@ span {
 
 a {
     font-size: .7rem;
-    text-decoration: none;
+    text-decoration: none!important;
 }
 
 button {
@@ -48,7 +48,10 @@ button {
     border: none;
     cursor: pointer;
 }
-
+ul{
+    margin: 0!important;
+    padding: 0!important;
+}
 li {
     list-style: none;
 }
@@ -212,6 +215,8 @@ p.time-data {
 }
 .bell-notification
 {
+    overflow: visible;
+
     height: 0;
 }
 .bell-notification::after
@@ -380,6 +385,7 @@ p.time-data {
         top: 3.2rem;
         right: 1%;
         background-color: var(--dark-color);
+        z-index: 9999;
         opacity: .9;
         max-height: 0%;
         border-radius: 5px;
@@ -449,7 +455,7 @@ p.time-data {
 
     .clock_section .avatar {
     width: 60%;
-    height: 100px;        
+    height: 125px;        
     transform:translateY(10%)
     }
     .menu_item

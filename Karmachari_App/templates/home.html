@@ -1,8 +1,15 @@
-{% extends 'Nav_Sidebar.html' %}
 {%load static%}
-
-        {% comment %} {% include 'Nav_Sidebar.html' %} {% endcomment %}
-        {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
+    <title>Home</title>
+</head>
+<body>
+        {% include 'Nav_Sidebar.html' %}
         <div class="container hero-section">
             <div class="grid-container">
                 <div class="item right">
@@ -21,11 +28,11 @@
                     <div class="flexbox works">
                         <p>Total hrs Worked Today</p>
                         <div class="flexbox work-time">
-                            <span id="hrs">00</span>
-                            <span>:</span>
-                            <span id="mins">00</span>
-                            <span>:</span>
-                            <span id="secs">00</span>
+                            <span id="hrs">{{hours}}hr</span>
+                            <span> : </span>
+                            <span id="mins">{{minutes}}min</span>
+                            <span> : </span>
+                            <span id="secs">{{seconds}}s</span>
                         </div>
                     </div>
                     <!-- </div> -->
@@ -93,4 +100,5 @@
             </div>
         </div>
         <script src="{%static 'assets/js/home.js'%}"></script>
-    {% endblock content %}
+</body>
+</html>

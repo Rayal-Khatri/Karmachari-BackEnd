@@ -14,16 +14,16 @@ SECRET_KEY = 'django-insecure-y^4uzu&71a__gbpf)09^q49ddb8)t6)vd7gj1^=7omqy(mmx^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8d3c-110-44-123-213.in.ngrok.io','localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['7db0-2400-1a00-b030-3a5a-58ba-ca41-b42e-e517.ap.ngrok.io','localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://8d3c-110-44-123-213.in.ngrok.io','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://7db0-2400-1a00-b030-3a5a-58ba-ca41-b42e-e517.ap.ngrok.io','https://*.127.0.0.1']
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
-    'macaddress',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -34,9 +34,6 @@ INSTALLED_APPS = [
     'mainapp',
     'password_reset',
     'calendarr',
-    'import_export',
-    'django_otp',
-    'django_otp.plugins.otp_totp',
     # 'debug_toolbar',
 ]
 
@@ -48,15 +45,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'macaddress.middleware.MACAddressMiddleware',
     # "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
-
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'path.to.your.TOTPBackend',
-]
-
 
 INTERNAL_IPS = [
     # ...
@@ -92,9 +82,9 @@ WSGI_APPLICATION = 'Karmachari_App.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'karmachari-db', 
+        'NAME': 'karmachari', 
         'USER': 'postgres',
-        'PASSWORD': 'useradmin404',
+        'PASSWORD': 'useradmin',
         'HOST': 'localhost', 
         'PORT': '5432',
     }
@@ -125,11 +115,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
 
-USE_I18N = True
 
-USE_TZ = True
+
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -192,6 +182,7 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 JAZZMIN_SETTINGS = {
+    "show_ui_builder":True,
     "site_title": "Karmachari",
     "site_header":"Karmachari",
     "site_brand": "Karmachari",
@@ -215,7 +206,7 @@ JAZZMIN_SETTINGS = {
         "mainapp.Notice":"fa-sharp fa-solid fa-bell",
         "mainapp.Payroll":"fas fa-money-check-dollar menu-icon",
         "mainapp.Salary": "fa-regular fa-money-bill-wave",
-        "mainapp.Schedule": "calendar-alt",
+        "mainapp.Schedule": "fa-calendar-alt",
         "mainapp.Profile": "fa-solid fa-id-card",
         "mainapp.Attendance": "fa-solid fa-id-card",
         

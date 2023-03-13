@@ -1,33 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-/* =============================== Variables =========================== */
-:root {
-    /* ==================MAIN COLORS==================*/
-    --hue-color: 207;
-    /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
-    --primary-color: hsl(var(--hue-color), 75%, 50%);
-    --primary-color-alt: hsl(var(--hue-color), 100%, 90%);
-    --primary-color-sec: hsl(var(--hue-color), 70%, 20%);
-    --dark-color: rgb(51, 51, 51);
-    --dark-color-alt: hsl(0, 0%, 36%);
-    --dark-selected: hsl(0, 0%, 20%);
-    --Checkin: hsl(120, 50%, 50%);
-    --Checkin-hover: hsl(120, 50%, 30%);
-    --checkout: hsl(0, 100%, 70%);
-    /* =====================TEXTS ======================*/
-    --text-dark-color: #333;
-    --text-dark-color-alt: grey;
-    --text-light-color: whitesmoke;
-}
-
-/* ============================== GOlbal styling ======================= */
-* {
-    padding: 0rem;
-    margin: 0rem;
-    box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
-}
-
 body {
     margin: 0rem;
 }
@@ -37,12 +7,12 @@ body {
     width: 100%;
     background:var(--text-light-color);
     position: absolute;
-        z-index: -1;
-        top: 6.4%;
-        left: 15%;
-        width: max-content;
-        width: 85%;
-        height: 93.66%;
+    z-index: -1;
+    top: 6.4%;
+    left: 15%;
+    width: max-content;
+    width: 85%;
+    height: 93.66%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,22 +25,24 @@ body {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    background-color: rgb(20, 30,var(--hue-color),0.3 )
+    justify-content: space-between;
 }
 .Title-text
 {
 
     font-weight: bold;
-    padding: 1rem 0 1rem 5%;
-    font-size: 1.5rem;
-    color: var(--text-light-color);
+    padding: 1rem 0 1rem 2.3%;
+    color: var(--primary-color);
     /* background-color: yellow; */
+}
+.Title-text p
+{
+    font-size: 1.5rem;
 }
 
 /* ============================== Information Section (left Box)======================= */
 .information_section{
-    height: 75%;
+    height: 86%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -164,6 +136,10 @@ body {
     width: 60%;
     display: flex;
     flex-direction: column;
+}
+.Question span, .Answer span
+{
+    padding: .2rem;
 }
 .Answer
 {
@@ -269,10 +245,11 @@ body {
     {
         flex-direction: column;
         justify-content: space-around;
+        height: 950px;
     }
     .User-basic-information
     {
-        height: 500px;
+        height: 1000px;
         width: 85%;
         margin-bottom: 40px;
     }

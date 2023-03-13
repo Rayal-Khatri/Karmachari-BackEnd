@@ -1,11 +1,10 @@
 from django.contrib import admin
-from mainapp.models import *
-from mainapp.forms import *
+from .models import *
+from .forms import *
 from django.urls import reverse
 from django.utils.html import format_html
 from django.urls import path
 from django.db.models import Q
-from import_export.admin import ImportExportActionModelAdmin
 
 # Register your models here.
 class ProfileAdmin(admin.ModelAdmin):
@@ -44,6 +43,7 @@ class AttendanceAdmin(admin.ModelAdmin):
     search_fields = ['name', 'user__username']
     list_filter = [
         ('dateOfQuestion', DateFilter),
+    
     ]
 
     def get_search_results(self, request, queryset, search_term):
@@ -52,7 +52,7 @@ class AttendanceAdmin(admin.ModelAdmin):
             return queryset.filter(Q(name=search_term) | Q(user=user)), True
         except User.DoesNotExist:
             return queryset.filter(name=search_term), True
-    
+        
 class PayrollAdmin(admin.ModelAdmin):
     # form = PayrollForm
     fields = ('user','basic_pay', 'overtime', 'deductions')
@@ -60,19 +60,18 @@ class PayrollAdmin(admin.ModelAdmin):
     list_filter = [
         ('date', DateFilter),
     ]
-
-# @admin.register(Attendance)
-# class userdat(ImportExportActionModelAdmin):
-#     pass
+    
+    
     
     
 admin.site.register(Profile,ProfileAdmin)
 admin.site.register(Notice,NoticeAdmin)
 admin.site.register(Department)
-admin.site.register(Post)
 admin.site.register(Leaves,LeavesAdmin)
 admin.site.register(Events)
-admin.site.register(Payroll, PayrollAdmin)
+admin.site.register(Payroll,PayrollAdmin)
+admin.site.register(AllowedIP)
+admin.site.register(Salary)
 admin.site.register(Schedule,ScheduleAdmin)
 admin.site.register(Attendance,AttendanceAdmin)
 

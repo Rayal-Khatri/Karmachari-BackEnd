@@ -15,7 +15,7 @@
 
 <body>
     {%include 'Nav_Sidebar.html'%}
-    <section class="hero">
+    <section class="hero_leave">
         <div class="title-text">
             <h1>Leaves</h1>
         </div>
@@ -31,17 +31,14 @@
                         <h4 class="question_leave">Leave Subject</h4>
                         {{form.subject}}
                     </div>
-                    &nbsp
                     <div class="flexbox">
                         <h4 class="question_leave">Leave Date</h4>
                         {{form.date}}
                     </div>
-                    &nbsp
                     <div class="flexbox">
                         <h4 class="question_leave">Duration</h4>
                         {{form.duration}}
                     </div>
-                    &nbsp
                     <div class="flexbox  bigbox">
                         <h4 class="question_leave">Leave message</h4>
                         {{form.message}}
@@ -85,13 +82,13 @@
                             {% for leave in leaves reversed %}
                             <tr>
                                 
-                                <td>{{ forloop.counter}}</td>
-                                <td>{{leave.subject}}</td>
+                                <td class="SN">{{ forloop.counter}}</td>
+                                <td class="subject leave_table_left">{{leave.subject}}</td>
                                 <!-- <td>{{leave.duration}}</td> -->
-                                <td>{{leave.date}}</td>
-                                <td>{{leave.message|truncatewords:20}}</td>
+                                <td class="Date_lv">{{leave.date}}</td>
+                                <td class="message_lv leave_table_left">{{leave.message|truncatewords:20}}</td>
                                 <td>{{leave.leave_type}}</td>
-                                <td>{{leave.status}}</td>
+                                <td><div class="{% if leave.status == 'Pending' %}s0{% elif leave.status == 'Approved' %}s1 {%else%} s2 {% endif %} status_lv">{{leave.status}}</div></td>
                             </tr>
                             {% endfor %}
                             </tr>

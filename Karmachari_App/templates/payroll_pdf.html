@@ -1,30 +1,77 @@
+<!DOCTYPE html>
+<html>
 <head>
+	<title>Salary Sheet</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
 
+		h1 {
+			color: #333;
+			text-align: center;
+		}
+
+		table {
+			border-collapse: collapse;
+			margin: 20px auto;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		th, td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+
+		th {
+			background-color: #333;
+			color: #fff;
+		}
+
+		td {
+			color: #555;
+		}
+
+		.salary-details {
+			margin: 20px;
+			text-align: right;
+			font-size: 18px;
+			color: #333;
+		}
+
+		.salary-details span {
+			font-weight: bold;
+		}
+	</style>
 </head>
-  
-  <body>
-      <!-- HTML Content -->
-      <tr>
-        <th class="months">SALARY MONTHS</th>
-        <th class="money">EARNINGS<i class="bi bi-cash list-icon"></i></th>
-        <th class="money">DEDUCTIONS<i class="bi bi-cash list-icon"></i></th>
-        <th class="money">NETSALARY   <i class="bi bi-cash-stack list-icon"></i></i></th>
-        <th class="download">ACTIONS</th>
-    </tr>
-
-</thead>
-
-<tbody>  
-<tr>
-    <tr><strong>
-        <td>{{payroll.date}}</td>
-        <td>{{payroll.basic_pay}}</td>
-        <!-- <td>{{payrolls.overtime}}</td> -->
-        <td>{{payroll.deductions}}</td>
-        <td>{{payroll.net_pay}}</td>
-      </strong>
-    </tr>
-</tr>
-  
-  </body>
-  </html>
+<body>
+	<h1>Salary Sheet</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Employee Name</th>
+				<th>Basic Pay</th>
+				<th>Overtime</th>
+				<th>Deductions</th>
+				<th>Net Pay</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{fullname}}</td>
+				<td>{{payroll.basic_pay}}</td>
+				<td>{{payroll.overtime}}</td>
+				<td>{{payroll.deductions}}</td>
+				<td>{{payroll.net_pay}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="salary-details">
+		<span>Total Deductions:</span> {{payroll.deductions}}<br>
+		<span>Net Pay:</span> {{payroll.net_pay}}
+	</div>
+</body>
+</html>

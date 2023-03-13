@@ -1,57 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-/* =============================== Variables =========================== */
-:root {
-    /* ==================MAIN COLORS==================*/
-    --hue-color: 207;
-    /*Purple 250 - Green 142 - Blue 230 - Pink 340 sky blue: 205*/
-    --primary-color: hsl(var(--hue-color), 75%, 50%);
-    --primary-color-alt: hsl(var(--hue-color), 100%, 90%);
-    --primary-color-sec: hsl(var(--hue-color), 70%, 20%);
-    --dark-color: rgb(51, 51, 51);
-    --dark-color-alt: hsl(0, 0%, 36%);
-    --dark-selected: hsl(0, 0%, 20%);
-    --Checkin: hsl(120, 50%, 50%);
-    --Checkin-hover: hsl(120, 50%, 30%);
-    --checkout: hsl(0, 100%, 70%);
-    /* =====================TEXTS ======================*/
-    --text-dark-color: #333;
-    --text-dark-color-alt: grey;
-    --text-light-color: whitesmoke;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    /* overflow: hidden; */
-}
 
 body {
     height: 100vh;
-    width: 100vw;
+    overflow: hidden;
 }
 
-.hero {
+.hero_leave {
     position: relative;
     top: 7%;
     left: 15%;
     height: 93%;
     width: 85%;
-    /* background-color: var(--text-light-color); */
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background: linear-gradient(45deg,red,blue);
+    /* background-color: rgb(20, 30, var(--hue-color), 0.3) */
 }
 
 .title-text {
     text-align: left;
-    width: 90%;
-    font-size: 1.2rem;
-    color: whitesmoke;
+    width: 95%;
+    padding-top: 1rem;
+    color: var(--primary-color);
+}
+.title-text h1{
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-left: 2%;
 }
 
 .container {
@@ -96,9 +72,13 @@ body {
 }
 
 .flexbox {
-    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* background-color: red; */
 }
-
 .question_leave {
     font-size: .9rem;
 }
@@ -110,10 +90,18 @@ body {
 }
 
 .bigbox {
-    height: 40%;
+    height: 20%;
+    width: 100%;
 }
-
-.option_leave {
+.message-leave
+{
+    width: 100%;
+}
+#text
+{
+    display: none;
+}
+.option-leave {
     width: 100%;
 }
 
@@ -135,7 +123,7 @@ body {
     height: fit-content;
     width: 66%;
     border-radius: 5px;
-    padding: 1% 2%;
+    padding: 1% 1%;
 }
 
 .show-option {
@@ -150,26 +138,26 @@ body {
 }
 
 /* ===============Table CSS================ */
+
 .table-container {
     border-collapse: collapse;
     margin: 25px 0;
     width: 100%;
-    font-size: .7rem;
     min-width: 400px;
     border-radius: 5px 5px 0 0;
     overflow: scroll;
-    /* background-color: red; */
-    height: 350px;
+    max-height: 450px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-
 .table-container thead {
     position: sticky;
+    width: 100%;
     top: 0;
 }
 
 .table-container thead tr {
     background-color: var(--primary-color);
+    text-align: center;
     color: #ffffff;
     text-align: left;
     font-weight: bold;
@@ -178,6 +166,8 @@ body {
 .table-container th,
 .table-container td {
     padding: 12px 15px;
+    font-size: .75rem;
+    text-align: center;
 }
 
 .table-container tbody tr {
@@ -191,11 +181,19 @@ body {
 .table-container tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
+.SN{
+    width: 8%;
+}
+.subject
+{
+    width: 20%;
+}
 
 .status_lv {
     text-align: center;
     border-radius: 5px;
     padding: 0 .5rem;
+    font-size: .7rem;
 }
 
 .s0 {
@@ -209,13 +207,17 @@ body {
 .s2 {
     background-color: var(--checkout);
 }
-
+.leave_table_left
+{
+    text-align: left!important;
+}
 @media screen and (max-width:900px) {
     body {
         height: fit-content;
+        overflow: scroll;
     }
 
-    .hero {
+    .hero_leave {
         position: absolute;
         left: 0;
         top: 7%;
@@ -234,11 +236,6 @@ body {
         width: 97%;
         height: 550px;
     }
-
-    .input-section-container {
-        justify-content: space-around;
-    }
-
     .flexbox {
         height: 70px;
         /* background-color: red; */
@@ -249,22 +246,19 @@ body {
     }
 
     .answer_leave {
-        height: 50%;
+        height: 60%;
     }
 
-.message_leave {
-    background-color: red;
-    width: 100%;
-    height: 90%;
-    outline: none;
+    #message-leave {
+        height: 80%;
     }
 
     .bigbox {
-        height: 100px;
+        height: 150px;
         padding: .1rem 0;
     }
 
-    .option_leave {
+    .option-leave {
         padding: .1rem 0;
     }
 
@@ -309,15 +303,11 @@ body {
         padding: 0;
         color: transparent;
         width: 18px;
+        height: 18px;
         border-radius: 50%;
     }
 
     .Date_lv {
         display: none;
     }
-}
-
-input#id_message {
-    height: 80%;
-    width:100%;
 }

@@ -7,12 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}{% now "U" %}">
-    <link rel="stylesheet" href="{%static 'assets/css/home.css'%}">
     <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}">
-    <link rel="stylesheet" href="{%static 'assets/Css/information.css'%}">
     <script src="https://kit.fontawesome.com/7ee7d15580.js" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js" integrity="sha512-v3ygConQmvH0QehvQa6gSvTE2VdBZ6wkLOlmK7Mcy2mZ0ZF9saNbbk19QeaoTHdWIEiTlWmrwAL4hS8ElnGFbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
     <!-- <link rel="stylesheet" href="{%static 'assets/css/Navbar.css'%}"> -->
 </head>
 
@@ -71,11 +68,10 @@
             <ul>
                 <li class="menu_item {% if navbar == 'home'%} active-menu{%endif%}"><a href="/"><i class="fas fa-house menu-icon"></i>Home</a></li>
                 <li class="menu_item {% if navbar == 'yourinformation'%} active-menu{%endif%}"><a href="/information"><i class="fas fa-circle-info menu-icon"></i>Your Information</a></li>
-                <li class="menu_item {% if navbar == 'attendance'%} active-menu{%endif%}"><a href="/attendance"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
-                <li class="menu_item {% if navbar == 'salary'%} active-menu{%endif%}"><a href="/payroll"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
+                <li class="menu_item {% if navbar == 'attendance'%} active-menu{%endif%}"><a href="/calendar"><i class="fas fa-calendar-days menu-icon"></i>Attendance</a></li>
+                <li class="menu_item {% if navbar == 'salary'%} active-menu{%endif%}"><a href="/salary"><i class="fas fa-money-check-dollar menu-icon"></i>Salary Sheet</a></li>
                 <li class="menu_item {% if navbar == 'leaves'%} active-menu{%endif%}"><a href="/leaves"><i class="fas fa-door-open menu-icon"></i>Leaves</a></li>
-                <li class="menu_item {% if navbar == 'notice'%} active-menu{%endif%}"><a href="/chart"><i class="fas fa-door-open menu-icon"></i>Chart</a></li>
-                <li class="menu_item {% if navbar == 'chart'%} active-menu{%endif%}">
+                <li class="menu_item {% if navbar == 'notice'%} active-menu{%endif%}">
                     <a href="/notice">
                         <div class="bell-notification" current-count="8">
                             <i class="fas fa-bell menu-icon"></i>

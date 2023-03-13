@@ -1,0 +1,116 @@
+
+body {
+    height: calc(100vh-3px);
+    font-weight: 100;
+}
+
+main {
+    position: absolute;
+    left: 15%;
+    top: 7%;
+    width: 85%;
+    height: 93%;
+    overflow: hidden;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 15%;
+    width: 99%;
+}
+.fc-day-grid-event {
+    width: 80%;
+    height: 30%;
+    display: flex;
+    justify-content: flex-start;
+    color: var(--text-light-color);
+    align-items: center;
+    padding: 0 1rem;
+    border-radius:12px;
+    
+  }
+  .fc-attendance-present{
+      background:var(--Checkin)!important;
+  }
+  .fc-today-button
+  {
+    box-shadow: 1px 2px 30px -5px var(--primary-color)!important;
+  }
+  .fc-attendance-late{
+      background:#eab676!important;
+  }
+  .fc-attendance-absent{
+    background:var(--checkout)!important;
+}
+.fc-day-number
+{
+    padding:.3rem .3rem 0 0!important;
+}
+.fc-attendance-leave{
+    background:gray!important;
+}
+.fc-icon
+{
+    color:var(--primary-color)!important;
+}
+.fc-left
+{
+    display: none;
+}
+.fc-today
+{
+    background-color: var(--primary-color-alt)!important;
+}
+.fc-toolbar h2{
+    transform: translateX(6rem);
+}
+  #calendar {
+      left: 11%;
+      z-index:2;
+      position: relative;
+      top: 12%;
+      right:5%;
+      width: 96%;
+      height: 93%;
+    }
+
+  .fc-week {
+      height: calc(100% / 5); /* set the height of each week to 20% */
+  }
+
+
+@media screen and (max-width:900px) {
+.main{
+    left: 0;
+    height: 100%;
+    width: 100%;
+}    
+.fc-title, .fc-time
+{
+    display: none!important;
+}
+.fc-content
+{
+    min-height: 10px;
+    border-radius: 50%;
+}
+#calendar
+{
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.fc-today-button
+{
+    display: none;
+}
+.fc-toolbar
+{
+    padding-top: 1.5rem;
+}
+.fc-toolbar h2{
+    transform: translateX(1rem);
+    }
+}

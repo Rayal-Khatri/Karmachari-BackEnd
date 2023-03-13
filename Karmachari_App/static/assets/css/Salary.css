@@ -24,7 +24,7 @@
     padding: 0px;
     margin: 0px;
     border-radius: 0px;
-    font-family: poppins;
+    font-family: 'poppins',sans-serif;
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
@@ -38,8 +38,8 @@ body {
 .container {
     background-color: var(--text-light-color);
     height: 93%;
-    width: 81%;
-    left: 19%;
+    width: 85%;
+    left: 15%;
     top: 7%;
     position: absolute;
     display: flex;
@@ -55,13 +55,14 @@ body {
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    padding-left: 2rem;
 }
 
 .top-nav h2 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary-color);
-    margin-left: 2%;
+    /* color: var(--primary-color); */
+    /* margin-left: 2%; */
 }
 
 main {
@@ -188,13 +189,6 @@ main {
     margin-right: 1rem;
 }
 
-
-a:hover {
-    background-color: #ddd;
-    color: black;
-   
-
-}
 
 .previous {
     background-color: #f1f1f1;
