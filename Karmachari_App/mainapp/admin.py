@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.urls import path
 from django.db.models import Q
+from import_export.admin import ImportExportActionModelAdmin
 
 # Register your models here.
 class ProfileAdmin(admin.ModelAdmin):
@@ -60,8 +61,9 @@ class PayrollAdmin(admin.ModelAdmin):
         ('date', DateFilter),
     ]
 
-
-    
+# @admin.register(Attendance)
+# class userdat(ImportExportActionModelAdmin):
+#     pass
     
     
 admin.site.register(Profile,ProfileAdmin)

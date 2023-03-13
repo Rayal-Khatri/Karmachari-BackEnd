@@ -13,14 +13,24 @@ from .forms import *
 # Create your views here.
 ########################HOME#########################################
 def index(request):
-    if check_allowed_ip(request):
-        # User's IP address is allowed
-        user = Profile.objects.all()
-        context = {'user': user}
-        return render(request, 'index.html', context)
-    else:
-        # User's IP address is not allowed
-        return HttpResponse('Access Denied')
+    # devices = Device.objects.prefetch_related('related_field')
+    # for device in devices:
+    #     device.related_field.get_mac_address()
+    # # mac_address = Device.mac_address.get_mac_address(request)
+    # # device = Device(mac_address='01:23:45:67:89:ab')
+    # device.save()
+    # print(device)
+    # context = {'device':device}
+    # return render(request, 'index.html', context)
+    
+    # if check_allowed_ip(request):
+    #     # User's IP address is allowed
+    #     user = Profile.objects.all()
+    #     context = {'user': user}
+    #     return render(request, 'index.html', context)
+    # else:
+    #     # User's IP address is not allowed
+    return HttpResponse('Access Denied')
 
 @login_required(login_url='login')
 def home(request):
@@ -235,21 +245,7 @@ def payroll(request):
     }
     return render(request,'Salary_Sheet.html', context)
 
-# def pdf(request, pk):
-#     print(pk)
-#     user_object = User.objects.get(username=request.user.username)
-#     payroll = Payroll.objects.filter(user=user_object, id=pk)[0]
-#     profile = Profile.objects.get(user=user_object)
-#     print(payroll.date)
-#     print(payroll.date)
-#     print(payroll.net_pay)
-#     print(payroll.deductions)
-#     context = {
-#         'profile': profile,
-#         'payroll': payroll,
-#     }
-#     return render(request,'payroll_pdf.html', context)
-
+########################VIEW PAYROLL PDF######################################### 
 def view_pdf(request, pk):
     user_object = User.objects.get(username=request.user.username)
     payroll = Payroll.objects.filter(user=user_object, id=pk)[0]
@@ -262,6 +258,7 @@ def view_pdf(request, pk):
     pdf = render_to_pdf('payroll_pdf.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
+########################DOWNLOAD PAYROLL PDF######################################### 
 def download_pdf(request, pk):
     user_object = User.objects.get(username=request.user.username)
     payroll = Payroll.objects.filter(user=user_object, id=pk)[0]
@@ -275,3 +272,15 @@ def download_pdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="payroll.pdf"'
     return response
+
+########################CHART######################################### 
+def chart(request):
+    user_object = User.objects.get(username=request.user.username)
+    payroll = Payroll.objects.filter(user=user_object)
+    profile = Profile.objects.get(user=user_object)	
+    context={
+            'payroll': payroll,
+            'user': user_object,
+            'profile': profile,
+    }
+    return render(request,'chart.html', context)

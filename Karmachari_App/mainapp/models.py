@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.html import mark_safe
-from decimal import Decimal
+from django.core.validators import RegexValidator
 
 User=get_user_model()
 
@@ -113,6 +113,15 @@ class AllowedIP(models.Model):
     ip_address = models.GenericIPAddressField(null=True)
     # def __str__(self):
     #     return self.
+
+# class Device(models.Model):
+#     mac_address = models.CharField(max_length=17,)
+#         # validators=[RegexValidator(
+#         #     regex=r'^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$',
+#         #     message='MAC address must be in the format xx:xx:xx:xx:xx:xx',
+#         #     code='invalid_mac_address'
+#         # )]
+#     # )
     
 class Attendance(models.Model):
     STATUS_CHOICES = (

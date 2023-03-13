@@ -18,7 +18,9 @@ urlpatterns = [
     path('payroll',views.payroll,name='payroll'),
     path('view_pdf/<str:pk>', views.view_pdf,name='view_pdf'),
     path('download_pdf/<str:pk>',views.download_pdf,name='download_pdf'),
-    # path('pdf/<str:pk>',views.pdf,name='pdf'),
+    path('chart',views.chart,name='chart'),
+    path('index',views.index,name='index'),
+    
 ]
 
 

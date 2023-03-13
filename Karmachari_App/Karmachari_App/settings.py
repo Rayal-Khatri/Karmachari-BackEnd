@@ -23,6 +23,7 @@ CSRF_TRUSTED_ORIGINS = ['https://8d3c-110-44-123-213.in.ngrok.io','https://*.127
 
 INSTALLED_APPS = [
     'jazzmin',
+    'macaddress',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
     'mainapp',
     'password_reset',
     'calendarr',
+    'import_export',
     # 'debug_toolbar',
 ]
 
@@ -44,6 +46,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'macaddress.middleware.MACAddressMiddleware',
     # "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 

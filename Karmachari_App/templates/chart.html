@@ -1,4 +1,4 @@
-<!-- <div class="row ">
+<div class="row ">
     <div class="col-md-6 my-4">
         <div class="bg-white">
             <div class="card-body">
@@ -8,10 +8,10 @@
                     var myChart1 = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: [{% for product in product %} '{{product.name}}', {% endfor %}],
+                            labels: [],
                     datasets: [{
                         label: 'Number of Products',
-                        data: [{% for product in product %} {{ product.quantity }}, {% endfor %}],
+                        data: [],
                         backgroundColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
@@ -54,10 +54,10 @@
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: [{% for order in order %} '{{order.name}}',{% endfor %}],
+                            labels: [],
                     datasets: [{
                         label: 'Orders',
-                        data: [{% for order in order %} {{ order.order_quantity }}, {% endfor %}],
+                        data: [],
                         backgroundColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
@@ -91,4 +91,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
