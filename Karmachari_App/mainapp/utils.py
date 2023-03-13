@@ -1,5 +1,8 @@
 from django.http import HttpResponse
-from .models import AllowedIP
+from .models import *
+from xhtml2pdf import pisa
+from io import BytesIO
+from django.template.loader import get_template
 
 def check_allowed_ip(request):
     x_forw_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -16,3 +19,12 @@ def check_allowed_ip(request):
     else:
         # User's IP address is not present in the database
         return False
+    
+def render_to_pdf(template_src, context={}):
+	template = get_template(template_src)
+	html  = template.render(context)
+	result = BytesIO()
+	pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
+	if not pdf.err:
+		return HttpResponse(result.getvalue(), content_type='application/pdf')
+	return None

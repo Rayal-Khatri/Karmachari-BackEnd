@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Payroll PDF</title>
-    <style>
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-      }
-      th {
-        background-color: #dddddd;
-      }
-    </style>
-  </head>
+<head>
+
+</head>
+  
   <body>
-    <h1>Payroll List</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Employee Name</th>
-          <th>Basic Pay</th>
-          <th>Overtime</th>
-          <th>Deductions</th>
-          <th>Net Pay</th>
-        </tr>
-      </thead>
-        <tbody>
-        <tr>
-          <td>{{ payrolls.employee_name }}</td>
-          <td>{{ payrolls.basic_pay}}</td>
-          <td>{{ payrolls.deductions }}</td>
-          <td>{{ payrolls.net_pay }}</td>
-        </tbody>
-    </table>
+      <!-- HTML Content -->
+      <tr>
+        <th class="months">SALARY MONTHS</th>
+        <th class="money">EARNINGS<i class="bi bi-cash list-icon"></i></th>
+        <th class="money">DEDUCTIONS<i class="bi bi-cash list-icon"></i></th>
+        <th class="money">NETSALARY   <i class="bi bi-cash-stack list-icon"></i></i></th>
+        <th class="download">ACTIONS</th>
+    </tr>
+
+</thead>
+
+<tbody>  
+<tr>
+    <tr><strong>
+        <td>{{payroll.date}}</td>
+        <td>{{payroll.basic_pay}}</td>
+        <!-- <td>{{payrolls.overtime}}</td> -->
+        <td>{{payroll.deductions}}</td>
+        <td>{{payroll.net_pay}}</td>
+      </strong>
+    </tr>
+</tr>
+  
   </body>
+  </html>

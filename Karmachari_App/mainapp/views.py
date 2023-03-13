@@ -6,11 +6,8 @@ from mainapp.models import *
 from django.utils import timezone
 from datetime import datetime, timedelta, date
 from django.views.decorators.csrf import csrf_exempt
-from mainapp.utils import check_allowed_ip
+from mainapp.utils import *
 from .forms import *
-from django.template.loader import get_template
-from xhtml2pdf import pisa
-from io import BytesIO
 
 
 # Create your views here.
@@ -100,8 +97,7 @@ def attendance(request):
     context={
         'profile':profile,
         'notices':notices,
-        'navbar':'attendance',
-        
+        'navbar':'attendance',   
     }
     return render(request,'attendance.html',context)
     
@@ -213,48 +209,69 @@ def leaves(request):
 
 ########################PAYROLL######################################### 
 @login_required(login_url='login')
-def payroll(request):    
+def payroll(request):
     user_object = User.objects.get(username=request.user.username)
     try:
-        payrolls = Payroll.objects.filter(user=user_object)[0]
+        payrolls = Payroll.objects.filter(user=user_object)
         # payroll = Payroll.object.filter(user=user_object)
-        if payrolls is not None:
-            net_salary = payrolls.calculate_net_pay()
-        payrolls.net_pay = net_salary
-        payrolls.save()
+        for payroll in payrolls:
+            if payroll is not None:
+                net_salary = payroll.calculate_net_pay()
+            payroll.net_pay = net_salary
+            payroll.save()
     except IndexError:
         print("No payroll object found for this user")
     else:
         print("Payroll object found:", payrolls)
-    
-    print(net_salary)
+    # for i in payrolls:
+    #     print(i)
+    # print(net_salary)
     profile = Profile.objects.get(user=user_object)
-    pays=[]
     context={
         'profile':profile,
-        'navbar':'salary',
+        'navbar':'Salary;-Sheet',
         'payrolls': payrolls,
         'net_salary': net_salary,
     }
-    pays.append(context)
-    return render(request,'Salary_Sheet.html', {'pays':pays})
+    return render(request,'Salary_Sheet.html', context)
 
-def payroll_pdf(request):  
+# def pdf(request, pk):
+#     print(pk)
+#     user_object = User.objects.get(username=request.user.username)
+#     payroll = Payroll.objects.filter(user=user_object, id=pk)[0]
+#     profile = Profile.objects.get(user=user_object)
+#     print(payroll.date)
+#     print(payroll.date)
+#     print(payroll.net_pay)
+#     print(payroll.deductions)
+#     context = {
+#         'profile': profile,
+#         'payroll': payroll,
+#     }
+#     return render(request,'payroll_pdf.html', context)
+
+def view_pdf(request, pk):
     user_object = User.objects.get(username=request.user.username)
-    payrolls = Payroll.objects.filter(user=user_object)
+    payroll = Payroll.objects.filter(user=user_object, id=pk)[0]
     profile = Profile.objects.get(user=user_object)
-    context={
-        'profile':profile,
-        'navbar':'payroll-pdf',
-        'payrolls': payrolls,
-    } 
-    template_path = 'payroll_pdf.html'
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="payroll.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
-    pdf = pisa.CreatePDF(BytesIO(html.encode('UTF-8')), response)
-    if pdf.err:
-        return HttpResponse('Error generating PDF file')
-    return response
+    data = {
+            'payroll': payroll,
+            'user': user_object,
+            'profile': profile,
+            }
+    pdf = render_to_pdf('payroll_pdf.html', data)
+    return HttpResponse(pdf, content_type='application/pdf')
 
+def download_pdf(request, pk):
+    user_object = User.objects.get(username=request.user.username)
+    payroll = Payroll.objects.filter(user=user_object, id=pk)[0]
+    profile = Profile.objects.get(user=user_object)
+    data = {
+            'payroll': payroll,
+            'user': user_object,
+            'profile': profile,
+            }	
+    pdf = render_to_pdf('payroll_pdf.html', data)
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="payroll.pdf"'
+    return response

@@ -16,7 +16,9 @@ urlpatterns = [
     path('checkin',views.checkin,name='checkin'),
     path('checkout',views.checkout,name='checkout'),
     path('payroll',views.payroll,name='payroll'),
-    path('payroll-pdf',views.payroll_pdf,name='payroll-pdf'),
+    path('view_pdf/<str:pk>', views.view_pdf,name='view_pdf'),
+    path('download_pdf/<str:pk>',views.download_pdf,name='download_pdf'),
+    # path('pdf/<str:pk>',views.pdf,name='pdf'),
 ]
 
 

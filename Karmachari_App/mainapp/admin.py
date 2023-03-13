@@ -43,7 +43,6 @@ class AttendanceAdmin(admin.ModelAdmin):
     search_fields = ['name', 'user__username']
     list_filter = [
         ('dateOfQuestion', DateFilter),
-    
     ]
 
     def get_search_results(self, request, queryset, search_term):
@@ -55,8 +54,11 @@ class AttendanceAdmin(admin.ModelAdmin):
     
 class PayrollAdmin(admin.ModelAdmin):
     # form = PayrollForm
-    fields = ('user','basic_pay_rate', 'overtime', 'deductions')
+    fields = ('user','basic_pay', 'overtime', 'deductions')
     readonly_fields = ['net_pay']
+    list_filter = [
+        ('date', DateFilter),
+    ]
 
 
     

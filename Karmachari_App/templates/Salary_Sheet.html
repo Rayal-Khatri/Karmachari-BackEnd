@@ -53,17 +53,18 @@
                             <optgroup>
                                  
                     <tr>
-                            {% for pay in pays %}
+                            {% for payroll in payrolls reversed %}
                             <tr>
-                                <td>{{pay.payrolls.created_date}}</td>
-                                <td>{{pay.payrolls.basic_pay}}</td>
+                                <td>{{payroll.date}}</td>
+                                <td>{{payroll.basic_pay}}</td>
                                 <!-- <td>{{payrolls.overtime}}</td> -->
-                                <td>{{pay.payrolls.deductions}}</td>
-                                <td>{{pay.payrolls.net_pay}}</td>
-                                <td><a href="/payroll-pdf"><i class="bi bi-download"></i></a></td>
+                                <td>{{payroll.deductions}}</td>
+                                <td>{{payroll.net_pay}}</td>
+                                <td><a href="/download_pdf/{{payroll.id}}"><i class="bi bi-download"></i></a></td>
                             </tr>
                             {% endfor %}
                     </tr>
+                    
 
                             </optgroup>
                         </tbody>

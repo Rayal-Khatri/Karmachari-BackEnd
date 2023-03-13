@@ -18,7 +18,8 @@ User=get_user_model()
 #     )
 
 class Post(models.Model):
-    user_post= models.CharField(max_length=100, default="Everyone", null=True)
+    user = models.OneToOneField(User, on_delete= models.CASCADE)
+    designation= models.CharField(max_length=100, default="Everyone", null=True)
     salary = models.DecimalField(max_digits=8, default=10000, decimal_places=2)
     def __str__(self):
         return self.user_post
@@ -30,12 +31,11 @@ class Department(models.Model):
         return self.dname
     
 class Profile(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     userID = uuid.uuid4()
     profileimg = models.ImageField(upload_to='profile_images',default='img.png')
     dob = models.DateField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=100, default=0)
     def __str__(self):
         return self.user.username
@@ -49,7 +49,7 @@ class Notice(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     context = models.TextField(max_length=100000, null=True)        
     def __str__(self):
-        return self.title
+        return  f"{self.title}'s notice for {self.created_at.strftime('%Y-%m-%d')}"
 
 class Leaves(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
@@ -70,7 +70,7 @@ class Leaves(models.Model):
     message = models.TextField(max_length=100000, null=True)
     status = models.CharField(max_length=100, choices= leave_permission, default='Pending')
     def __str__(self):
-        return self.subject
+        return f"{self.subject}'s leaves for {self.date.strftime('%Y-%m-%d')}"
     
 class Schedule(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
@@ -91,14 +91,13 @@ class Payroll(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     basic_pay = models.DecimalField(max_digits=8, default=10000, decimal_places=2)
     overtime = models.DecimalField(max_digits=8,null=True, decimal_places=2)
-    overtime_multiplier = models.DecimalField(max_digits=8, default= 2, decimal_places=2)
+    # overtime_multiplier = models.DecimalField(max_digits=8, default= 2, decimal_places=2)
     # hours_worked = models.DecimalField(max_digits=8,default= 10, blank=True, decimal_places=2)
     deductions = models.DecimalField(max_digits=8,null=True, decimal_places=2)
     net_pay = models.DecimalField(max_digits=8,default= 0, blank=True, decimal_places=2)
-    created_date = models.DateTimeField(default=timezone.now)
+    date = models.DateTimeField(default=timezone.now)
     def calculate_net_pay(self):
-        overtime_pay = self.overtime * self.overtime_multiplier
-        net_pay =self.basic_pay + overtime_pay - self.deductions
+        net_pay =self.basic_pay + self.overtime - self.deductions
         return(net_pay)
     
     def salary_preview(self):
@@ -108,7 +107,7 @@ class Payroll(models.Model):
         return (self.hours_worked)
     
     def __str__(self):
-        return f"{self.user.username}'s Payroll for {self.created_date.strftime('%Y-%m-%d')}"
+        return f"{self.user.username}'s Payroll for {self.date.strftime('%Y-%m-%d')}"
     
 class AllowedIP(models.Model):
     ip_address = models.GenericIPAddressField(null=True)
@@ -131,8 +130,6 @@ class Attendance(models.Model):
     duration = models.FloatField(null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
 
-    def __str__(self):
-        return self.name
     def save(self, *args, **kwargs):
         self.name = f"{self.user.first_name} {self.user.last_name}"
         super().save(*args, **kwargs)
@@ -143,6 +140,8 @@ class Attendance(models.Model):
             return duration.total_seconds() / 3600.0  # Convert to hours
         else:
             return 0
+    def __str__(self):
+        return  f"{self.name}'s leaves for {self.dateOfQuestion.strftime('%Y-%m-%d')}"
 
 class Events(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
