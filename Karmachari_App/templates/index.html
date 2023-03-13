@@ -2,6 +2,9 @@
 
 <link rel="stylesheet" href="{% static 'style.css' %}">
 
-
-<p>Welcome, {{device.mac_address}}
-</p>
+<body>
+    {% for attendance in attendances %}
+    {{attendance.duration}}
+    {{attendance.checkOutTime}}
+{%endfor%}
+</body>

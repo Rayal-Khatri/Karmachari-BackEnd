@@ -8,11 +8,15 @@ from datetime import datetime, timedelta, date
 from django.views.decorators.csrf import csrf_exempt
 from mainapp.utils import *
 from .forms import *
+from django_otp.plugins.otp_totp.models import TOTPDevice
 
 
 # Create your views here.
 ########################HOME#########################################
 def index(request):
+    # TOTPDevice.objects.create(name='My Device')
+    # user.totp_devices.add(device)
+
     # devices = Device.objects.prefetch_related('related_field')
     # for device in devices:
     #     device.related_field.get_mac_address()
@@ -267,7 +271,7 @@ def download_pdf(request, pk):
             'payroll': payroll,
             'user': user_object,
             'profile': profile,
-            }	
+            }
     pdf = render_to_pdf('payroll_pdf.html', data)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="payroll.pdf"'
@@ -275,12 +279,40 @@ def download_pdf(request, pk):
 
 ########################CHART######################################### 
 def chart(request):
+    end_date = datetime.today()
+    start_date = end_date - timedelta(days=7)
+    
     user_object = User.objects.get(username=request.user.username)
-    payroll = Payroll.objects.filter(user=user_object)
-    profile = Profile.objects.get(user=user_object)	
+    profile = Profile.objects.get(user=user_object)
+    start_date_str = start_date.isoformat()
+    start_end_str = end_date.isoformat()
+    
+    formatted_start_date = date_formatting(start_date_str)
+    formatted_end_date = date_formatting(start_end_str)
+    
+    weekly_attendance = Attendance.objects.filter(user=user_object, dateOfQuestion__range=[formatted_start_date, formatted_end_date])
+
+    durations = [0, 0, 0, 0, 0, 0, 0]
+    for attendance in weekly_attendance:
+        i=attendance
+        day_of_week = attendance.dateOfQuestion.weekday()
+        if attendance.duration is None:
+            attendance.duration = 0
+            durations[day_of_week] += attendance.duration
+        else:
+            durations[day_of_week] += attendance.duration
+        print(durations[day_of_week])
+    
+    # # Prepare the data for the chart
+    # data = {}
+    # for i, day in enumerate(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']):
+    #     data[day] = durations[i]
+    # print(durations)
+    # # print(formatted_end_date)
+    # print(weekly_attendance)
     context={
-            'payroll': payroll,
             'user': user_object,
             'profile': profile,
+            'attendances': 'data'
     }
     return render(request,'chart.html', context)

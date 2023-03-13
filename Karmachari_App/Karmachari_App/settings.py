@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'password_reset',
     'calendarr',
     'import_export',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
     # 'debug_toolbar',
 ]
 
@@ -49,6 +51,12 @@ MIDDLEWARE = [
     # 'macaddress.middleware.MACAddressMiddleware',
     # "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'path.to.your.TOTPBackend',
+]
+
 
 INTERNAL_IPS = [
     # ...

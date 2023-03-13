@@ -4,14 +4,16 @@
             <div class="card-body">
                 <canvas id="myChart1" width="400" height="300"></canvas>
                 <script>
+                    var attendances = {{ attendances|safe }};
+
                     var ctx = document.getElementById('myChart1').getContext('2d');
                     var myChart1 = new Chart(ctx, {
                         type: 'pie',
                         data: {
-                            labels: [],
+                            labels: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Satuarday'],
                     datasets: [{
-                        label: 'Number of Products',
-                        data: [],
+                        label: 'Duration',
+                        data: [Object.values(attendances),],
                         backgroundColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',

@@ -28,3 +28,10 @@ def render_to_pdf(template_src, context={}):
 	if not pdf.err:
 		return HttpResponse(result.getvalue(), content_type='application/pdf')
 	return None
+
+def date_formatting(datte):
+    date_string =  datte
+    date_string = date_string.strip('“”')
+    date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%S.%f')
+    return(date_object.date())
+    
