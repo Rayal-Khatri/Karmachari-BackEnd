@@ -17,6 +17,7 @@ urlpatterns = [
     path('checkin',views.checkin,name='checkin'),
     path('checkout',views.checkout,name='checkout'),
     path('salary',views.payroll,name='payroll'),
+    path('chart',views.chart_1,name='chart'),
     path('view_pdf/<str:pk>', views.view_pdf,name='view_pdf'),
     path('download_pdf/<str:pk>',views.download_pdf,name='download_pdf'),
     # path('mark_absent/', mark_absent.Command().handle, name='mark_absent'),

@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'Karmachari_App.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'karmachari', 
+        'NAME': 'karmachari-db', 
         'USER': 'postgres',
-        'PASSWORD': 'useradmin',
+        'PASSWORD': 'useradmin404',
         'HOST': 'localhost', 
         'PORT': '5432',
     }
